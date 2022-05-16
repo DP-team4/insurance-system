@@ -87,5 +87,4 @@ public class Customer {
 	public void setHousePrice(int housePrice) {
 		this.housePrice = housePrice;
 	}
-	
 }//end Customer

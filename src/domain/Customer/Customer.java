@@ -20,6 +20,7 @@ public class Customer {
 	private String phoneNo;
 	private String registrationNo;
 	public Cancellation m_Cancellation;
+	
 	//교수님 수업 임의 추가
 	public int housePrice;
 

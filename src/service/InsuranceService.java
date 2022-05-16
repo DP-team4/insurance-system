@@ -14,5 +14,7 @@ public class InsuranceService {
         insurances.forEach(System.out::println);
         return insurances;
         
+        
+        
     }
 }

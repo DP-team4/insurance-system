@@ -55,4 +55,8 @@ public abstract class Insurance {
 	public InsuranceCategory getInsuranceCategory() { return insuranceCategory; }
 	public InsuranceState getInsuranceState() { return insuranceState; }
 
+
+
+	
+
 }

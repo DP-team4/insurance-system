@@ -15,5 +15,4 @@ public interface CustomerList {
 	public void get();
 
 	public void update();
-
 }

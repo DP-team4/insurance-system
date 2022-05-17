@@ -1,3 +1,4 @@
+import domain.Customer.test.CustomerTest;
 import domain.Insurance.test.InsuranceTest;
 import domain.UW.test.UWTest;
 
@@ -9,6 +10,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		InsuranceTest.test(scanner);
 		UWTest.test(scanner);
+		CustomerTest.test(scanner);
 	}
 
 }

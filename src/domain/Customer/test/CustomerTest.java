@@ -85,7 +85,8 @@ public class CustomerTest {
     		System.out.print("주민등록번호 뒷자리 >> "); customer.setRegistrationNo(input + "-" + scanner.nextLine().trim());
             System.out.print("전화번호 ex.01012345678 >> "); customer.setPhoneNo(scanner.nextLine().trim());System.out.print("메일주소 >> "); customer.setEmail(scanner.nextLine().trim());
             System.out.print("계좌 >> "); customer.setAccountNo(scanner.nextLine().trim());
-            System.out.print("집값(억) >> "); customer.setHousePrice(Integer.parseInt(scanner.nextLine().trim()));
+            System.out.print("차값 >> "); customer.setCarPrice(Long.parseLong(scanner.nextLine().trim()));
+            System.out.print("집값 >> "); customer.setHousePrice(Long.parseLong(scanner.nextLine().trim()));
             finished = false;
             while(!finished) {
                 System.out.print("결혼여부 기혼(1) 미혼(2) >> ");

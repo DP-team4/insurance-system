@@ -20,16 +20,14 @@ public class Customer {
 	private String accountNo;
 	// 요율 계산을 위한 고객 정보
 	private boolean isMarried;
-	private int carPrice;
+	private long carPrice;
 //	public ArrayList<CancelApplication> cancellations = new ArrayList<>(); // 계약 해지 신청 목록
 //	public ArrayList<Consultation> consultations = new ArrayList<>(); // 가입 상담 신청 목록
 //	public ArrayList<Claim> claims = new ArrayList<>(); // 보험금 청구 목록
 //	public ArrayList<Coverage> coverages = new ArrayList<>(); // 사고처리 신청 목록
 //	public ArrayList<Contract> contracts = new ArrayList<>(); // 가입 보험 목록
 
-	public Customer() {
-
-	}
+	public Customer() { }
 	
 	public Customer(String customerName, int age) {
 		this.customerName = customerName; this.age = age;
@@ -56,6 +54,8 @@ public class Customer {
 	public void setAccountNo(String accountNo) { this.accountNo = accountNo; }
 	public boolean isMarried() { return isMarried; }
 	public void setMarried(boolean isMarried) { this.isMarried = isMarried; }
+	public long getCarPrice() { return carPrice; }
+	public void setCarPrice(long carPrice) { this.carPrice = carPrice; }
 //	public ArrayList<CancelApplication> getCancellations(){ return this.cancellations; }
 //	public ArrayList<Consultation> getConsultations(){ return this.consultations; }
 //	public ArrayList<Coverage> getCoverages(){ return this.coverages; }
@@ -138,14 +138,8 @@ public class Customer {
 	}
 	
 	// 교수님 수업 임의 추가 //
-	public int housePrice;
-
-	public int getHousePrice() {
-		return housePrice;
-	}
-
-	public void setHousePrice(int housePrice) {
-		this.housePrice = housePrice;
-	}
+	public long housePrice;
+	public long getHousePrice() { return housePrice; }
+	public void setHousePrice(long housePrice) { this.housePrice = housePrice; }
 	
 }//end Customer

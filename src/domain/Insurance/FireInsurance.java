@@ -4,6 +4,9 @@ import domain.Customer.Customer;
 
 public class FireInsurance extends Insurance {
 
+	public FireInsurance() {
+		this.setInsuranceCategory(InsuranceCategory.FIRE);
+	}
 	@Override
 	public double calculateRatio(Customer customer) {
 		if(customer.getHousePrice() > 1000000000) return 1.1;

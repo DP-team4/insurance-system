@@ -22,11 +22,11 @@ public class UW {
 
 	private UW() {}
 	private UW(Customer customer, Insurance insurance, UWState uwState,  LocalDateTime dateTime) {
-		this.customerID = customer.getCustomerID(); this.insuranceID = insurance.getId();
+		this.customerID = customer.getId(); this.insuranceID = insurance.getId();
 		this.requestDateTime = dateTime; this.uwState = uwState;
 	}
 	private UW(Customer customer, Insurance insurance, UWState uwState) {
-		this.customerID = customer.getCustomerID(); this.insuranceID = insurance.getId(); this.uwState = uwState;
+		this.customerID = customer.getId(); this.insuranceID = insurance.getId(); this.uwState = uwState;
 	}
 
 	public static UW create(Customer customer, Insurance insurance) {

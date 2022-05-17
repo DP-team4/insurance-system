@@ -28,7 +28,7 @@ public class UWTest {
         // 테스트 데이터 생성
         // Customer -> 아직 Customer 구현이 완료되지 않은 관계로 ArrayList를 만들어 테스트
         for(int i=0; i<10; i++) {
-            customers.add(Customer.create("Customer" + i, 30 + i));
+            customers.add(new Customer("Customer" + i, 30 + i));
         }
         // Insurance
         for (int i = 0; i < 3; i++) {

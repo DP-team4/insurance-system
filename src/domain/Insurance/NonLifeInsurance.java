@@ -4,6 +4,9 @@ import domain.Customer.Customer;
 
 public class NonLifeInsurance extends Insurance {
 
+	public NonLifeInsurance() {
+		this.setInsuranceCategory(InsuranceCategory.NON_LIFE);
+	}
 	@Override
 	public double calculateRatio(Customer customer) {
 		// customer로부터 재산 정보 요청.

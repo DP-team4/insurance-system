@@ -4,13 +4,6 @@ import domain.Customer.Customer;
 
 public class CarInsurance extends Insurance {
 
-	public static CarInsurance create(String name) {
-		CarInsurance insurance = new CarInsurance();
-		insurance.setDefault(name);
-		return insurance;
-	}
-
-
 	@Override
 	public double calculateRatio(Customer customer) {
 		// customer로부터 자동차 정보 요청.

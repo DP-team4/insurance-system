@@ -20,31 +20,25 @@ public class UW {
 	private String customerID;
 	private String insuranceID;
 
-	private UW() {}
-	private UW(Customer customer, Insurance insurance, UWState uwState,  LocalDateTime dateTime) {
-		this.customerID = customer.getId(); this.insuranceID = insurance.getId();
-		this.requestDateTime = dateTime; this.uwState = uwState;
-	}
-	private UW(Customer customer, Insurance insurance, UWState uwState) {
-		this.customerID = customer.getId(); this.insuranceID = insurance.getId(); this.uwState = uwState;
-	}
-
-	public static UW create(Customer customer, Insurance insurance) {
-		return new UW(customer, insurance, UWState.NEW);
-	}
+	public UW() {}
 
 	public void accept(){
 		this.uwState = UWState.ACCEPTED;
 	}
 	public void addDocument(String name, String path) {
-		UWDocument submitted = UWDocument.createSubmitted(name, path);
+		UWDocument submitted = new UWDocument();
+		submitted.setName(name);
+		submitted.setPath(path);
+		submitted.setUwDocumentState(UWDocumentState.SUBMITTED);
 		this.documents.add(submitted);
 	}
 	public void reject(){
 		this.uwState = UWState.REJECTED;
 	}
 	public void requestDocument(String name){
-		UWDocument requested = UWDocument.createRequested(name);
+		UWDocument requested = new UWDocument();
+		requested.setName(name);
+		requested.setUwDocumentState(UWDocumentState.REQUESTED);
 		this.documents.add(requested);
 	}
 
@@ -65,7 +59,7 @@ public class UW {
 		return false;
 	}
 
-	// getters
+	// getters setters
 	public String getCustomerID() {
 		return customerID;
 	}
@@ -83,5 +77,23 @@ public class UW {
 	}
 	public UWState getUwState() {
 		return uwState;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setUwState(UWState uwState) {
+		this.uwState = uwState;
+	}
+	public void setDocuments(ArrayList<UWDocument> documents) {
+		this.documents = documents;
+	}
+	public void setRequestDateTime(LocalDateTime requestDateTime) {
+		this.requestDateTime = requestDateTime;
+	}
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+	public void setInsuranceID(String insuranceID) {
+		this.insuranceID = insuranceID;
 	}
 }

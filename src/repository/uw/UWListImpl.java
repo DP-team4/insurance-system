@@ -26,7 +26,10 @@ public class UWListImpl implements UWList {
 		}
 		return null;
 	}
-
+	@Override
+	public ArrayList<UW> getAll() {
+		return uws;
+	}
 	public void printAll() {
 		uws.forEach(i -> {
 			System.out.println(i);

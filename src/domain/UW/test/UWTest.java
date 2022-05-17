@@ -32,13 +32,20 @@ public class UWTest {
         }
         // Insurance
         for (int i = 0; i < 3; i++) {
-            FireInsurance insurance = FireInsurance.create("Insurance" + i);
+            FireInsurance insurance = new FireInsurance();
+            insurance.setName("insurance"+i);
             insurances.add(insurance);
             InsuranceListImpl.getInstance().add(insurance);
         }
         // UW
-        uwRepository.add(UW.create(customers.get(0), insurances.get(1)));
-        uwRepository.add(UW.create(customers.get(3), insurances.get(2)));
+        UW uw1 = new UW();
+        uw1.setCustomerID(customers.get(0).getId());
+        uw1.setInsuranceID(insurances.get(1).getId());
+        uwRepository.add(uw1);
+        UW uw2 = new UW();
+        uw2.setCustomerID(customers.get(3).getId());
+        uw2.setInsuranceID(insurances.get(2).getId());
+        uwRepository.add(uw2);
 
         System.out.println("UW ¸ñ·Ï:");
         uwRepository.printAll();

@@ -13,5 +13,8 @@ public class InsuranceService {
         ArrayList<Insurance> insurances = insuranceRepository.getAll();
         insurances.forEach(System.out::println);
         return insurances;
+        
+        
+        
     }
 }

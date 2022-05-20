@@ -48,11 +48,35 @@ public abstract class Insurance {
 		return sj.toString();
 	}
 
-	// getters
-	public ArrayList<Clause> getClauses() { return clauses; }
-	public String getId() { return id; }
-	public String getName() { return name; }
-	public InsuranceCategory getInsuranceCategory() { return insuranceCategory; }
-	public InsuranceState getInsuranceState() { return insuranceState; }
-
+	// getters setters
+	public ArrayList<Clause> getClauses() {
+		return clauses;
+	}
+	public String getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	public InsuranceCategory getInsuranceCategory() {
+		return insuranceCategory;
+	}
+	public InsuranceState getInsuranceState() {
+		return insuranceState;
+	}
+	public void setInsuranceCategory(InsuranceCategory insuranceCategory) {
+		this.insuranceCategory = insuranceCategory;
+	}
+	public void setClauses(ArrayList<Clause> clauses) {
+		this.clauses = clauses;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setInsuranceState(InsuranceState insuranceState) {
+		this.insuranceState = insuranceState;
+	}
 }

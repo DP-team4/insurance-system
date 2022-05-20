@@ -15,7 +15,7 @@ public class Contract {
 	
 	public Contract() {}
 	public Contract(Customer customer, Insurance insurance, LocalDateTime contractDateTime, LocalDateTime expirationDateTime) {
-		this.customerId = customer.getCustomerID();
+		this.customerId = customer.getId();
 		this.insuranceId = insurance.getId();
 		this.contractDateTime = contractDateTime;
 		this.expirationDateTime = expirationDateTime;

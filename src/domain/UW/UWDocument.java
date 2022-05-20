@@ -13,17 +13,9 @@ public class UWDocument {
 	private String path;
 	private UWDocumentState uwDocumentState;
 
-	private UWDocument(String name, String path, UWDocumentState uwDocumentState) {
-		this.name = name; this.path = path; this.uwDocumentState = uwDocumentState;
-	}
-	public static UWDocument createRequested(String name) {
-		return new UWDocument(name, null, UWDocumentState.REQUESTED);
-	}
-	public static UWDocument createSubmitted(String name, String path) {
-		return new UWDocument(name, path, UWDocumentState.SUBMITTED);
-	}
+	public UWDocument(){}
 
-	// getters
+	// getters setters
 	public String getId() {
 		return id;
 	}
@@ -35,5 +27,17 @@ public class UWDocument {
 	}
 	public UWDocumentState getUwDocumentState() {
 		return uwDocumentState;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public void setUwDocumentState(UWDocumentState uwDocumentState) {
+		this.uwDocumentState = uwDocumentState;
 	}
 }

@@ -46,7 +46,7 @@ public class InsuranceTest {
     }
 
     private static void testCalculateRatio(Scanner scanner) {
-        Customer customer1 = Customer.create("customer1", 30);
+        Customer customer1 = new Customer("customer1", 30);
         while(true){
             System.out.println("///// Test for Insurance, CalculateRatio /////");
             System.out.println("테스트용 더미 데이터(customer1)를 생성하였습니다.");

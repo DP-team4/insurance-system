@@ -4,13 +4,9 @@ import domain.Customer.Customer;
 
 public class MarineInsurance extends Insurance {
 
-	public static MarineInsurance create(String name) {
-		MarineInsurance insurance = new MarineInsurance();
-		insurance.setDefault(name);
-		return insurance;
+	public MarineInsurance() {
+		this.setInsuranceCategory(InsuranceCategory.MARINE);
 	}
-
-
 	@Override
 	public double calculateRatio(Customer customer) {
 		// customer로부터 해상 재산 정보 요청.

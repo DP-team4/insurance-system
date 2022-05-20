@@ -33,7 +33,6 @@ public class Contract {
 	public void requestUW() {
 		this.setContractState(ContractState.UNDER_UW);
 	}
-	
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());

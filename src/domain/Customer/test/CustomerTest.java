@@ -12,11 +12,25 @@ public class CustomerTest {
 		System.out.println("///// Test for Customer /////");
 
 	    // 테스트 데이터 생성
-		
+		int numTestData = 2; // 테스트 데이터 개수
+        // Customer
+        for(int i = 0; i < numTestData; i++) {
+        	customerRepository.add(new Customer("Customer" + i, 30 + i));
+        }
+        
+        System.out.println("Customer 목록:");
+        customerRepository.printAll();
+        System.out.print("작업할 Customer ID를 입력하세요 >> ");
+        String customerId = scanner.nextLine().trim();
+
+        Customer customer = customerRepository.get(customerId);
+        if(customer == null){
+            System.out.println("잘못된 Customer ID입니다.");
+            return;
+        }
+        
 	    while(true) {
-	        System.out.println("생성(1), 삭제(2), 아이디로 조회(3), 전체 조회(4), 보험상품 관리(5), 보험금 청구(6)");
-	        System.out.println("가입 상담 신청(7), 사고처리 신청(8), 계약 해지 신청(9), 보험료 납부(10), 뒤로가기(0)");
-	        System.out.println("(( # 참고 : 5번 부터는 미구현 기능입니다. ))");
+	        System.out.println("생성(1), 삭제(2), 아이디로 조회(3), 전체 조회(4), 뒤로가기(0)");
 	        System.out.print(">> "); String input = scanner.nextLine().trim();
 	        if(input.equals("0")) break;
 	        switch (input) {
@@ -31,24 +45,6 @@ public class CustomerTest {
 	                break;
 	            case "4":
 	            	testRetrieveAll();
-	                break;
-	            case "5":
-	            	testGetContracts();
-	                break;
-	            case "6":
-	                testApplyClaim(scanner);
-	                break;
-	            case "7":
-	                testApplyConsultation(scanner);
-	                break;
-	            case "8":
-	                testApplyCoverage(scanner);
-	                break;
-	            case "9":
-	                testCancelContract(scanner);
-	                break;
-	            case "10":
-	                testPayPremium();
 	                break;
 	            default:
 	                System.out.println("잘못된 입력입니다.");
@@ -140,57 +136,7 @@ public class CustomerTest {
 	}
 
 	private static void testRetrieveAll() {
-		System.out.println("Test for Customer, RetrieveAll");
+		System.out.println("///// Test for Customer, RetrieveAll /////");
 		customerRepository.printAll();
-	}
-
-	private static void testGetContracts() {
-		System.out.println("Test for Customer, GetContracts");
-		System.out.println("미구현 기능입니다.");
-//        customer.getContracts();
-//        System.out.println("보험상품 관리 완료하였습니다.");
-	}
-
-	private static void testApplyClaim(Scanner scanner) {
-        System.out.println("Test for Customer, ApplyClaim");
-        System.out.println("미구현 기능입니다.");
-//        System.out.print("추가 요청 서류 이름 >> ");
-//        String documentName = scanner.nextLine().trim();
-//        customer.applyClaim();
-//        System.out.println("보험금 청구 완료하였습니다.");
-	}
-
-	private static void testApplyConsultation(Scanner scanner) {
-        System.out.println("Test for Customer, ApplyConsultation");
-        System.out.println("미구현 기능입니다.");
-//        System.out.print("추가 요청 서류 이름 >> ");
-//        String documentName = scanner.nextLine().trim();
-//        customer.applyConsultation();
-//        System.out.println("가입 상담 신청 완료하였습니다.");
-	}
-
-	private static void testApplyCoverage(Scanner scanner) {
-        System.out.println("Test for Customer, ApplyCoverage");
-        System.out.println("미구현 기능입니다.");
-//        System.out.print("추가 요청 서류 이름 >> ");
-//        String documentName = scanner.nextLine().trim();
-//        customer.applyCoverage();
-//        System.out.println("사고처리 신청 완료하였습니다.");
-	}
-
-	private static void testCancelContract(Scanner scanner) {
-        System.out.println("Test for Customer, CancelContract");
-        System.out.println("미구현 기능입니다.");
-//        System.out.print("추가 요청 서류 이름 >> ");
-//        String documentName = scanner.nextLine().trim();
-//        customer.cancelContract();
-//        System.out.println("계약 해지 신청 완료하였습니다.");
-	}
-
-	private static void testPayPremium() {
-        System.out.println("Test for Customer, PayPremium");
-        System.out.println("미구현 기능입니다.");
-//        customer.payPremium();
-//        System.out.println("보험료 납부  완료하였습니다.");
 	}
 }

@@ -21,11 +21,6 @@ public class Customer {
 	// 요율 계산을 위한 고객 정보
 	private boolean isMarried;
 	private long carPrice;
-//	public ArrayList<CancelApplication> cancellations = new ArrayList<>(); // 계약 해지 신청 목록
-//	public ArrayList<Consultation> consultations = new ArrayList<>(); // 가입 상담 신청 목록
-//	public ArrayList<Claim> claims = new ArrayList<>(); // 보험금 청구 목록
-//	public ArrayList<Coverage> coverages = new ArrayList<>(); // 사고처리 신청 목록
-//	public ArrayList<Contract> contracts = new ArrayList<>(); // 가입 보험 목록
 
 	public Customer() { }
 	
@@ -56,54 +51,14 @@ public class Customer {
 	public void setMarried(boolean isMarried) { this.isMarried = isMarried; }
 	public long getCarPrice() { return carPrice; }
 	public void setCarPrice(long carPrice) { this.carPrice = carPrice; }
-//	public ArrayList<CancelApplication> getCancellations(){ return this.cancellations; }
-//	public ArrayList<Consultation> getConsultations(){ return this.consultations; }
-//	public ArrayList<Coverage> getCoverages(){ return this.coverages; }
-//	public ArrayList<Claim> getClaims(){ return this.claims; }
-//	// 자신의 보험상품을 관리한다
-//	public ArrayList<Contract> getContracts(){ return this.contracts; }
 
-	// functions //
-//	// 보험금을 청구한다
-//	public void applyClaim(){
-//		Claim claim = new Claim();
-//		
-//		claims.add(claim);
-//	}
-//
-//	// 가입 상담 신청을 한다
-//	public void applyConsultation(){
-//		Consultation consultation = new Consultation();
-//		consultation.setContent("입력한 내용");
-//		LocalDateTime consultationDate = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
-//		consultation.setConsultationDate(consultationDate);
-//		consultation.setCustomerID(this.id);
-//		LocalDateTime applicationDate = LocalDateTime.now();
-//		consultation.setApplicationDate(applicationDate);
-//		this.consultations.add(consultation);
-//	}
-//
-//	// 사고처리 신청을 한다
-//	public void applyCoverage(){
-//		Coverage coverage = new Coverage();
-//		
-//		this.coverages.add(coverage);
-//	}
-//
-//	// 계약 해지 신청을 한다
-//	public void cancelContract(){
-//		CancelApplication cancellation = new CancelApplication();
-//		cancellation.setInsuranceID(insuranceID);
-//		cancellation.setResult();
-//		this.cancellations.add(cancellation);
-//	}
-//	
-//	// getInsurances ? 보험사의 보험상품을 조회한다
-//
-	// 보험료를 납부한다
-	public void payPremium(){
-		// 보험료 계산
-	}
+	// 보험금을 청구한다 applyClaim(){
+	// 가입 상담 신청을 한다  applyConsultation
+	// 사고처리 신청을 한다 applyCoverage(){
+	// 계약 해지 신청을 한다 cancelContract=
+	// 보험사의 보험상품을 조회한다 TrackInsurances
+	// 자신의 보험상품을 관리한다 manageContracts
+	// 보험료를 납부한다 payPremium
 	
 	@Override
 	public String toString() {		

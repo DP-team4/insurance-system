@@ -13,7 +13,7 @@ public class ConsultApplicationListImpl implements ConsultApplicationList {
 	
 	@Override
 	public boolean add(ConsultApplication consultApplication) {
-		return consultApplicationList.add(consultApplication);
+		return consultApplications.add(consultApplication);
 	}
 
 	@Override

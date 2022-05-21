@@ -1,0 +1,130 @@
+package domain.claim;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.StringJoiner;
+
+public class Claim {
+	private String id =  "Claim"+System.currentTimeMillis();
+//	private String insuranceID;
+	private String appliedCustomerId; //원래는 접수자가 다를 수 있으나, 여기선 본인이 한다는 가정.
+	private String accidentLocation;
+	private LocalDateTime accidentDate;
+	private LocalDateTime claimDate;
+//	private  AccidentType accidentType;
+	private boolean isConfirmed = false;
+	private ArrayList<CarInfo> carInfos = new ArrayList<>();
+	private ArrayList<PeopleInfo> peopleInfos = new ArrayList<>();
+	
+	public void setaccidentDate(LocalDateTime accidentDate) {
+		this.accidentDate = accidentDate;
+	}
+	
+	public void setCarInfos(CarInfo carInfo) {
+		this.carInfos.add(carInfo);
+	}
+
+	public void setPeopleInfos(PeopleInfo peopleInfo) {
+		this.peopleInfos.add(peopleInfo);
+	}
+	
+	public void confirm() {
+		if(this.validate())
+			this.claimDate = LocalDateTime.now();
+			this.isConfirmed = true;
+	}
+
+	private boolean validate() {
+		if(this.id.isEmpty() || this.id == null) return false;
+		if(this.appliedCustomerId.isEmpty() || this.appliedCustomerId == null) return false;
+		if(this.appliedCustomerId.isEmpty() || this.appliedCustomerId == null) return false;
+		if(this.accidentDate == null || this.claimDate == null) return false;
+		if(this.carInfos.isEmpty() || this.peopleInfos.isEmpty()) return false;
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		StringJoiner sj = new StringJoiner(System.lineSeparator());
+		sj.add("ID: " + this.id).add("접수고객ID: " + this.appliedCustomerId).add("처리여부: " + this.isConfirmed).add("사고일자: " + this.accidentDate.toString()).add("접수일자: " + this.claimDate.toString());
+		StringJoiner carInfoSj = new StringJoiner(", ");
+		this.carInfos.forEach(d -> carInfoSj.add(d.getCarNum()));
+		StringJoiner peopleInfoSj = new StringJoiner(", ");
+		this.peopleInfos.forEach(d -> peopleInfoSj.add(d.getName()));
+		sj.add("피해사항: " + carInfoSj.toString()+peopleInfoSj.toString());
+		return sj.toString();
+	}
+	 
+//	public boolean equals(Claim otherClaim) {
+//		return this.getId().equals(otherClaim.getId());
+//	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof Claim) && ((Claim)obj).getId().equals(this.getId()); 
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getAppliedCustomerID() {
+		return appliedCustomerId;
+	}
+
+	public void setAppliedCustomerID(String appliedCustomerID) {
+		this.appliedCustomerId = appliedCustomerID;
+	}
+
+	public String getAccidentLocation() {
+		return accidentLocation;
+	}
+
+	public void setAccidentLocation(String accidentLocation) {
+		this.accidentLocation = accidentLocation;
+	}
+
+	public LocalDateTime getAccidentDate() {
+		return accidentDate;
+	}
+
+	public void setAccidentDate(LocalDateTime accidentDate) {
+		this.accidentDate = accidentDate;
+	}
+
+	public LocalDateTime getClaimDate() {
+		return claimDate;
+	}
+
+	public void setClaimDate(LocalDateTime claimDate) {
+		this.claimDate = claimDate;
+	}
+
+	public boolean isConfirmed() {
+		return isConfirmed;
+	}
+
+	public void setConfirmed(boolean isConfirmed) {
+		this.isConfirmed = isConfirmed;
+	}
+
+	public ArrayList<CarInfo> getCarInfos() {
+		return carInfos;
+	}
+
+	public void setCarInfos(ArrayList<CarInfo> carInfos) {
+		this.carInfos = carInfos;
+	}
+
+	public ArrayList<PeopleInfo> getPeopleInfos() {
+		return peopleInfos;
+	}
+
+	public void setPeopleInfos(ArrayList<PeopleInfo> peopleInfos) {
+		this.peopleInfos = peopleInfos;
+	}
+}

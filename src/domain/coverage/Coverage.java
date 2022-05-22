@@ -3,44 +3,42 @@ package domain.coverage;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
-public class Coverage {
+public abstract class Coverage {
 	private String id;
-	private String appliedCustomerId;
-	private CoverageType type;
-	private enum CoverageType {
-		CARACCIDENT, NONLIFE, 
-	}
+	private String appliedCustomerId; //통보자(접수자) = 피보험자로 간주
 	private CoverageState state = CoverageState.ONPROGRESS;
 	private enum CoverageState {
 		ONPROGRESS, UNDERPAYING, PAID, REFUSED 
 		//내부에 int를 넣어서 저장예정
 	}
 //	private double benefitClaim;
-	private double benefitMedicalExpense;
-	private double benefitRepairExpense;
-	private double benefitOtherExpense;
+	private String accidentCause;
 	private LocalDateTime accidentDate;
-	private LocalDateTime coverageDate;
+	private LocalDateTime applianceDate;
 	
-	public void createCarCoverage() {
-		this.type = CoverageType.CARACCIDENT;
-		this.benefitMedicalExpense = 10;
-		this.benefitRepairExpense = 100;
+	/*
+	 * 어차피 보험은 중복보장 해주는 사례가 거의 없으므로 요율이 제일 큰 것만 보장해준다.
+	 * customerId로 접수고객을 찾은 뒤, 해당 고객의 보험을 가져와서 요율 비교 후, 가장 큰 것을 비교하여 제일 큰 것을 비교해준다.
+	 *  => 이러면 보험 종류와 맞춰야겠다.  
+	 * 그리고, 보장란에서는 보험
+	 */
+	public abstract void createCoverage();
+	public abstract double getTotalBenefit();
+
+	public CoverageState getState() {
+		return state;
 	}
-	
-	public void createNonLifeCoverage() {
-		this.type = CoverageType.NONLIFE;
-		this.benefitOtherExpense = 90;
-	}
-	
-	public double getTotalBenefit() {
-		return Double.sum(Double.sum(this.benefitMedicalExpense,this.benefitRepairExpense), this.benefitOtherExpense);
+
+	public void setState(CoverageState state) {
+		this.state = state;
 	}
 	
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("접수고객ID: " + this.appliedCustomerId).add("처리현황: " + this.state.toString()).add("사고/발병일자: " + this.accidentDate.toString()).add("접수일자: " + this.coverageDate.toString());
+		sj.add("ID: " + this.id).add("접수고객ID: " + this.appliedCustomerId).add("처리현황: " + this.state.toString())
+		.add("사고/발병일자: " + this.accidentDate.toString()).add("접수일자: " + this.applianceDate.toString())
+		.add("총 예상 보장액: "+this.getTotalBenefit());
 		return sj.toString();
 	}
 	
@@ -65,46 +63,18 @@ public class Coverage {
 		this.appliedCustomerId = appliedCustomerId;
 	}
 
-	public CoverageType getType() {
-		return type;
+	public String getAccidentCause() {
+		return accidentCause;
 	}
-
-	public void setType(CoverageType type) {
-		this.type = type;
+	public void setAccidentCause(String accidentCause) {
+		this.accidentCause = accidentCause;
 	}
-
-	public CoverageState getState() {
-		return state;
+	public LocalDateTime getApplianceDate() {
+		return applianceDate;
 	}
-
-	public void setState(CoverageState state) {
-		this.state = state;
+	public void setApplianceDate(LocalDateTime applianceDate) {
+		this.applianceDate = applianceDate;
 	}
-
-	public double getBenefitMedicalExpense() {
-		return benefitMedicalExpense;
-	}
-
-	public void setBenefitMedicalExpense(double benefitMedicalExpense) {
-		this.benefitMedicalExpense = benefitMedicalExpense;
-	}
-
-	public double getBenefitRepairExpense() {
-		return benefitRepairExpense;
-	}
-
-	public void setBenefitRepairExpense(double benefitRepairExpense) {
-		this.benefitRepairExpense = benefitRepairExpense;
-	}
-
-	public double getBenefitOtherExpense() {
-		return benefitOtherExpense;
-	}
-
-	public void setBenefitOtherExpense(double benefitOtherExpense) {
-		this.benefitOtherExpense = benefitOtherExpense;
-	}
-
 	public LocalDateTime getAccidentDate() {
 		return accidentDate;
 	}
@@ -114,10 +84,10 @@ public class Coverage {
 	}
 
 	public LocalDateTime getCoverageDate() {
-		return coverageDate;
+		return applianceDate;
 	}
 
 	public void setCoverageDate(LocalDateTime coverageDate) {
-		this.coverageDate = coverageDate;
+		this.applianceDate = coverageDate;
 	}
 }

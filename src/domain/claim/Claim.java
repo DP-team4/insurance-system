@@ -8,6 +8,7 @@ public class Claim {
 	private String id =  "Claim"+System.currentTimeMillis();
 //	private String insuranceID;
 	private String appliedCustomerId; //원래는 접수자가 다를 수 있으나, 여기선 본인이 한다는 가정.
+	private String accidentCause; //사고경위
 	private String accidentLocation;
 	private LocalDateTime accidentDate;
 	private LocalDateTime claimDate;
@@ -15,18 +16,6 @@ public class Claim {
 	private boolean isConfirmed = false;
 	private ArrayList<CarInfo> carInfos = new ArrayList<>();
 	private ArrayList<PeopleInfo> peopleInfos = new ArrayList<>();
-	
-	public void setaccidentDate(LocalDateTime accidentDate) {
-		this.accidentDate = accidentDate;
-	}
-	
-	public void setCarInfos(CarInfo carInfo) {
-		this.carInfos.add(carInfo);
-	}
-
-	public void setPeopleInfos(PeopleInfo peopleInfo) {
-		this.peopleInfos.add(peopleInfo);
-	}
 	
 	public void confirm() {
 		if(this.validate())
@@ -72,12 +61,20 @@ public class Claim {
 		this.id = id;
 	}
 
-	public String getAppliedCustomerID() {
+	public String getAppliedCustomerId() {
 		return appliedCustomerId;
 	}
 
-	public void setAppliedCustomerID(String appliedCustomerID) {
-		this.appliedCustomerId = appliedCustomerID;
+	public void setAppliedCustomerId(String appliedCustomerId) {
+		this.appliedCustomerId = appliedCustomerId;
+	}
+
+	public String getAccidentCause() {
+		return accidentCause;
+	}
+
+	public void setAccidentCause(String accidentCause) {
+		this.accidentCause = accidentCause;
 	}
 
 	public String getAccidentLocation() {

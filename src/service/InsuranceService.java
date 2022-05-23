@@ -1,6 +1,6 @@
 package service;
 
-import domain.Insurance.Insurance;
+import domain.insurance.Insurance;
 import repository.insurance.InsuranceList;
 import repository.insurance.InsuranceListImpl;
 

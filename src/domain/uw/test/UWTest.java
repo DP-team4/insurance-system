@@ -1,10 +1,10 @@
-package domain.UW.test;
+package domain.uw.test;
 
-import domain.Customer.Customer;
-import domain.Insurance.FireInsurance;
-import domain.Insurance.Insurance;
+import domain.customer.Customer;
+import domain.insurance.FireInsurance;
+import domain.insurance.Insurance;
 import repository.insurance.InsuranceListImpl;
-import domain.UW.UW;
+import domain.uw.UW;
 import repository.uw.UWListImpl;
 
 import java.util.ArrayList;

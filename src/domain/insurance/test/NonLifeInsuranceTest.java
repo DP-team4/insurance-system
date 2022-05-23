@@ -1,13 +1,13 @@
-package domain.Insurance.test;
+package domain.insurance.test;
 
-import domain.Insurance.MarineInsurance;
+import domain.insurance.NonLifeInsurance;
 
 import java.util.Scanner;
 
-public class MarineInsuranceTest {
-    public static MarineInsurance testCreation(Scanner scanner, String name) {
+public class NonLifeInsuranceTest {
+    public static NonLifeInsurance testCreation(Scanner scanner, String name) {
         System.out.println("///// Test for Insurance, Creation, FireInsurance");
-        MarineInsurance insurance = new MarineInsurance();
+        NonLifeInsurance insurance = new NonLifeInsurance();
         insurance.setName(name);
         InsuranceTest.testAddition(insurance);
         System.out.println(insurance);

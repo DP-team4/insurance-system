@@ -1,4 +1,4 @@
-package domain.Insurance;
+package domain.insurance;
 
 /**
  * @author wls43

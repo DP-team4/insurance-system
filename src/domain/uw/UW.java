@@ -1,7 +1,4 @@
-package domain.UW;
-
-import domain.Customer.Customer;
-import domain.Insurance.Insurance;
+package domain.uw;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

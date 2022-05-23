@@ -1,7 +1,7 @@
 package repository.uw;
 
 
-import domain.UW.UW;
+import domain.uw.UW;
 
 import java.util.ArrayList;
 

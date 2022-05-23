@@ -1,8 +1,8 @@
-package domain.Customer.test;
+package domain.customer.test;
 
 import java.util.Scanner;
 
-import domain.Customer.Customer;
+import domain.customer.Customer;
 import repository.customer.CustomerListImpl;
 
 public class CustomerTest {

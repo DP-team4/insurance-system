@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import domain.Customer.Customer;
+import domain.customer.Customer;
 import domain.consultApplication.ConsultApplication;
 import repository.consultApplication.ConsultApplicationListImpl;
 

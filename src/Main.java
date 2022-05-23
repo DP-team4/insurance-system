@@ -1,6 +1,6 @@
-import domain.Customer.test.CustomerTest;
-import domain.Insurance.test.InsuranceTest;
-import domain.UW.test.UWTest;
+import domain.customer.test.CustomerTest;
+import domain.insurance.test.InsuranceTest;
+import domain.uw.test.UWTest;
 import domain.cancelApplication.test.CancelApplicationTest;
 import domain.consultApplication.test.ConsultApplicationTest;
 import domain.contract.test.ContractTest;

@@ -1,4 +1,4 @@
-package domain.Insurance;
+package domain.insurance;
 
 public enum ClauseCategory {
     NORMAL, SPECIAL

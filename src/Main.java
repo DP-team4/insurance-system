@@ -1,6 +1,8 @@
 import domain.Customer.test.CustomerTest;
 import domain.Insurance.test.InsuranceTest;
 import domain.UW.test.UWTest;
+import domain.cancelApplication.test.CancelApplicationTest;
+import domain.consultApplication.test.ConsultApplicationTest;
 import domain.contract.test.ContractTest;
 
 import java.util.Scanner;
@@ -13,6 +15,8 @@ public class Main {
 		UWTest.test(scanner);
 		CustomerTest.test(scanner);
 		ContractTest.test(scanner);
+		CancelApplicationTest.test(scanner);
+		ConsultApplicationTest.test(scanner);
 	}
 
 }

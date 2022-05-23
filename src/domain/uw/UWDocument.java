@@ -1,4 +1,4 @@
-package domain.UW;
+package domain.uw;
 
 
 /**

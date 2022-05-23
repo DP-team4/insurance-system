@@ -1,10 +1,10 @@
-package domain.Insurance.test;
+package domain.insurance.test;
 
-import domain.Customer.Customer;
-import domain.Insurance.Insurance;
+import domain.customer.Customer;
+import domain.insurance.Insurance;
 import repository.insurance.InsuranceListImpl;
-import domain.Insurance.Clause;
-import domain.Insurance.ClauseCategory;
+import domain.insurance.Clause;
+import domain.insurance.ClauseCategory;
 
 import java.util.Scanner;
 

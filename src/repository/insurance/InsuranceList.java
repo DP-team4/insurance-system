@@ -1,6 +1,6 @@
 package repository.insurance;
 
-import domain.Insurance.Insurance;
+import domain.insurance.Insurance;
 
 import java.util.ArrayList;
 

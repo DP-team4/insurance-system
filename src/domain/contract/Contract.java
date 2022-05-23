@@ -2,8 +2,8 @@ package domain.contract;
 
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
-import domain.Customer.Customer;
-import domain.Insurance.Insurance;
+import domain.customer.Customer;
+import domain.insurance.Insurance;
 
 public class Contract {
 	private String id = "Contract" + System.currentTimeMillis();

@@ -1,6 +1,6 @@
-package domain.Insurance;
+package domain.insurance;
 
-import domain.Customer.Customer;
+import domain.customer.Customer;
 
 public class NonLifeInsurance extends Insurance {
 

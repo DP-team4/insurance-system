@@ -1,6 +1,6 @@
-package domain.Insurance.test;
+package domain.insurance.test;
 
-import domain.Insurance.FireInsurance;
+import domain.insurance.FireInsurance;
 
 import java.util.Scanner;
 

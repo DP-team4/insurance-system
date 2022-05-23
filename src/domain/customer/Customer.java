@@ -1,4 +1,4 @@
-package domain.Customer;
+package domain.customer;
 
 import java.util.StringJoiner;
 

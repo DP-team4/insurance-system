@@ -2,7 +2,7 @@ package repository.customer;
 
 import java.util.ArrayList;
 
-import domain.Customer.Customer;
+import domain.customer.Customer;
 
 /**
  * @author bigst

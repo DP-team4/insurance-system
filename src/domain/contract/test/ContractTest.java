@@ -4,12 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import domain.Customer.Customer;
-import domain.Insurance.FireInsurance;
-import domain.Insurance.Insurance;
+import domain.customer.Customer;
+import domain.insurance.FireInsurance;
+import domain.insurance.Insurance;
 import domain.contract.Contract;
 import repository.contract.ContractListImpl;
-import repository.insurance.InsuranceListImpl;
 import service.ContractService;
 
 public class ContractTest {

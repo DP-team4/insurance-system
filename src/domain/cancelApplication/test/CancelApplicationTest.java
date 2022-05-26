@@ -8,6 +8,7 @@ import domain.customer.Customer;
 import domain.insurance.FireInsurance;
 import domain.insurance.Insurance;
 import domain.cancelApplication.CancelApplication;
+import domain.cancelApplication.CancelApplicationState;
 import domain.contract.Contract;
 import repository.cancelApplication.CancelApplicationListImpl;
 
@@ -16,7 +17,13 @@ public class CancelApplicationTest {
     private static final ArrayList<Insurance> insurances = new ArrayList<>();
     private static final ArrayList<Contract> contracts = new ArrayList<>();
 	private static final CancelApplicationListImpl cancelRepository = CancelApplicationListImpl.getInstance();
-	
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        test(scanner);
+        scanner.close();
+    }
+    
 	public static void test(Scanner scanner) {
 		System.out.println("///// Test for CancelApplication /////");
 
@@ -24,7 +31,10 @@ public class CancelApplicationTest {
 		int numTestData = 2; // 테스트 데이터 개수
         // Customer
         for(int i = 0; i < numTestData; i++) {
-        	customers.add(new Customer("Customer" + i, 30 + i));
+        	Customer customer = new Customer();
+        	customer.setCustomerName("Customer" + i+1);
+            customer.setAge(24 + (i * 3 + 1));
+            customers.add(customer);
         }
         // Insurance
         for (int i = 0; i < numTestData; i++) {
@@ -40,7 +50,7 @@ public class CancelApplicationTest {
         // CancelApplication
         for(int i = 0; i < numTestData; i++) {
         	CancelApplication cancelApplication = new CancelApplication();
-        	cancelApplication.setContract(contracts.get(i));
+        	cancelApplication.setContractId(contracts.get(i).getId());
             cancelRepository.add(cancelApplication);
         }
         System.out.println("CancelApplication 목록:");
@@ -80,13 +90,13 @@ public class CancelApplicationTest {
 
 	private static void testAccept(CancelApplication cancelApplication) {
         System.out.println("///// Test for CancelApplication, Accept /////");
-        cancelApplication.accept();
+        cancelApplication.setState(CancelApplicationState.ACCEPTED);
         System.out.println("해지 승인을 완료하였습니다.");
 	}
 
 	private static void testReject(CancelApplication cancelApplication) {
         System.out.println("///// Test for CancelApplication, Reject /////");
-        cancelApplication.reject();
+        cancelApplication.setState(CancelApplicationState.REJECTED);
         System.out.println("해지 신청 거절을 완료하였습니다.");
 	}
 }

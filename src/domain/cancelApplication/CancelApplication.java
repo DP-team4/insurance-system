@@ -15,17 +15,15 @@ public class CancelApplication {
 	private String id = "Cancel" + System.currentTimeMillis();
 	private Contract contract; // 계약 해지 할 Contract
 	private LocalDateTime applicationDate = LocalDateTime.now();
-	private Enum<EState> state;
-	
-	private enum EState{NEW, ACCEPTED, REJECTED}; // 요청대기, 요청수락, 요청거절
+	private Enum<CancelApplicationState> state;
 
 	// constructor
 	public CancelApplication(){
-		this.state = EState.NEW;
+		this.state = CancelApplicationState.NEW;
 	}
 	
 	public CancelApplication(Contract contract){
-		this.state = EState.NEW;
+		this.state = CancelApplicationState.NEW;
 	}
 	
 	// getters & setters
@@ -33,17 +31,11 @@ public class CancelApplication {
 	public Contract getContract() { return contract; }
 	public void setContract(Contract contract) { this.contract = contract; }
 	public LocalDateTime getApplicationDate() { return applicationDate; }
-	public Enum<EState> getState() { return state; }
-
-	public void accept() {
-		this.state = EState.ACCEPTED;
-	}
-	public void reject() {
-		this.state = EState.REJECTED;
-	}
+	public Enum<CancelApplicationState> getState() { return state; }
+	public void setState(Enum<CancelApplicationState> state) { this.state = state; }
 	
 	@Override
-	public String toString() {		
+	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
 		sj.add("ID: " + this.id).add("해지할 계약ID: " + this.contract.getId()).add("신청날짜: " + this.applicationDate).add("진행 상태: " + this.state);
 		return sj.toString();
@@ -56,4 +48,5 @@ public class CancelApplication {
 		}
 		return false;
 	}
+
 }//end Cancellation

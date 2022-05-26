@@ -2,6 +2,7 @@ package domain.customer.test;
 
 import java.util.Scanner;
 
+import domain.customer.AdditionalInfo;
 import domain.customer.Customer;
 import repository.customer.CustomerListImpl;
 
@@ -15,7 +16,23 @@ public class CustomerTest {
 		int numTestData = 2; // 테스트 데이터 개수
         // Customer
         for(int i = 0; i < numTestData; i++) {
-        	customerRepository.add(new Customer("Customer" + i, 30 + i));
+        	Customer customer = new Customer();
+        	customer.setCustomerName("Customer" + i+1);
+            customer.setAge(24 + (i * 3 + 1));
+            if(i / 2 == 0) customer.setGender(true);
+            else customer.setGender(false);
+            customer.setRegistrationNo("012345" + "-" + "6789012");
+            customer.setPhoneNo("01012345678");
+            customer.setEmail(i+"@gmail.com");
+            customer.setAccountNo("하나 " + i);
+            if(i / 2 == 0) customer.setMarried(true);
+            else customer.setMarried(false);
+            AdditionalInfo additionalinfo = customer.getAdditionalInfo();
+            additionalinfo.setCarPrice((i+1) * 10000000);
+            additionalinfo.setHousePrice((i+1) * 200000000);
+            additionalinfo.setDrivingCareer((i+1));
+            additionalinfo.setShipPrice((i+1) * 150000000);
+        	customerRepository.add(customer);
         }
         
         System.out.println("Customer 목록:");
@@ -79,10 +96,9 @@ public class CustomerTest {
             }
             System.out.print("주민등록번호 앞자리 >> "); input = scanner.nextLine().trim();
     		System.out.print("주민등록번호 뒷자리 >> "); customer.setRegistrationNo(input + "-" + scanner.nextLine().trim());
-            System.out.print("전화번호 ex.01012345678 >> "); customer.setPhoneNo(scanner.nextLine().trim());System.out.print("메일주소 >> "); customer.setEmail(scanner.nextLine().trim());
+            System.out.print("전화번호 ex.01012345678 >> "); customer.setPhoneNo(scanner.nextLine().trim());
+            System.out.print("메일주소 >> "); customer.setEmail(scanner.nextLine().trim());
             System.out.print("계좌 >> "); customer.setAccountNo(scanner.nextLine().trim());
-            System.out.print("차값 >> "); customer.setCarPrice(Long.parseLong(scanner.nextLine().trim()));
-            System.out.print("집값 >> "); customer.setHousePrice(Long.parseLong(scanner.nextLine().trim()));
             finished = false;
             while(!finished) {
                 System.out.print("결혼여부 기혼(1) 미혼(2) >> ");
@@ -93,8 +109,11 @@ public class CustomerTest {
     				default: System.out.println("결혼여부에 대한 입력이 올바르지 않습니다. 입력: " + input); break;
                 };
             }
-            System.out.print("비밀번호 >> "); customer.setPassword(scanner.nextLine().trim());
-    		
+            AdditionalInfo additionalinfo = customer.getAdditionalInfo();
+            System.out.print("차값(원) >> "); additionalinfo.setCarPrice(Long.parseLong(scanner.nextLine().trim()));
+            System.out.print("집값(원) >> "); additionalinfo.setHousePrice(Long.parseLong(scanner.nextLine().trim()));
+            System.out.print("운전경력(년) >> "); additionalinfo.setDrivingCareer(Integer.parseInt(scanner.nextLine().trim()));
+            System.out.print("선박가격(원) >> "); additionalinfo.setShipPrice(Long.parseLong(scanner.nextLine().trim()));
     		if(customerRepository.add(customer))System.out.println("레포지토리에 추가되었습니다.");
             else System.out.println("레포지토리에 추가되지 않았습니다.");
             System.out.print("고객 생성 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");

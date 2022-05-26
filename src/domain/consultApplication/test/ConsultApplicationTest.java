@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import domain.customer.Customer;
 import domain.consultApplication.ConsultApplication;
+import domain.consultApplication.ConsultApplicationState;
 import repository.consultApplication.ConsultApplicationListImpl;
 
 public class ConsultApplicationTest {
@@ -19,11 +20,14 @@ public class ConsultApplicationTest {
 		int numTestData = 2; // 테스트 데이터 개수
         // Customer
         for(int i = 0; i < numTestData; i++) {
-        	customers.add(new Customer("Customer" + i, 30 + i));
+        	Customer customer = new Customer();
+        	customer.setCustomerName("Customer" + i+1);
+            customer.setAge(24 + (i * 3 + 1));
+            customers.add(customer);
         }
         // ConsultApplicationTest
         for(int i = 0; i < numTestData; i++) {
-        	ConsultApplication consultApplication = new ConsultApplication(customers.get(i).getId(), "상담내용" + i+1, LocalDateTime.now().plusDays(i * 3 + 1));
+        	ConsultApplication consultApplication = new ConsultApplication(customers.get(i), "상담내용" + i+1, LocalDateTime.now().plusDays(i * 3 + 1));
         	consultRepository.add(consultApplication);
         }
         System.out.println("ConsultApplication 목록:");
@@ -66,19 +70,19 @@ public class ConsultApplicationTest {
 
 	private static void testAccept(ConsultApplication consultApplication) {
         System.out.println("///// Test for CancelApplication, Accept /////");
-		consultApplication.accept();
+        consultApplication.setState(ConsultApplicationState.ACCEPTED);
         System.out.println("상담 신청 승인을 완료하였습니다.");
 	}
 
 	private static void testReject(ConsultApplication consultApplication) {
         System.out.println("///// Test for CancelApplication, Reject /////");
-		consultApplication.reject();
+        consultApplication.setState(ConsultApplicationState.REJECTED);
         System.out.println("상담 신청 거절을 완료하였습니다.");
 	}
 
 	private static void testComplete(ConsultApplication consultApplication) {
         System.out.println("///// Test for CancelApplication, Complete /////");
-		consultApplication.complete();
+		consultApplication.setState(ConsultApplicationState.COMPLETED);
         System.out.println("상담 신청이 완료되었습니다.");
 	}
 

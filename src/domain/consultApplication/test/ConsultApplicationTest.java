@@ -13,6 +13,12 @@ public class ConsultApplicationTest {
 	private static final ArrayList<Customer> customers = new ArrayList<>();
 	private static final ConsultApplicationListImpl consultRepository = ConsultApplicationListImpl.getInstance();
 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        test(scanner);
+        scanner.close();
+    }
+    
 	public static void test(Scanner scanner) {
 		System.out.println("///// Test for ConsultApplication /////");
 
@@ -27,7 +33,10 @@ public class ConsultApplicationTest {
         }
         // ConsultApplicationTest
         for(int i = 0; i < numTestData; i++) {
-        	ConsultApplication consultApplication = new ConsultApplication(customers.get(i), "상담내용" + i+1, LocalDateTime.now().plusDays(i * 3 + 1));
+        	ConsultApplication consultApplication = new ConsultApplication();
+        	consultApplication.setCustomerId(customers.get(i).getId());
+        	consultApplication.setContent("상담내용" + i+1);
+        	consultApplication.setConsultationDate(LocalDateTime.now().plusDays(i * 3 + 1));
         	consultRepository.add(consultApplication);
         }
         System.out.println("ConsultApplication 목록:");

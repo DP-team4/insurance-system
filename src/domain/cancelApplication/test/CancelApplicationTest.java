@@ -17,7 +17,13 @@ public class CancelApplicationTest {
     private static final ArrayList<Insurance> insurances = new ArrayList<>();
     private static final ArrayList<Contract> contracts = new ArrayList<>();
 	private static final CancelApplicationListImpl cancelRepository = CancelApplicationListImpl.getInstance();
-	
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        test(scanner);
+        scanner.close();
+    }
+    
 	public static void test(Scanner scanner) {
 		System.out.println("///// Test for CancelApplication /////");
 
@@ -44,7 +50,7 @@ public class CancelApplicationTest {
         // CancelApplication
         for(int i = 0; i < numTestData; i++) {
         	CancelApplication cancelApplication = new CancelApplication();
-        	cancelApplication.setContract(contracts.get(i));
+        	cancelApplication.setContractId(contracts.get(i).getId());
             cancelRepository.add(cancelApplication);
         }
         System.out.println("CancelApplication ¸ñ·Ï:");

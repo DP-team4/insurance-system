@@ -3,8 +3,6 @@ package domain.cancelApplication;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
-import domain.contract.Contract;
-
 /**
  * @author bigst
  * @version 1.0
@@ -13,31 +11,27 @@ import domain.contract.Contract;
 public class CancelApplication {
 
 	private String id = "Cancel" + System.currentTimeMillis();
-	private String contractID; // 계약 해지 할 Contract
+	private String contractId; // 계약 해지 할 Contract
 	private LocalDateTime applicationDate = LocalDateTime.now();
-	private Enum<CancelApplicationState> state;
+	private CancelApplicationState cancelApplicationState;
 
 	// constructor
 	public CancelApplication(){
-		this.state = CancelApplicationState.NEW;
-	}
-	
-	public CancelApplication(Contract contract){
-		this.state = CancelApplicationState.NEW;
+		this.cancelApplicationState = CancelApplicationState.NEW;
 	}
 	
 	// getters & setters
 	public String getId() { return id; }
-	public String getContract() { return contractID; }
-	public void setContract(String contractID) { this.contractID = contractID; }
+	public String getContractId() { return contractId; }
+	public void setContractId(String contractId) { this.contractId = contractId; }
 	public LocalDateTime getApplicationDate() { return applicationDate; }
-	public Enum<CancelApplicationState> getState() { return state; }
-	public void setState(Enum<CancelApplicationState> state) { this.state = state; }
+	public CancelApplicationState getState() { return cancelApplicationState; }
+	public void setState(CancelApplicationState cancelApplicationState) { this.cancelApplicationState = cancelApplicationState; }
 	
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("해지할 계약 ID: " + this.contractID).add("신청날짜: " + this.applicationDate).add("진행 상태: " + this.state);
+		sj.add("ID: " + this.id).add("해지할 계약 ID: " + this.contractId).add("신청날짜: " + this.applicationDate).add("진행 상태: " + this.cancelApplicationState);
 		return sj.toString();
 	}
 	

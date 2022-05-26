@@ -29,7 +29,9 @@ public class Customer {
 	private boolean isMarried;
 	private AdditionalInfo additionalInfo;
 
-	public Customer() { }
+	public Customer() {
+		this.additionalInfo = new AdditionalInfo();
+	}
 
 	// getters & setters //
 	public String getId() { return id; }

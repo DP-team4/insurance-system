@@ -8,6 +8,12 @@ import repository.customer.CustomerListImpl;
 
 public class CustomerTest {
     private static final CustomerListImpl customerRepository = CustomerListImpl.getInstance();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        test(scanner);
+        scanner.close();
+    }
     
 	public static void test(Scanner scanner) {
 		System.out.println("///// Test for Customer /////");

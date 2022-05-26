@@ -13,7 +13,7 @@ import domain.contract.Contract;
 public class CancelApplication {
 
 	private String id = "Cancel" + System.currentTimeMillis();
-	private Contract contract; // 계약 해지 할 Contract
+	private String contractID; // 계약 해지 할 Contract
 	private LocalDateTime applicationDate = LocalDateTime.now();
 	private Enum<CancelApplicationState> state;
 
@@ -28,8 +28,8 @@ public class CancelApplication {
 	
 	// getters & setters
 	public String getId() { return id; }
-	public Contract getContract() { return contract; }
-	public void setContract(Contract contract) { this.contract = contract; }
+	public String getContract() { return contractID; }
+	public void setContract(String contractID) { this.contractID = contractID; }
 	public LocalDateTime getApplicationDate() { return applicationDate; }
 	public Enum<CancelApplicationState> getState() { return state; }
 	public void setState(Enum<CancelApplicationState> state) { this.state = state; }
@@ -37,7 +37,7 @@ public class CancelApplication {
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("해지할 계약ID: " + this.contract.getId()).add("신청날짜: " + this.applicationDate).add("진행 상태: " + this.state);
+		sj.add("ID: " + this.id).add("해지할 계약 ID: " + this.contractID).add("신청날짜: " + this.applicationDate).add("진행 상태: " + this.state);
 		return sj.toString();
 	}
 	

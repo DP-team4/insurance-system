@@ -3,6 +3,9 @@ package domain.uw.test;
 import domain.customer.Customer;
 import domain.insurance.FireInsurance;
 import domain.insurance.Insurance;
+import domain.uw.UWDocument;
+import domain.uw.UWDocumentState;
+import domain.uw.UWState;
 import repository.insurance.InsuranceListImpl;
 import domain.uw.UW;
 import repository.uw.UWListImpl;
@@ -12,7 +15,6 @@ import java.util.Scanner;
 
 public class UWTest {
     private static final ArrayList<Customer> customers = new ArrayList<>();
-    private static final InsuranceListImpl insuranceRepository = InsuranceListImpl.getInstance();
     private static final ArrayList<Insurance> insurances = new ArrayList<>();
     private static final UWListImpl uwRepository = UWListImpl.getInstance();
 
@@ -28,7 +30,10 @@ public class UWTest {
         // 테스트 데이터 생성
         // Customer -> 아직 Customer 구현이 완료되지 않은 관계로 ArrayList를 만들어 테스트
         for(int i=0; i<10; i++) {
-            customers.add(new Customer("Customer" + i, 30 + i));
+            Customer customer = new Customer();
+            customer.setCustomerName("Customer" + i);
+            customer.setAge(30 + i);
+            customers.add(customer);
         }
         // Insurance
         for (int i = 0; i < 3; i++) {
@@ -39,12 +44,12 @@ public class UWTest {
         }
         // UW
         UW uw1 = new UW();
-        uw1.setCustomerID(customers.get(0).getId());
-        uw1.setInsuranceID(insurances.get(1).getId());
+        uw1.setCustomerId(customers.get(0).getId());
+        uw1.setInsuranceId(insurances.get(1).getId());
         uwRepository.add(uw1);
         UW uw2 = new UW();
-        uw2.setCustomerID(customers.get(3).getId());
-        uw2.setInsuranceID(insurances.get(2).getId());
+        uw2.setCustomerId(customers.get(3).getId());
+        uw2.setInsuranceId(insurances.get(2).getId());
         uwRepository.add(uw2);
 
         System.out.println("UW 목록:");
@@ -89,19 +94,22 @@ public class UWTest {
         System.out.println("Test for UW, DocumentRequest");
         System.out.print("추가 요청 서류 이름 >> ");
         String documentName = scanner.nextLine().trim();
-        uw.requestDocument(documentName);
+        UWDocument uwDocument = new UWDocument();
+        uwDocument.setName(documentName);
+        uwDocument.setUwDocumentState(UWDocumentState.REQUESTED);
+        uw.addDocument(uwDocument);
         System.out.println("서류 요청 완료하였습니다.");
     }
 
     private static void testReject(UW uw) {
         System.out.println("Test for UW, Reject");
-        uw.reject();
+        uw.setUwState(UWState.REJECTED);
         System.out.println("반려를 완료하였습니다.");
     }
 
     private static void testAccept(UW uw) {
         System.out.println("Test for UW, Accept");
-        uw.accept();
+        uw.setUwState(UWState.ACCEPTED);
         System.out.println("인수를 완료하였습니다.");
     }
 }

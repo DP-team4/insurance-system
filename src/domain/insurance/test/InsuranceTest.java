@@ -46,7 +46,9 @@ public class InsuranceTest {
     }
 
     private static void testCalculateRatio(Scanner scanner) {
-        Customer customer1 = new Customer("customer1", 30);
+        Customer customer1 = new Customer();
+        customer1.setCustomerName("customer1");
+        customer1.setAge(30);
         while(true){
             System.out.println("///// Test for Insurance, CalculateRatio /////");
             System.out.println("테스트용 더미 데이터(customer1)를 생성하였습니다.");
@@ -103,7 +105,7 @@ public class InsuranceTest {
             System.out.println("///// Test for Insurance, Creation /////");
             System.out.print("이름 >> ");
             String name = scanner.nextLine().trim();
-            System.out.print("종류 화재(1), 손해(2), 해상(3), 자동차(4) >> ");
+            System.out.print("종류 화재(1), 운전자(2), 해상(3), 자동차(4) >> ");
             String category = scanner.nextLine().trim();
             Insurance insurance = null;
             switch (category) {
@@ -111,7 +113,6 @@ public class InsuranceTest {
                     insurance = FireInsuranceTest.testCreation(scanner, name);
                     break;
                 case "2":
-                    insurance = NonLifeInsuranceTest.testCreation(scanner, name);
                     break;
                 case "3":
                     insurance = MarineInsuranceTest.testCreation(scanner, name);
@@ -123,7 +124,7 @@ public class InsuranceTest {
                     System.out.println("종류에 대한 입력이 올바르지 않습니다. 입력: " + category);
                     break;
             }
-
+            if(insurance == null) return;
             while(true){
                 System.out.print("약관 추가(1), 완료(그 외) >> ");
                 if(!scanner.nextLine().trim().equals("1")) break;
@@ -149,7 +150,12 @@ public class InsuranceTest {
         String category = scanner.nextLine().trim();
         ClauseCategory clauseCategory = category.equals("1") ? ClauseCategory.NORMAL : ClauseCategory.SPECIAL;
         try {
-            return Clause.create(name, Integer.parseInt(insuredAmount), Integer.parseInt(premium), clauseCategory);
+            Clause clause = new Clause();
+            clause.setName(name);
+            clause.setInsuredAmount(Long.parseLong(insuredAmount));
+            clause.setPremium(Long.parseLong(premium));
+            clause.setClauseCategory(clauseCategory);
+            return clause;
         } catch (NumberFormatException e) {
             System.out.println("NumberFormatException, testClauseAddition");
         }

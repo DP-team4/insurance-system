@@ -14,21 +14,7 @@ public abstract class Insurance {
 
 	public abstract double calculateRatio(Customer customer);
 
-	public void setDefault(String name, InsuranceCategory insuranceCategory) {
-		this.name = name;
-		this.insuranceCategory = insuranceCategory;
-		this.insuranceState = InsuranceState.BEFORE_AUDIT;
-	}
 	public void addClause(Clause clause) { this.clauses.add(clause); }
-	public void startSales() {
-		this.insuranceState = InsuranceState.ON_SALE;
-	}
-	public void stopSales() {
-		this.insuranceState = InsuranceState.END_SALE;
-	}
-	public void startAudition() {
-		this.insuranceState = InsuranceState.UNDER_AUDIT;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -49,32 +35,32 @@ public abstract class Insurance {
 	}
 
 	// getters setters
-	public ArrayList<Clause> getClauses() {
-		return clauses;
-	}
-	public String getId() {
-		return id;
-	}
-	public String getName() {
-		return name;
-	}
 	public InsuranceCategory getInsuranceCategory() {
 		return insuranceCategory;
-	}
-	public InsuranceState getInsuranceState() {
-		return insuranceState;
 	}
 	public void setInsuranceCategory(InsuranceCategory insuranceCategory) {
 		this.insuranceCategory = insuranceCategory;
 	}
+	public ArrayList<Clause> getClauses() {
+		return clauses;
+	}
 	public void setClauses(ArrayList<Clause> clauses) {
 		this.clauses = clauses;
+	}
+	public String getId() {
+		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getName() {
+		return name;
+	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public InsuranceState getInsuranceState() {
+		return insuranceState;
 	}
 	public void setInsuranceState(InsuranceState insuranceState) {
 		this.insuranceState = insuranceState;

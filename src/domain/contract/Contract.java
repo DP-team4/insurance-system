@@ -2,8 +2,6 @@ package domain.contract;
 
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
-import domain.customer.Customer;
-import domain.insurance.Insurance;
 
 public class Contract {
 	private String id = "Contract" + System.currentTimeMillis();
@@ -13,26 +11,10 @@ public class Contract {
 	private String insuranceId;
 	private ContractState contractState;
 	
-	public Contract() {}
-	public Contract(Customer customer, Insurance insurance, LocalDateTime contractDateTime, LocalDateTime expirationDateTime) {
-		this.customerId = customer.getId();
-		this.insuranceId = insurance.getId();
-		this.contractDateTime = contractDateTime;
-		this.expirationDateTime = expirationDateTime;
+	public Contract() {
 		this.setContractState(ContractState.NEW);
 	}
-	
-	public void accept() {
-		this.setContractState(ContractState.ACCEPTED);
-	}
-	
-	public void reject() {
-		this.setContractState(ContractState.REJECTED);
-	}
-	
-	public void requestUW() {
-		this.setContractState(ContractState.UNDER_UW);
-	}
+
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());

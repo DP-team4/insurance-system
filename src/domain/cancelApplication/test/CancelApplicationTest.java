@@ -44,7 +44,10 @@ public class CancelApplicationTest {
         }
         // Contract
         for(int i = 0; i < numTestData; i++) {
-        	Contract contract = new Contract(customers.get(i), insurances.get(i), LocalDateTime.now(), LocalDateTime.now().plusDays(i * 3));
+        	Contract contract = new Contract();
+        	contract.setCustomerId(customers.get(i).getId());
+        	contract.setContractDateTime(LocalDateTime.now());
+        	contract.setExpirationDateTime(LocalDateTime.now().plusDays(i * 3));
         	contracts.add(contract);
         }
         // CancelApplication

@@ -1,5 +1,6 @@
 package domain.uw.test;
 
+import domain.contract.Contract;
 import domain.customer.Customer;
 import domain.insurance.FireInsurance;
 import domain.insurance.Insurance;
@@ -44,12 +45,16 @@ public class UWTest {
         }
         // UW
         UW uw1 = new UW();
-        uw1.setCustomerId(customers.get(0).getId());
-        uw1.setInsuranceId(insurances.get(1).getId());
+        Contract contract1 = new Contract();
+        contract1.setInsuranceId(insurances.get(1).getId());
+        contract1.setCustomerId(customers.get(0).getId());
+        uw1.setContractId(contract1.getId());
         uwRepository.add(uw1);
         UW uw2 = new UW();
-        uw2.setCustomerId(customers.get(3).getId());
-        uw2.setInsuranceId(insurances.get(2).getId());
+        Contract contract2 = new Contract();
+        contract2.setInsuranceId(insurances.get(2).getId());
+        contract2.setCustomerId(customers.get(3).getId());
+        uw2.setContractId(contract2.getId());
         uwRepository.add(uw2);
 
         System.out.println("UW ¸ñ·Ï:");

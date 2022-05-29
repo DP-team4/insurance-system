@@ -9,8 +9,7 @@ public class UW {
 	private UWState uwState;
 	private ArrayList<UWDocument> documents = new ArrayList<>();
 	private LocalDateTime requestDateTime = LocalDateTime.now();
-	private String customerId;
-	private String insuranceId;
+	private String contractId;
 
 	public UW() {
 		this.uwState = UWState.UNDEFINED;
@@ -23,7 +22,7 @@ public class UW {
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("고객 ID: " + this.customerId).add("보험 ID: " + this.insuranceId).add("상태: " + this.uwState).add("요청일: " + this.requestDateTime.toString());
+		sj.add("ID: " + this.id).add("계약 ID: " + this.contractId).add("상태: " + this.uwState).add("요청일: " + this.requestDateTime.toString());
 		StringJoiner documentSj = new StringJoiner(", ");
 		documents.forEach(d -> documentSj.add(d.getName()));
 		sj.add("서류: " + documentSj);
@@ -62,16 +61,10 @@ public class UW {
 	public void setRequestDateTime(LocalDateTime requestDateTime) {
 		this.requestDateTime = requestDateTime;
 	}
-	public String getCustomerId() {
-		return customerId;
+	public String getContractId() {
+		return contractId;
 	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
-	public String getInsuranceId() {
-		return insuranceId;
-	}
-	public void setInsuranceId(String insuranceId) {
-		this.insuranceId = insuranceId;
+	public void setContractId(String contractId) {
+		this.contractId = contractId;
 	}
 }

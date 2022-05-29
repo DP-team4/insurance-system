@@ -1,0 +1,124 @@
+1. db naming convention: snake
+
+2. type of id: varchar or int
+
+3. enum은 varchar로
+
+4. db 이름: insurance_system
+
+
+drop table coverage;
+drop table claim;
+drop table consult_application;
+drop table cancel_application;
+drop table contract;
+drop table customer;
+drop table uw_document;
+drop table uw;
+drop table clause;
+drop table insurance;
+
+create table insurance (
+	id int primary key auto_increment,
+	name varchar(255),
+	insurance_category varchar(30),
+	insurance_state varchar(30)
+);
+
+create table clause (
+	id int primary key auto_increment,
+	name varchar(255),
+	caluse_category varchar(30),
+	insured_amount bigint,
+	preminum bigint,
+	insurance_id int,
+	foreign key (insurance_id) references insurance (id)
+);
+
+create table uw (
+	id int primary key auto_increment,
+	request_date_time timestamp,
+	uw_state varchar(30),
+	contract_id int
+);
+
+create table uw_document (
+	id int primary key auto_increment,
+	name varchar(255),
+	path varchar(500),
+	uw_document_state varchar(30),
+	uw_id int,
+	foreign key (uw_id) references uw (id)
+);
+
+create table customer (
+	id int primary key auto_increment,
+	customerName varchar(255),
+	age int,
+	gender boolean,
+	registration_no varchar(30),
+	phone_no varchar(30),
+	email varchar(50),
+	account_no varchar(30),
+	is_married boolean
+);
+
+create table additional_info (
+	id int primary key auto_increment,
+	customer_id int,
+	car_price bigint,
+	house_price bigint,
+	driving_career int,
+	ship_price bigint,
+	foreign key (customer_id) references customer (id)
+);
+
+create table contract (
+	id int primary key auto_increment,
+	contract_datetime timestamp,
+	expiration_datetime timestamp,
+	customer_id int,
+	insurance_id int,
+	contract_state varchar(30) ,
+	foreign key (customer_id) references customer (id),
+	foreign key (insurance_id) references insurance (id)
+);
+
+create table cancel_application(
+	id int primary key auto_increment,
+	contract_id int,
+	application_date timestamp,
+	state varchar(30),
+	foreign key (contract_id) references contract (id)
+);
+
+create table consult_application(
+	id int primary key auto_increment,
+	customer_id int,
+	content varchar(100),
+	application_date timestamp,
+	consultation_date timestamp,
+	state varchar(30),
+	foreign key (customer_id) references customer (id)
+);
+
+create table claim (
+	id int primary key auto_increment,
+	contract_id int,
+	caraccident_cause varchar(4000),
+	accident_location varchar(100),
+	accident_date timestamp,
+	claim_date timestamp,
+	confirmed_date timestamp,
+	confirmed tinyint
+);
+
+create table coverage (
+	id int primary key auto_increment,
+	contract_id int, 
+	state tinyint, 
+	accident_cause varchar(4000), 
+	accident_date timestamp, 
+	appliance_date timestamp, 
+	state_confirmed_date timestamp
+);

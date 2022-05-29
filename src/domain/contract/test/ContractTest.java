@@ -8,6 +8,7 @@ import domain.customer.Customer;
 import domain.insurance.FireInsurance;
 import domain.insurance.Insurance;
 import domain.contract.Contract;
+import domain.contract.ContractState;
 import repository.contract.ContractListImpl;
 import service.ContractService;
 
@@ -28,7 +29,7 @@ public class ContractTest {
 	        // 테스트 데이터 생성
 	        // Customer -> 아직 Customer 구현이 완료되지 않은 관계로 ArrayList를 만들어 테스트
 	        for(int i=0; i<10; i++) {
-	            customers.add(new Customer("Customer" + i, 30 + i));
+	            customers.add(new Customer());
 	        }
 	        // Insurance
 	        for (int i = 0; i < 3; i++) {
@@ -36,8 +37,8 @@ public class ContractTest {
 	            insurances.add(insurance);
 	        }
 	        // Contract
-	        contractRepository.add(new Contract(customers.get(0), insurances.get(0), LocalDateTime.now(), LocalDateTime.now().plusDays(12)));
-	        contractRepository.add(new Contract(customers.get(0), insurances.get(1), LocalDateTime.now(), LocalDateTime.now().plusDays(20)));
+	        contractRepository.add(new Contract());
+	        contractRepository.add(new Contract());
 	
 	        System.out.println("계약 목록:");
 	        contractRepository.printAll();
@@ -90,18 +91,18 @@ public class ContractTest {
 
 		private static void testReject(Contract contract) {
 	        System.out.println("Test for Contract, Reject");
-	        contract.reject();
+	        contract.setContractState(ContractState.REJECTED);
 	        System.out.println("거절을 완료하였습니다. " + contract.getContractState().name());
 	    }
 	
 	    private static void testAccept(Contract contract) {
 	        System.out.println("Test for UW, Accept");
-	        contract.accept();
+	        contract.setContractState(ContractState.ACCEPTED);
 	        System.out.println("승인를 완료하였습니다." + contract.getContractState().name());
 	    }
 	    private static void testRequestUW(Contract contract) {
 	        System.out.println("Test for UW, Accept");
-	        contract.requestUW();
+	        contract.setContractState(ContractState.UNDER_UW);
 	        System.out.println("인수심사 요청을 완료하였습니다." + contract.getContractState().name());
 	    }
 }

@@ -2,10 +2,12 @@ package domain.insurance.test;
 
 import domain.customer.Customer;
 import domain.insurance.Insurance;
+import repository.customer.CustomerListImpl;
 import repository.insurance.InsuranceListImpl;
 import domain.insurance.Clause;
 import domain.insurance.ClauseCategory;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InsuranceTest {
@@ -19,7 +21,7 @@ public class InsuranceTest {
     public static void test(Scanner scanner) {
         System.out.println("///// Test for Insurance /////");
         while(true){
-            System.out.println("생성(1), 삭제(2), 아이디로 조회(3), 전체 조회(4), 요율 계산(5), 취소(0)");
+            System.out.println("생성(1), 삭제(2), 아이디로 조회(3), 보험명으로 조회(4), 전체 조회(5), 요율 계산(6), 취소(0)");
             System.out.print(">> ");
             String input = scanner.nextLine().trim();
             if(input.equals("0")) break;
@@ -31,12 +33,15 @@ public class InsuranceTest {
                     testDeletion(scanner);
                     break;
                 case "3":
-                    testRetrieve(scanner);
+                    testRetrieveById(scanner);
                     break;
                 case "4":
-                    testRetrieveAll();
+                    testRetrieveByName(scanner);
                     break;
                 case "5":
+                    testRetrieveAll();
+                    break;
+                case "6":
                     testCalculateRatio(scanner);
                     break;
                 default:
@@ -45,10 +50,27 @@ public class InsuranceTest {
         }
     }
 
+    private static void testRetrieveByName(Scanner scanner) {
+        while (true) {
+            System.out.println("///// Test for Insurance, Retrieve By Name /////");
+            System.out.print("보험명 >> ");
+            String inputName = scanner.nextLine().trim();
+            Insurance insurance = InsuranceListImpl.getInstance().getByName(inputName);
+            if(insurance == null) System.out.println("해당하는 이름의 보험을 찾지 못했습니다.");
+            else System.out.println(insurance);
+
+            System.out.print("보험명 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
+            String continueInput = scanner.nextLine().trim();
+            if(continueInput.equals("1")) continue;
+            else break;
+        }
+    }
+
     private static void testCalculateRatio(Scanner scanner) {
         Customer customer1 = new Customer();
         customer1.setCustomerName("customer1");
         customer1.setAge(30);
+        CustomerListImpl.getInstance().add(customer1);
         while(true){
             System.out.println("///// Test for Insurance, CalculateRatio /////");
             System.out.println("테스트용 더미 데이터(customer1)를 생성하였습니다.");
@@ -66,7 +88,11 @@ public class InsuranceTest {
     }
 
     private static void testRetrieveAll() {
-        InsuranceListImpl.getInstance().printAll();
+        ArrayList<Insurance> insurances = InsuranceListImpl.getInstance().getAll();
+        insurances.forEach(i -> {
+            System.out.println(i);
+            System.out.println();
+        });
     }
 
     private static void testDeletion(Scanner scanner) {
@@ -84,7 +110,7 @@ public class InsuranceTest {
         }
     }
 
-    private static void testRetrieve(Scanner scanner) {
+    private static void testRetrieveById(Scanner scanner) {
         while (true) {
             System.out.println("///// Test for Insurance, Retrieve /////");
             System.out.print("아이디 >> ");
@@ -93,7 +119,7 @@ public class InsuranceTest {
             if(insurance == null) System.out.println("해당하는 ID의 보험을 찾지 못했습니다.");
             else System.out.println(insurance);
 
-            System.out.print("보험 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
+            System.out.print("보험 아이디 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
             String continueInput = scanner.nextLine().trim();
             if(continueInput.equals("1")) continue;
             else break;
@@ -110,15 +136,16 @@ public class InsuranceTest {
             Insurance insurance = null;
             switch (category) {
                 case "1":
-                    insurance = FireInsuranceTest.testCreation(scanner, name);
+                    insurance = FireInsuranceTest.testCreation(name);
                     break;
                 case "2":
+                    insurance = DriverInsuranceTest.testCreation(name);
                     break;
                 case "3":
-                    insurance = MarineInsuranceTest.testCreation(scanner, name);
+                    insurance = MarineInsuranceTest.testCreation(name);
                     break;
                 case "4":
-                    insurance = CarInsuranceTest.testCreation(scanner, name);
+                    insurance = CarInsuranceTest.testCreation(name);
                     break;
                 default:
                     System.out.println("종류에 대한 입력이 올바르지 않습니다. 입력: " + category);

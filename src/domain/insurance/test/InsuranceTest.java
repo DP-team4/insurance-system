@@ -70,13 +70,22 @@ public class InsuranceTest {
         Customer customer1 = new Customer();
         customer1.setCustomerName("customer1");
         customer1.setAge(30);
+        customer1.getAdditionalInfo().setHousePrice(2000000000L);
+        customer1.getAdditionalInfo().setShipPrice(1300000000L);
+        customer1.getAdditionalInfo().setDrivingCareer(12);
+        customer1.getAdditionalInfo().setCarPrice(2000000000L);
         CustomerListImpl.getInstance().add(customer1);
         while(true){
             System.out.println("///// Test for Insurance, CalculateRatio /////");
             System.out.println("테스트용 더미 데이터(customer1)를 생성하였습니다.");
+            System.out.println(customer1);
             System.out.println("보험 ID >> ");
             String insuranceId = scanner.nextLine().trim();
             Insurance insurance = InsuranceListImpl.getInstance().get(insuranceId);
+            if(insurance==null) {
+                System.out.println("잘못된 ID입니다.");
+                break;
+            }
             System.out.println("보험 요율: " + insurance.calculateRatio(customer1));
 
             System.out.print("보험 요율 계산 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");

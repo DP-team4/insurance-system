@@ -4,6 +4,7 @@
 4. db name: insurance_system
 
 
+
 drop table coverage;
 drop table claim;
 drop table consult_application;

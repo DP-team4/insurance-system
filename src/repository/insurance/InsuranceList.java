@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public interface InsuranceList {
 	boolean add(Insurance insurance);
-	boolean delete(String insuranceID);
-	Insurance get(String insuranceID);
-//	boolean update();
+	boolean delete(String id);
+	Insurance get(String id);
+	boolean update(Insurance insurance);
 	ArrayList<Insurance> getAll();
 
 }

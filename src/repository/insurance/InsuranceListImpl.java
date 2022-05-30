@@ -1,5 +1,6 @@
 package repository.insurance;
 
+import dao.InsuranceDao;
 import domain.insurance.Insurance;
 
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
  * @created 09-5-2022 ¿ÀÈÄ 4:48:26
  */
 public class InsuranceListImpl implements InsuranceList {
-	private static final ArrayList<Insurance> insurances = new ArrayList<>();
 	private static final InsuranceListImpl insuranceList = new InsuranceListImpl();
+	private static final InsuranceDao insuranceDao = new InsuranceDao();
 
 	// Singleton
 	private InsuranceListImpl(){}
@@ -19,28 +20,24 @@ public class InsuranceListImpl implements InsuranceList {
 
 	@Override
 	public boolean add(Insurance insurance) {
-		return insurances.add(insurance);
+		return insuranceDao.create(insurance);
 	}
 	@Override
-	public boolean delete(String insuranceID) {//¾Þ°£ÇÏ¸é if¶û else¶û °°ÀÌ ²¸ÁÙ °Í...
-		Insurance insurance = this.get(insuranceID);
-		return insurances.remove(insurance);
+	public boolean delete(String id) {
+		return insuranceDao.delete(id);
 	}
 	@Override
-	public Insurance get(String insuranceID) {
-		for(Insurance e : insurances) {
-			if(e.getId().equals(insuranceID))	return e;
-		}
-		return null;
+	public Insurance get(String id) {
+		return insuranceDao.retrieveById(id);
 	}
-	public ArrayList<Insurance> getAll() { return insurances; }
-	public void printAll() {
-		insurances.forEach(i -> {
-			System.out.println(i);
-			System.out.println();
-		});
+	public ArrayList<Insurance> getAll() {
+		return insuranceDao.retrieveAll();
 	}
-//	public void update(){
-//
-//	}
+	public Insurance getByName(String name) {
+		return insuranceDao.retrieveByName(name);
+	}
+	@Override
+	public boolean update(Insurance insurance) {
+		return insuranceDao.update(insurance);
+	}
 }

@@ -9,7 +9,10 @@ public class CarInsurance extends Insurance {
 	}
 	@Override
 	public double calculateRatio(Customer customer) {
-		// customer로부터 자동차 정보 요청.
-		return 1.4;
+		long carPrice = customer.getAdditionalInfo().getCarPrice();
+		if(carPrice < 100000000L) return 0.9;
+		else if(carPrice < 100000000L) return 1.0;
+		else if(carPrice < 200000000L) return 1.1;
+		else return 1.3;
 	}
 }

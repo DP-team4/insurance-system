@@ -10,7 +10,7 @@ public abstract class Insurance {
 	private ArrayList<Clause> clauses = new ArrayList<>();
 	private String id = "Insurance" + System.currentTimeMillis();  // insuranceID, insuranceId
 	private String name;
-	private InsuranceState insuranceState;
+	private InsuranceState insuranceState = InsuranceState.BEFORE_AUDIT;
 
 	public abstract double calculateRatio(Customer customer);
 

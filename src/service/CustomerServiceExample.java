@@ -26,4 +26,5 @@ public class CustomerServiceExample {
         }
         coverageRepository.add(coverage);
     }
+    
 }

@@ -32,13 +32,20 @@ public class ContractTest {
 	            customers.add(new Customer());
 	        }
 	        // Insurance
-	        for (int i = 0; i < 3; i++) {
+	        for (int i = 0; i < 4; i++) {
 	            FireInsurance insurance = new FireInsurance();
 	            insurances.add(insurance);
 	        }
 	        // Contract
-	        contractRepository.add(new Contract());
-	        contractRepository.add(new Contract());
+	        for(int i = 0; i < 4; i++) {
+	        	Contract contract = new Contract();
+	        	contract.setId("Contract"+i);
+	        	contract.setCustomerId(customers.get(i).getId());
+	        	contract.setInsuranceId(insurances.get(i).getId());
+	        	contract.setContractDateTime(LocalDateTime.now());
+	        	contract.setExpirationDateTime(LocalDateTime.now().plusDays(i * 6));
+	        	contractRepository.add(contract);
+	        }
 	
 	        System.out.println("계약 목록:");
 	        contractRepository.printAll();
@@ -75,7 +82,7 @@ public class ContractTest {
 	                    System.out.println("잘못된 입력입니다.");
 	                    break;
 	            }
-	            System.out.println(contract);
+	            if (!input.equals("4")) System.out.println(contract);
 	
 	            System.out.println("테스트를 반복합니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
 	            input = scanner.nextLine().trim();
@@ -84,7 +91,7 @@ public class ContractTest {
 	    }
 	
 	    private static void testMature() {
-	    	System.out.println("만기대상 계약 목록:");
+	    	System.out.println("Test for Contract, Mature:");
 	        ContractService contractService = new ContractService();
 	        contractService.getAllMatureContracts();
 		}

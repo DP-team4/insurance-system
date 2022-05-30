@@ -1,10 +1,7 @@
 1. db naming convention: snake
-
 2. type of id: varchar or int
-
-3. enum은 varchar로
-
-4. db 이름: insurance_system
+3. enum to varchar
+4. db name: insurance_system
 
 
 drop table coverage;
@@ -12,6 +9,7 @@ drop table claim;
 drop table consult_application;
 drop table cancel_application;
 drop table contract;
+drop table additional_info;
 drop table customer;
 drop table uw_document;
 drop table uw;

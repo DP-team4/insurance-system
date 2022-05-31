@@ -1,9 +1,9 @@
-package domain.coverage;
+package domain.benefitPayment;
 
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
-public abstract class Coverage {
+public abstract class BenefitPayment {
 	private String id;
 	private String appliedCustomerId; //통보자(접수자) = 피보험자로 간주
 	private CoverageState state = CoverageState.ONPROGRESS;
@@ -44,7 +44,7 @@ public abstract class Coverage {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Coverage) && ((Coverage)obj).getId().equals(this.getId()); 
+		return (obj instanceof BenefitPayment) && ((BenefitPayment)obj).getId().equals(this.getId()); 
 	}
 
 	public String getId() {

@@ -1,6 +1,6 @@
-package domain.claim;
+package domain.carAccidentHandling;
 
-public class PeopleInfo {
+public class AccidentPerson {
 	private String name;
 	private String tel;
 	private String hospital;

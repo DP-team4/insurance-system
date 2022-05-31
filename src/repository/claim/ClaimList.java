@@ -2,12 +2,12 @@ package repository.claim;
 
 import java.util.ArrayList;
 
-import domain.claim.Claim;
+import domain.carAccidentHandling.CarAccidentHandling;
 
 public interface ClaimList {
-	boolean add(Claim claim);
+	boolean add(CarAccidentHandling claim);
 	boolean delete(String claimID);
-	Claim get(String claimID);
+	CarAccidentHandling get(String claimID);
 //	boolean update();
-	ArrayList<Claim> getAll();
+	ArrayList<CarAccidentHandling> getAll();
 }

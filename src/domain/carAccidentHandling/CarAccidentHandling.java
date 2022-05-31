@@ -1,10 +1,10 @@
-package domain.claim;
+package domain.carAccidentHandling;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
-public class Claim {
+public class CarAccidentHandling {
 	private String id =  "Claim"+System.currentTimeMillis();
 //	private String insuranceID;
 	private String appliedCustomerId; //원래는 접수자가 다를 수 있으나, 여기선 본인이 한다는 가정.
@@ -14,8 +14,8 @@ public class Claim {
 	private LocalDateTime claimDate;
 //	private  AccidentType accidentType;
 	private boolean isConfirmed = false;
-	private ArrayList<CarInfo> carInfos = new ArrayList<>();
-	private ArrayList<PeopleInfo> peopleInfos = new ArrayList<>();
+	private ArrayList<AccidentCar> carInfos = new ArrayList<>();
+	private ArrayList<AccidentPerson> peopleInfos = new ArrayList<>();
 	
 	public void confirm() {
 		if(this.validate())
@@ -50,7 +50,7 @@ public class Claim {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Claim) && ((Claim)obj).getId().equals(this.getId()); 
+		return (obj instanceof CarAccidentHandling) && ((CarAccidentHandling)obj).getId().equals(this.getId()); 
 	}
 	
 	public String getId() {
@@ -109,19 +109,19 @@ public class Claim {
 		this.isConfirmed = isConfirmed;
 	}
 
-	public ArrayList<CarInfo> getCarInfos() {
+	public ArrayList<AccidentCar> getCarInfos() {
 		return carInfos;
 	}
 
-	public void setCarInfos(ArrayList<CarInfo> carInfos) {
+	public void setCarInfos(ArrayList<AccidentCar> carInfos) {
 		this.carInfos = carInfos;
 	}
 
-	public ArrayList<PeopleInfo> getPeopleInfos() {
+	public ArrayList<AccidentPerson> getPeopleInfos() {
 		return peopleInfos;
 	}
 
-	public void setPeopleInfos(ArrayList<PeopleInfo> peopleInfos) {
+	public void setPeopleInfos(ArrayList<AccidentPerson> peopleInfos) {
 		this.peopleInfos = peopleInfos;
 	}
 }

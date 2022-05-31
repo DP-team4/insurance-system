@@ -1,6 +1,6 @@
-package domain.claim;
+package domain.carAccidentHandling;
 
-public class CarInfo {
+public class AccidentCar {
 	private boolean isDomestic;
 	private String carNum;
 	private String ownerName;

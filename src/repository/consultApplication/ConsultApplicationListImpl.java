@@ -17,15 +17,15 @@ public class ConsultApplicationListImpl implements ConsultApplicationList {
 	}
 
 	@Override
-	public boolean delete(String consultApplicationID) {
-		ConsultApplication consultApplication = this.get(consultApplicationID);
+	public boolean delete(String id) {
+		ConsultApplication consultApplication = this.get(id);
 		return consultApplications.remove(consultApplication);
 	}
 
 	@Override
-	public ConsultApplication get(String consultApplicationID) {
+	public ConsultApplication get(String id) {
 		for(ConsultApplication e : this.consultApplications) {
-			if(e.getId().equals(consultApplicationID))	return e;
+			if(e.getId().equals(id))	return e;
 		}
 		return null;
 	}

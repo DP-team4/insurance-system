@@ -11,8 +11,8 @@ import domain.customer.Customer;
  */
 public interface CustomerList {
 	boolean add(Customer customer);
-	boolean delete(String customerID);
-	Customer get(String customerID);
+	boolean delete(String id);
+	Customer get(String id);
 //	void update();
 	ArrayList<Customer> getAll();
 }

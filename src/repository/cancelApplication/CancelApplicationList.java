@@ -11,8 +11,8 @@ import domain.cancelApplication.CancelApplication;
  */
 public interface CancelApplicationList {
 	boolean add(CancelApplication cancelApplication);
-	boolean delete(String cancelApplicationID);
-	CancelApplication get(String cancelApplicationID);
+	boolean delete(String id);
+	CancelApplication get(String id);
 //	void update();
 	ArrayList<CancelApplication> getAll();
 }

@@ -22,15 +22,15 @@ public class CancelApplicationListImpl implements CancelApplicationList {
 	}
 
 	@Override
-	public boolean delete(String cancelApplicationID) {
-		CancelApplication cancelApplciation = this.get(cancelApplicationID);
+	public boolean delete(String id) {
+		CancelApplication cancelApplciation = this.get(id);
 		return cancelApplications.remove(cancelApplciation);
 	}
 
 	@Override
-	public CancelApplication get(String cancelApplicationID) {
+	public CancelApplication get(String id) {
 		for(CancelApplication e : this.cancelApplications) {
-			if(e.getId().equals(cancelApplicationID))	return e;
+			if(e.getId().equals(id))	return e;
 		}
 		return null;
 	}

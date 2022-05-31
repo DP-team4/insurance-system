@@ -22,15 +22,15 @@ public class CustomerListImpl implements CustomerList {
 	}
 
 	@Override
-	public boolean delete(String customerID) {
-		Customer customer = this.get(customerID);
+	public boolean delete(String id) {
+		Customer customer = this.get(id);
 		return customers.remove(customer);
 	}
 
 	@Override
-	public Customer get(String customerID) {
+	public Customer get(String id) {
 		for(Customer e : customers) {
-			if(e.getId().equals(customerID))	return e;
+			if(e.getId().equals(id))	return e;
 		}
 		return null;
 	}

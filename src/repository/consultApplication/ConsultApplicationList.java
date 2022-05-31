@@ -6,8 +6,8 @@ import domain.consultApplication.ConsultApplication;
 
 public interface ConsultApplicationList {
 	boolean add(ConsultApplication consultApplication);
-	boolean delete(String consultApplicationID);
-	ConsultApplication get(String consultApplicationID);
+	boolean delete(String id);
+	ConsultApplication get(String id);
 //	void update();
 	ArrayList<ConsultApplication> getAll();
 }

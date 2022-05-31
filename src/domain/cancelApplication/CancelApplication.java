@@ -10,28 +10,30 @@ import java.util.StringJoiner;
  */
 public class CancelApplication {
 
-	private String id = "Cancel" + System.currentTimeMillis();
+	private String id;
 	private String contractId; // 계약 해지 할 Contract
 	private LocalDateTime applicationDate = LocalDateTime.now();
-	private CancelApplicationState cancelApplicationState;
+	private CancelApplicationState state;
 
 	// constructor
 	public CancelApplication(){
-		this.cancelApplicationState = CancelApplicationState.NEW;
+		this.state = CancelApplicationState.NEW;
 	}
 	
 	// getters & setters
 	public String getId() { return id; }
+	public void setId(String id) { this.id = id; }
 	public String getContractId() { return contractId; }
 	public void setContractId(String contractId) { this.contractId = contractId; }
 	public LocalDateTime getApplicationDate() { return applicationDate; }
-	public CancelApplicationState getState() { return cancelApplicationState; }
-	public void setState(CancelApplicationState cancelApplicationState) { this.cancelApplicationState = cancelApplicationState; }
+	public void setApplicationDate(LocalDateTime applicationDate) { this.applicationDate = applicationDate; }
+	public CancelApplicationState getState() { return state; }
+	public void setState(CancelApplicationState state) { this.state = state; }
 	
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("해지할 계약 ID: " + this.contractId).add("신청날짜: " + this.applicationDate).add("진행 상태: " + this.cancelApplicationState);
+		sj.add("ID: " + this.id).add("해지할 계약 ID: " + this.contractId).add("신청날짜: " + this.applicationDate).add("진행 상태: " + this.state);
 		return sj.toString();
 	}
 	

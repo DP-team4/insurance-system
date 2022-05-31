@@ -18,7 +18,7 @@ public class Contract {
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("고객ID: " + this.customerId).add("보험ID: " + this.insuranceId).add("계약일: " + this.contractDateTime.toString()).add("만기일: " + this.expirationDateTime.toString());
+		sj.add("ID: " + this.id).add("고객ID: " + this.customerId).add("보험ID: " + this.insuranceId).add("계약일: " + this.contractDateTime.toString()).add("만기일: " + this.expirationDateTime.toString()).add("상태: " + this.contractState.name());
 		return sj.toString();
 	}
 	@Override

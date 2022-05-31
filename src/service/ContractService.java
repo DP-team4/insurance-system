@@ -24,11 +24,12 @@ public class ContractService {
 			 long difference = ChronoUnit.DAYS.between(contract.getContractDateTime(), contract.getExpirationDateTime());
 			 if (difference < 15) {
 				 matureContracts.add(contract);
-				 System.out.println("difference: "+ difference);
 			 }
 		 }
 		 System.out.println("//// 만기대상 계약 목록 ////");
 		 matureContracts.forEach(System.out::println);
 		 return matureContracts;
 	 }
+	 
+	 
 }

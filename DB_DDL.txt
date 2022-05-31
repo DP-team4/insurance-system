@@ -52,12 +52,13 @@ create table uw_document (
 
 create table customer (
 	id int primary key auto_increment,
-	customerName varchar(255),
+	email varchar(50),
+	password varchar(255),
+	name varchar(255),
 	age int,
 	gender boolean,
 	registration_no varchar(30),
 	phone_no varchar(30),
-	email varchar(50),
 	account_no varchar(30),
 	is_married boolean
 );

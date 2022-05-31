@@ -1,22 +1,13 @@
 package domain.cancelApplication.test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import domain.customer.Customer;
-import domain.insurance.FireInsurance;
-import domain.insurance.Insurance;
+import dao.CancelApplicationDao;
 import domain.cancelApplication.CancelApplication;
-import domain.cancelApplication.CancelApplicationState;
-import domain.contract.Contract;
-import repository.cancelApplication.CancelApplicationListImpl;
 
 public class CancelApplicationTest {
-	private static final ArrayList<Customer> customers = new ArrayList<>();
-    private static final ArrayList<Insurance> insurances = new ArrayList<>();
-    private static final ArrayList<Contract> contracts = new ArrayList<>();
-	private static final CancelApplicationListImpl cancelRepository = CancelApplicationListImpl.getInstance();
+    private static final CancelApplicationDao cancelApplicationDao = new CancelApplicationDao();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,81 +16,111 @@ public class CancelApplicationTest {
     }
     
 	public static void test(Scanner scanner) {
-		System.out.println("///// Test for CancelApplication /////");
+		System.out.println("///// Test for CancelApplication /////"); 
+	    while(true) {
+	        System.out.println("생성(1), 삭제(2), 해지 신청 신청 아이디로 조회(3), 고객 아이디로 조회(4), 전체 조회(5), 뒤로가기(0)");
+	        System.out.print(">> "); String input = scanner.nextLine().trim();
+	        if(input.equals("0")) break;
+	        switch (input) {
+	        	case "1":
+		        	testCreation(scanner);
+	                break;
+	            case "2":
+	            	testDeletion(scanner);
+	                break;
+	            case "3":
+	            	testRetrieve(scanner);
+	                break;
+	            case "4":
+	            	testRetrieveByCustomerId(scanner);
+	                break;
+	            case "5":
+	            	testRetrieveAll();
+	                break;
+	            default:
+	                System.out.println("잘못된 입력입니다.");
+	                break;
+	        }
+	        System.out.println("테스트를 반복합니다. 계속하시겠습니까? 계속(1) 뒤로가기(그 외)");
+	        input = scanner.nextLine().trim();
+	        if(!input.equals("1")) break;
+	    }
+	}
 
-        // 테스트 데이터 생성
-		int numTestData = 2; // 테스트 데이터 개수
-        // Customer
-        for(int i = 0; i < numTestData; i++) {
-        	Customer customer = new Customer();
-        	customer.setCustomerName("Customer" + i+1);
-            customer.setAge(24 + (i * 3 + 1));
-            customers.add(customer);
-        }
-        // Insurance
-        for (int i = 0; i < numTestData; i++) {
-            FireInsurance insurance = new FireInsurance();
-            insurance.setName("Insurance" + i);
-            insurances.add(insurance);
-        }
-        // Contract
-        for(int i = 0; i < numTestData; i++) {
-        	Contract contract = new Contract();
-        	contract.setCustomerId(customers.get(i).getId());
-        	contract.setContractDateTime(LocalDateTime.now());
-        	contract.setExpirationDateTime(LocalDateTime.now().plusDays(i * 3));
-        	contracts.add(contract);
-        }
-        // CancelApplication
-        for(int i = 0; i < numTestData; i++) {
+	private static void testCreation(Scanner scanner) {
+        while (true) {
         	CancelApplication cancelApplication = new CancelApplication();
-        	cancelApplication.setContractId(contracts.get(i).getId());
-            cancelRepository.add(cancelApplication);
+            System.out.println("///// Test for CancelApplication, Creation /////");
+            /////////////////////////// 수정 필요 >> 현재 로그인된 고객의 계약 목록을 가져와야 함
+            System.out.print("해지할 계약 아이디 >> "); cancelApplication.setContractId(scanner.nextLine().trim());
+    		if(cancelApplicationDao.create(cancelApplication))System.out.println("레포지토리에 추가되었습니다.");
+            else System.out.println("레포지토리에 추가되지 않았습니다.");
+            System.out.print("해지 신청 생성 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
+            String continueInput = scanner.nextLine().trim();
+            if(continueInput.equals("1")) continue;
+            else break;
         }
-        System.out.println("CancelApplication 목록:");
-        cancelRepository.printAll();
-        System.out.print("작업할 CancelApplication ID를 입력하세요 >> ");
-        String cancelApplicationId = scanner.nextLine().trim();
+	}
 
-        CancelApplication cancelApplication = cancelRepository.get(cancelApplicationId);
-        if(cancelApplication == null){
-            System.out.println("잘못된 CancelApplication ID입니다.");
-            return;
+	private static void testDeletion(Scanner scanner) {
+        while (true) {
+            System.out.println("///// Test for CancelApplication, Deletion /////");
+            System.out.print("아이디 >> ");
+            String id = scanner.nextLine().trim();
+            if(cancelApplicationDao.delete(id)) System.out.println("삭제 성공햐였습니다.");
+            else System.out.println("삭제 실패하였습니다.");
+
+            System.out.print("해지 신청 삭제 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
+            String continueInput = scanner.nextLine().trim();
+            if(continueInput.equals("1")) continue;
+            else break;
         }
+	}
 
-        while(true) {
-            System.out.println("////// 해당 CancelApplication에 대한 작업을 시작합니다. //////");
-            System.out.println("승인(1), 거절(2), 뒤로가기(0)");
-            String input = scanner.nextLine().trim();
-            if(input.equals("0")) break;
-            switch (input) {
-                case "1":
-                    testAccept(cancelApplication);
-                    break;
-                case "2":
-                    testReject(cancelApplication);
-                    break;
-                default:
-                    System.out.println("잘못된 입력입니다.");
-                    break;
+	private static void testRetrieve(Scanner scanner) {
+        while (true) {
+            System.out.println("///// Test for CancelApplication, Retrieve /////");
+            System.out.print("아이디 >> ");
+            String id = scanner.nextLine().trim();
+            CancelApplication cancelApplication = cancelApplicationDao.retrieveById(id);
+            if(cancelApplication == null) System.out.println("해당하는 ID의 해지 신청을 찾지 못했습니다.");
+            else System.out.println(cancelApplication);
+
+            System.out.print("해지 신청 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
+            String continueInput = scanner.nextLine().trim();
+            if(continueInput.equals("1")) continue;
+            else break;
+        }
+	}
+
+	private static void testRetrieveByCustomerId(Scanner scanner) {
+        while (true) {
+            System.out.println("///// Test for CancelApplication, Retrieve By Customer Id/////");
+            System.out.print("고객 아이디 >> ");
+            String customerId = scanner.nextLine().trim();
+            ArrayList<CancelApplication> cancelApplications = cancelApplicationDao.retrieveByCustomerId(customerId);
+            if(cancelApplications.size() == 0) System.out.println("해당하는 이름의 해지 신청을 찾지 못했습니다.");
+            else {
+            	System.out.println();
+            	System.out.println(cancelApplications.size() + "명의 해지 신청을 찾았습니다!!");
+            	System.out.println();
+            	cancelApplications.forEach(c -> {
+                    System.out.println(c);
+                    System.out.println();
+                });
             }
-            System.out.println(cancelApplication);
-
-            System.out.println("테스트를 반복합니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
-            input = scanner.nextLine().trim();
-            if(!input.equals("1")) break;
+            System.out.print("해지 신청 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
+            String continueInput = scanner.nextLine().trim();
+            if(continueInput.equals("1")) continue;
+            else break;
         }
 	}
 
-	private static void testAccept(CancelApplication cancelApplication) {
-        System.out.println("///// Test for CancelApplication, Accept /////");
-        cancelApplication.setState(CancelApplicationState.ACCEPTED);
-        System.out.println("해지 승인을 완료하였습니다.");
-	}
-
-	private static void testReject(CancelApplication cancelApplication) {
-        System.out.println("///// Test for CancelApplication, Reject /////");
-        cancelApplication.setState(CancelApplicationState.REJECTED);
-        System.out.println("해지 신청 거절을 완료하였습니다.");
+	private static void testRetrieveAll() {
+		System.out.println("///// Test for CancelApplication, RetrieveAll /////");
+        cancelApplicationDao.retrieveAll().forEach(c -> {
+            System.out.println(c);
+            System.out.println();
+        });
 	}
 }

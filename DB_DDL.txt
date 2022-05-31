@@ -52,6 +52,7 @@ create table uw_document (
 
 create table customer (
 	id int primary key auto_increment,
+	password varchar(255),
 	customerName varchar(255),
 	age int,
 	gender boolean,

@@ -23,13 +23,14 @@ public class CustomerTest {
         // Customer
         for(int i = 0; i < numTestData; i++) {
         	Customer customer = new Customer();
+            customer.setEmail(i+"@gmail.com");
+            customer.setPassword("i");
         	customer.setCustomerName("Customer" + i+1);
             customer.setAge(24 + (i * 3 + 1));
             if(i / 2 == 0) customer.setGender(true);
             else customer.setGender(false);
             customer.setRegistrationNo("012345" + "-" + "6789012");
             customer.setPhoneNo("01012345678");
-            customer.setEmail(i+"@gmail.com");
             customer.setAccountNo("하나 " + i);
             if(i / 2 == 0) customer.setMarried(true);
             else customer.setMarried(false);
@@ -89,6 +90,8 @@ public class CustomerTest {
             Customer customer = new Customer();
             System.out.println("///// Test for Customer, Creation /////");
             System.out.print("이름 >> "); customer.setCustomerName(scanner.nextLine().trim());
+            System.out.print("메일주소 >> "); customer.setEmail(scanner.nextLine().trim());
+            System.out.print("비밀번호 >> "); customer.setPassword(scanner.nextLine().trim());
             System.out.print("나이 >> "); customer.setAge(Integer.parseInt(scanner.nextLine().trim()));
             boolean finished = false;
             while(!finished) {
@@ -103,7 +106,6 @@ public class CustomerTest {
             System.out.print("주민등록번호 앞자리 >> "); input = scanner.nextLine().trim();
     		System.out.print("주민등록번호 뒷자리 >> "); customer.setRegistrationNo(input + "-" + scanner.nextLine().trim());
             System.out.print("전화번호 ex.01012345678 >> "); customer.setPhoneNo(scanner.nextLine().trim());
-            System.out.print("메일주소 >> "); customer.setEmail(scanner.nextLine().trim());
             System.out.print("계좌 >> "); customer.setAccountNo(scanner.nextLine().trim());
             finished = false;
             while(!finished) {

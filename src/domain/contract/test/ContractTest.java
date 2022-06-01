@@ -98,19 +98,19 @@ public class ContractTest {
 
 		private static void testReject(Contract contract) {
 	        System.out.println("Test for Contract, Reject");
-	        contract.setContractState(ContractState.REJECTED);
-	        System.out.println("거절을 완료하였습니다. " + contract.getContractState().name());
+	        contract.setState(ContractState.REJECTED);
+	        System.out.println("거절을 완료하였습니다. " + contract.getState().name());
 	    }
 	
 	    private static void testAccept(Contract contract) {
 	        System.out.println("Test for UW, Accept");
-	        contract.setContractState(ContractState.ACCEPTED);
-	        System.out.println("승인를 완료하였습니다." + contract.getContractState().name());
+	        contract.setState(ContractState.ACCEPTED);
+	        System.out.println("승인를 완료하였습니다." + contract.getState().name());
 	    }
 	    private static void testRequestUW(Contract contract) {
 	        System.out.println("Test for UW, Accept");
-	        contract.setContractState(ContractState.UNDER_UW);
-	        System.out.println("인수심사 요청을 완료하였습니다." + contract.getContractState().name());
+	        contract.setState(ContractState.UNDER_UW);
+	        System.out.println("인수심사 요청을 완료하였습니다." + contract.getState().name());
 	    }
 }
 

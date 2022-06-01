@@ -19,7 +19,7 @@ public class CustomerTest {
 	public static void test(Scanner scanner) {
 		System.out.println("///// Test for Customer /////"); 
 	    while(true) {
-	        System.out.println("생성(1), 삭제(2), 아이디로 조회(3), 이름으로 조회(4), 전체 조회(5), 뒤로가기(0)");
+	        System.out.println("생성(1), 삭제(2), 아이디로 조회(3), 이메일로 조회(4), 이름으로 조회(5), 전체 조회(6), 뒤로가기(0)");
 	        System.out.print(">> "); String input = scanner.nextLine().trim();
 	        if(input.equals("0")) break;
 	        switch (input) {
@@ -33,9 +33,12 @@ public class CustomerTest {
 	            	testRetrieve(scanner);
 	                break;
 	            case "4":
-	            	testRetrieveByName(scanner);
+	            	testRetrieveByEmail(scanner);
 	                break;
 	            case "5":
+	            	testRetrieveByName(scanner);
+	                break;
+	            case "6":
 	            	testRetrieveAll();
 	                break;
 	            default:
@@ -117,6 +120,22 @@ public class CustomerTest {
             String id = scanner.nextLine().trim();
             Customer customer = customerDao.retrieveById(id);
             if(customer == null) System.out.println("해당하는 ID의 고객을 찾지 못했습니다.");
+            else System.out.println(customer);
+
+            System.out.print("고객 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
+            String continueInput = scanner.nextLine().trim();
+            if(continueInput.equals("1")) continue;
+            else break;
+        }
+	}
+
+	private static void testRetrieveByEmail(Scanner scanner) {
+        while (true) {
+            System.out.println("///// Test for Customer, Retrieve /////");
+            System.out.print("이메일 >> ");
+            String email = scanner.nextLine().trim();
+            Customer customer = customerDao.retrieveByEmail(email);
+            if(customer == null) System.out.println("해당하는 Email의 고객을 찾지 못했습니다.");
             else System.out.println(customer);
 
             System.out.print("고객 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");

@@ -8,10 +8,10 @@ public class BenefitPayment {
     private LocalDateTime requestDate;
     private LocalDateTime accidentDate;
     private String accidentContent;
+    private int totalPropertyLoss;
+    private int totalPersonLoss;
     private int totalPropertyBenefit;
     private int totalPersonBenefit;
-    private int getTotalPropertyLoss;
-    private int totalPersonLoss;
     private EBenefitPaymentState state;
 
     //GTRSTR
@@ -57,11 +57,11 @@ public class BenefitPayment {
     public void setTotalPersonBenefit(int totalPersonBenefit) {
         this.totalPersonBenefit = totalPersonBenefit;
     }
-    public int getGetTotalPropertyLoss() {
-        return getTotalPropertyLoss;
+    public int getTotalPropertyLoss() {
+        return totalPropertyLoss;
     }
-    public void setGetTotalPropertyLoss(int getTotalPropertyLoss) {
-        this.getTotalPropertyLoss = getTotalPropertyLoss;
+    public void setTotalPropertyLoss(int totalPropertyLoss) {
+        this.totalPropertyLoss = totalPropertyLoss;
     }
     public int getTotalPersonLoss() {
         return totalPersonLoss;

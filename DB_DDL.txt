@@ -7,8 +7,8 @@
 4. db 이름: insurance_system
 
 
-drop table coverage;
-drop table claim;
+drop table benefitPayment;
+drop table carAccidentHandling;
 drop table consult_application;
 drop table cancel_application;
 drop table contract;
@@ -102,23 +102,27 @@ create table consult_application(
 	foreign key (customer_id) references customer (id)
 );
 
-create table claim (
+create table carAccidentHandling (
 	id int primary key auto_increment,
 	contract_id int,
-	caraccident_cause varchar(4000),
-	accident_location varchar(100),
+	request_date timestamp,
 	accident_date timestamp,
-	claim_date timestamp,
-	confirmed_date timestamp,
-	confirmed tinyint
+	accident_content varchar(4000),
+	accident_location varchar(100),
+	state tinyint,
+	foreign key (contract_id) references contract (id)
 );
 
-create table coverage (
+create table benefitPayment (
 	id int primary key auto_increment,
-	contract_id int, 
-	state tinyint, 
-	accident_cause varchar(4000), 
-	accident_date timestamp, 
-	appliance_date timestamp, 
-	state_confirmed_date timestamp
+	contract_id int,
+	accident_date timestamp,
+	appliance_date timestamp,
+	accident_content varchar(4000),
+	total_property_loss bigint,
+	total_person_loss bigint,
+	total_property_benefit bigint,
+	total_person_benefit bigint,
+	state tinyint,
+	foreign key (contract_id) references contract (id)
 );

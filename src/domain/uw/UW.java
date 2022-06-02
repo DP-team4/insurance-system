@@ -1,5 +1,7 @@
 package domain.uw;
 
+import domain.insurance.Insurance;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -34,6 +36,15 @@ public class UW {
 			return ((UW) obj).getId().equals(this.id);
 		}
 		return false;
+	}
+	public boolean equalsAttributes(Object obj) {
+		if(obj instanceof UW other &&
+				other.id.equals(this.id) &&
+				other.requestDateTime.equals(this.requestDateTime) &&
+				other.uwState.equals(this.uwState) &&
+				other.contractId.equals(this.contractId)
+		) return true;
+		else return false;
 	}
 
 	// getters setters

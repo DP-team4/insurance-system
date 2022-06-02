@@ -21,7 +21,7 @@ public class InsuranceRepository {
 	private InsuranceRepository(){}
 	public static InsuranceRepository getInstance() { return instance; }
 
-	public boolean addAndGet(Insurance insurance) {
+	public boolean add(Insurance insurance) {
 		String id = insuranceDao.createAndGetId(insurance);
 		if(id==null) return false;
 		insurance.setId(id);
@@ -29,16 +29,6 @@ public class InsuranceRepository {
 			clause.setInsuranceId(id);
 			String clauseId = clauseDao.createAndGetId(clause);
 			clause.setId(clauseId);
-		}
-		return true;
-	}
-
-	public boolean add(Insurance insurance) {
-		boolean insuranceCreated = insuranceDao.create(insurance);
-		if (!insuranceCreated) return false;
-		for (Clause clause : insurance.getClauses()) {
-			boolean clauseCreated = clauseDao.create(clause);
-			if(!clauseCreated) return false;
 		}
 		return true;
 	}

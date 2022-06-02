@@ -32,7 +32,7 @@ public class InsuranceManagementServiceImpl implements InsuranceManagementServic
 
     @Override
     public boolean addInsurance(Insurance insurance) {
-        return insuranceRepository.addAndGet(insurance);
+        return insuranceRepository.add(insurance);
     }
 
     @Override

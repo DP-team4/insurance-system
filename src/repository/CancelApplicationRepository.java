@@ -10,12 +10,12 @@ import domain.cancelApplication.CancelApplication;
  * @version 1.0
  * @created 09-5-2022 ¿ÀÈÄ 4:48:25
  */
-public class CancelApplicationListImpl {
-	private static final CancelApplicationListImpl cancelApplicationList = new CancelApplicationListImpl();
+public class CancelApplicationRepository {
+	private static final CancelApplicationRepository instance = new CancelApplicationRepository();
 	private static final CancelApplicationDao cancelApplicationDao = new CancelApplicationDao();
 
-	private CancelApplicationListImpl(){ }
-	public static CancelApplicationListImpl getInstance() { return cancelApplicationList; }
+	private CancelApplicationRepository(){ }
+	public static CancelApplicationRepository getInstance() { return instance; }
 
 	public boolean add(CancelApplication cancelApplication) {
 		return cancelApplicationDao.create(cancelApplication);

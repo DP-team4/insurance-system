@@ -21,7 +21,6 @@ public class UWDao extends Dao {
                 "insert into uw values (0, '%s', '%s', %s)",
                 Timestamp.valueOf(uw.getRequestDateTime()), uw.getUwState().name(), uw.getContractId()
         );
-        System.out.println(query);
         return super.createAndGetId(query);
     }
 
@@ -30,7 +29,6 @@ public class UWDao extends Dao {
                 "insert into uw values (0, '%s', '%s', %s)",
                 Timestamp.valueOf(uw.getRequestDateTime()), uw.getUwState().name(), uw.getContractId()
         );
-        System.out.println(query);
         return super.create(query);
     }
 
@@ -39,20 +37,17 @@ public class UWDao extends Dao {
                 "update uw set request_date_time='%s', uw_state='%s', contract_id=%s where id=%s",
                 Timestamp.valueOf(uw.getRequestDateTime()), uw.getUwState().name(), uw.getContractId(), uw.getId()
         );
-        System.out.println(query);
         return super.update(query);
     }
 
     public boolean delete(String id) {
         String query = String.format("delete from uw where id=%s", id);
-        System.out.println(query);
         return super.delete(query);
     }
 
     public ArrayList<UW> retrieveAll() {
         try {
             String query = "select * from uw";
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null) return null;
             ArrayList<UW> uws = new ArrayList<>();
@@ -70,7 +65,6 @@ public class UWDao extends Dao {
     public UW retrieveById(String id) {
         try {
             String query = String.format("select * from uw where id=%s", id);
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
             UW uw = getCurrentUw(resultSet);

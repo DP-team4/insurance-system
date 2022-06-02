@@ -1,4 +1,4 @@
-package view;
+package view.insuranceManagement;
 
 import domain.insurance.Insurance;
 import domain.insurance.InsuranceState;
@@ -25,7 +25,7 @@ public class InsuranceManagementView extends View {
             refreshInsurance();
             System.out.println(insurance);
 
-            System.out.println("이름 변경(1), 상태 변경(2), 약관 관리(3) 뒤로가기(exit)");
+            System.out.println("이름 변경(1), 상태 변경(2), 약관 관리(3), 삭제(delete), 뒤로가기(exit)");
             System.out.print(">>");
             String input = scanner.nextLine().trim();
             if(input.equals("exit")) break;
@@ -39,12 +39,29 @@ public class InsuranceManagementView extends View {
                 case "3":
                     new ClauseIntegratedManagementView(insurance.getId()).show();
                     break;
+                case "delete":
+                    showDeletionView();
+                    return;
                 default:
                     System.out.println("잘못된 입력입니다. 입력: " + input);
                     break;
             }
         }
+    }
 
+    private void showDeletionView() {
+        System.out.println("정말로 삭제하시겠습니까? yes/no");
+        String input = scanner.nextLine().trim();
+        switch (input) {
+            case "yes":
+                insuranceManagementService.deleteInsurance(insurance.getId());
+                break;
+            case "no":
+                return;
+            default:
+                System.out.println("잘못된 입력입니다.");
+                return;
+        }
     }
 
     private void showChangeStateView() {

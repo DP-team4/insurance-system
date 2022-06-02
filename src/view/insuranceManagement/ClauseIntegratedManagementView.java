@@ -1,4 +1,4 @@
-package view;
+package view.insuranceManagement;
 
 import domain.insurance.Clause;
 import domain.insurance.Insurance;

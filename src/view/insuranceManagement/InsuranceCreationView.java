@@ -1,4 +1,4 @@
-package view;
+package view.insuranceManagement;
 
 import domain.insurance.*;
 import domain.insurance.test.CarInsuranceTest;
@@ -28,22 +28,19 @@ public class InsuranceCreationView extends View {
                 showCreation(new FireInsurance());
                 break;
             case "2":
+                showCreation(new DriverInsurance());
                 break;
             case "3":
+                showCreation(new MarineInsurance());
                 break;
             case "4":
+                showCreation(new CarInsurance());
                 break;
             default:
                 System.out.println("종류에 대한 입력이 올바르지 않습니다. 입력: " + category);
                 break;
         }
         return;
-//        while(true){
-//            System.out.print("약관 추가(1), 완료(그 외) >> ");
-//            if(!scanner.nextLine().trim().equals("1")) break;
-//            Clause clause = testClauseCreation(scanner);
-//            insurance.addClause(clause);
-//        }
     }
 
     private void showCreation(Insurance insurance) {

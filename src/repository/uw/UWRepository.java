@@ -25,6 +25,7 @@ public class UWRepository {
 		for (UWDocument document : uw.getDocuments()) {
 			document.setUwId(id);
 			String documentId = uwDocumentDao.createAndGetId(document);
+			if(documentId==null) return false;
 			document.setId(documentId);
 		}
 		return true;
@@ -54,9 +55,7 @@ public class UWRepository {
 			ArrayList<UWDocument> beforeDocuments = before.getDocuments();
 			ArrayList<UWDocument> tobeDocuments = uw.getDocuments();
 
-			// clause 가 모두 삭제되는 경우 = 전부 삭제
 			if(tobeDocuments.size() < 1) { beforeDocuments.forEach(c -> uwDocumentDao.delete(c.getId())); return true;}
-			// 기존에 clause 가 하나도 없는 경우 = 전부 추가
 			if(beforeDocuments.size() < 1) {tobeDocuments.forEach(uwDocumentDao::create); return true; }
 
 			for (UWDocument tobeDocument : tobeDocuments) {

@@ -28,6 +28,7 @@ public class InsuranceRepository {
 		for (Clause clause : insurance.getClauses()) {
 			clause.setInsuranceId(id);
 			String clauseId = clauseDao.createAndGetId(clause);
+			if(clauseId==null) return false;
 			clause.setId(clauseId);
 		}
 		return true;

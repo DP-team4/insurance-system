@@ -1,4 +1,4 @@
-package view;
+package view.insuranceManagement;
 
 import domain.insurance.Insurance;
 import service.InsuranceManagementService;
@@ -18,26 +18,27 @@ public class InsuranceIntegratedManagementView extends View {
         while(true){
             ArrayList<Insurance> insurances = insuranceManagementService.getAll();
             showInsuranceListView();
-            System.out.println("작업할 보험의 ID를 입력하세요. 보험 개발(new) 뒤로가기(exit)");
+            System.out.println("작업할 보험의 ID 또는 이름을 입력하세요. 보험 개발(new), 이름으로 조회(name) 뒤로가기(exit)");
             System.out.print(">> ");
             String input = scanner.nextLine().trim();
             if(input.equals("exit")) break;
             else if(input.equals("new")) new InsuranceCreationView().show();
             else {
                 for (Insurance insurance : insurances) {
-                    if(insurance.getId().equals(input)) {
+                    if(insurance.getId().equals(input) || insurance.getName().equals(input)) {
                         new InsuranceManagementView(insurance.getId()).show();
-                        continue;
+                        break;
                     }
                 }
-                System.out.println("잘못된 입력입니다.");
+                System.out.println("해당하는 보험을 찾지 못했습니다. 입력을 확인해주세요.");
             }
         }
     }
 
     public void showInsuranceListView() {
         ArrayList<Insurance> insurances = insuranceManagementService.getAll();
-        insurances.forEach(i -> {
+        if(insurances.size() < 1) System.out.println("현재 저장된 보험상품이 없습니다.");
+        else insurances.forEach(i -> {
             System.out.println(i);
             System.out.println();
         });

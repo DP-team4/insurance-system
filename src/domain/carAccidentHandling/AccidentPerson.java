@@ -1,27 +1,40 @@
 package domain.carAccidentHandling;
 
 public class AccidentPerson {
+	private String id;
+	private int cost;
 	private String name;
-	private String tel;
-	private String hospital;
-	//원래 지정 병원이 별도로 있어야함.
-	//일단 걍 String으로 해서 수동으로 해석한다 치고
+	private String phoneNo;
+	private String visitedHospitalName;
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getTel() {
-		return tel;
+	public String getPhoneNo() {
+		return phoneNo;
 	}
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
-	public String getHospital() {
-		return hospital;
+	public String getVisitedHospitalName() {
+		return visitedHospitalName;
 	}
-	public void setHospital(String hospital) {
-		this.hospital = hospital;
+	public void setVisitedHospitalName(String visitedHospitalName) {
+		this.visitedHospitalName = visitedHospitalName;
 	}
 }

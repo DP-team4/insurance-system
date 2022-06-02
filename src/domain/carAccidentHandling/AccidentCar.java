@@ -1,22 +1,30 @@
 package domain.carAccidentHandling;
 
 public class AccidentCar {
-	private boolean isDomestic;
-	private String carNum;
+	private String id;
+	private int carNo;
+	private int cost;
 	private String ownerName;
-	private String ownerTel;
-	private String mechanic;
-	public boolean isDomestic() {
-		return isDomestic;
+	private String ownerPhoneNo;
+	private String visitedShopName;
+
+	public String getId() {
+		return id;
 	}
-	public void setDomestic(boolean isDomestic) {
-		this.isDomestic = isDomestic;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getCarNum() {
-		return carNum;
+	public int getCarNo() {
+		return carNo;
 	}
-	public void setCarNum(String carNum) {
-		this.carNum = carNum;
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 	public String getOwnerName() {
 		return ownerName;
@@ -24,16 +32,16 @@ public class AccidentCar {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
-	public String getOwnerTel() {
-		return ownerTel;
+	public String getOwnerPhoneNo() {
+		return ownerPhoneNo;
 	}
-	public void setOwnerTel(String ownerTel) {
-		this.ownerTel = ownerTel;
+	public void setOwnerPhoneNo(String ownerPhoneNo) {
+		this.ownerPhoneNo = ownerPhoneNo;
 	}
-	public String getMechanic() {
-		return mechanic;
+	public String getVisitedShopName() {
+		return visitedShopName;
 	}
-	public void setMechanic(String mechanic) {
-		this.mechanic = mechanic;
+	public void setVisitedShopName(String visitedShopName) {
+		this.visitedShopName = visitedShopName;
 	}
 }

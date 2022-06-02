@@ -10,6 +10,16 @@ public class AdditionalInfoDao extends Dao{
 	public AdditionalInfoDao() {
 		super.connect();
 	}
+
+	public String createAndGetId(Customer customer) {
+    	AdditionalInfo additionalInfo = customer.getAdditionalInfo();
+        String query = String.format(
+                "insert into additional_info values (0, %s, %s, %s, %s, %s)",
+                customer.getId(), additionalInfo.getCarPrice(), additionalInfo.getHousePrice(),
+                additionalInfo.getDrivingCareer(), additionalInfo.getShipPrice()
+        );
+        return super.createAndGetId(query);
+	}
 	
     public boolean create(Customer customer) {
     	AdditionalInfo additionalInfo = customer.getAdditionalInfo();

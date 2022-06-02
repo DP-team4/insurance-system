@@ -59,7 +59,7 @@ public class CustomerTest {
             Customer customer = new Customer();
             System.out.println("///// Test for Customer, Creation /////");
             System.out.print("이름 >> "); customer.setName(scanner.nextLine().trim());
-            System.out.print("메일주소 >> "); customer.setEmail(scanner.nextLine().trim());
+            System.out.print("이메일 >> "); customer.setEmail(scanner.nextLine().trim());
             System.out.print("비밀번호 >> "); customer.setPassword(scanner.nextLine().trim());
             System.out.print("나이 >> "); customer.setAge(Integer.parseInt(scanner.nextLine().trim()));
             boolean finished = false;
@@ -91,10 +91,9 @@ public class CustomerTest {
             System.out.print("집값(원) >> "); additionalinfo.setHousePrice(Long.parseLong(scanner.nextLine().trim()));
             System.out.print("운전경력(년) >> "); additionalinfo.setDrivingCareer(Integer.parseInt(scanner.nextLine().trim()));
             System.out.print("선박가격(원) >> "); additionalinfo.setShipPrice(Long.parseLong(scanner.nextLine().trim()));
-    		if(customerDao.create(customer))System.out.println("Customer DB에 추가되었습니다.");
-            else System.out.println("Customer DB에 추가되지 않았습니다.");
-    		if(additionalInfoDao.create(customer))System.out.println("AdditionalInfo DB에 추가되었습니다."); // customer Id = null
-            else System.out.println("AdditionalInfo DB에 추가되지 않았습니다.");
+    		if(customerDao.create(customer) && additionalInfoDao.create(customer))
+    			System.out.println("DB에 추가되었습니다.");
+            else System.out.println("DB에 추가되지 않았습니다.");
             System.out.print("고객 생성 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
             String continueInput = scanner.nextLine().trim();
             if(continueInput.equals("1")) continue;
@@ -107,7 +106,7 @@ public class CustomerTest {
             System.out.println("///// Test for Customer, Deletion /////");
             System.out.print("아이디 >> ");
             String inputID = scanner.nextLine().trim();
-            if(customerDao.delete(inputID)) System.out.println("삭제 성공햐였습니다.");
+            if(customerDao.delete(inputID) && additionalInfoDao.deleteByCustomerId(inputID)) System.out.println("삭제 성공햐였습니다.");
             else System.out.println("삭제 실패하였습니다.");
 
             System.out.print("고객 삭제 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
@@ -124,8 +123,10 @@ public class CustomerTest {
             String id = scanner.nextLine().trim();
             Customer customer = customerDao.retrieveById(id);
             if(customer == null) System.out.println("해당하는 ID의 고객을 찾지 못했습니다.");
-            else System.out.println(customer);
-
+            else {
+                customer.setAdditionalInfo(additionalInfoDao.retrieveByCustomerId(id));
+            	System.out.println(customer);
+            }
             System.out.print("고객 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
             String continueInput = scanner.nextLine().trim();
             if(continueInput.equals("1")) continue;
@@ -140,7 +141,10 @@ public class CustomerTest {
             String email = scanner.nextLine().trim();
             Customer customer = customerDao.retrieveByEmail(email);
             if(customer == null) System.out.println("해당하는 Email의 고객을 찾지 못했습니다.");
-            else System.out.println(customer);
+            else {
+                customer.setAdditionalInfo(additionalInfoDao.retrieveByCustomerId(customer.getId()));
+            	System.out.println(customer);
+            }
 
             System.out.print("고객 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
             String continueInput = scanner.nextLine().trim();
@@ -161,6 +165,7 @@ public class CustomerTest {
             	System.out.println(customers.size() + "명의 고객을 찾았습니다!!");
             	System.out.println();
             	customers.forEach(c -> {
+            		c.setAdditionalInfo(additionalInfoDao.retrieveByCustomerId(c.getId()));
                     System.out.println(c);
                     System.out.println();
                 });
@@ -175,6 +180,7 @@ public class CustomerTest {
 	private static void testRetrieveAll() {
 		System.out.println("///// Test for Customer, RetrieveAll /////");
         customerDao.retrieveAll().forEach(c -> {
+    		c.setAdditionalInfo(additionalInfoDao.retrieveByCustomerId(c.getId()));
             System.out.println(c);
             System.out.println();
         });

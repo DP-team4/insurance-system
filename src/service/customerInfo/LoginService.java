@@ -1,4 +1,4 @@
-package service;
+package service.customerInfo;
 
 import domain.customer.Customer;
 

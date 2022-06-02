@@ -11,6 +11,16 @@ public class CustomerDao extends Dao {
 	public CustomerDao() {
 		super.connect();
 	}
+
+    public String createAndGetId(Customer customer) {
+    	String query = String.format(
+                "insert into customer values (0, '%s', '%s', '%s', %s, %s, '%s', '%s', '%s', %s)",
+                customer.getEmail(), customer.getPassword(), customer.getName()
+                , customer.getAge(), customer.getGender() ? 1 : 0, customer.getRegistrationNo()
+                , customer.getPhoneNo(), customer.getAccountNo(), customer.isMarried() ? 1 : 0
+        );
+        return super.createAndGetId(query);
+    }
 	
     public boolean create(Customer customer) {
         String query = String.format(

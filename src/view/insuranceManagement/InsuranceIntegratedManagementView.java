@@ -18,7 +18,7 @@ public class InsuranceIntegratedManagementView extends View {
         while(true){
             ArrayList<Insurance> insurances = insuranceManagementService.getAll();
             showInsuranceListView();
-            System.out.println("작업할 보험의 ID 또는 이름을 입력하세요. 보험 개발(new), 이름으로 조회(name) 뒤로가기(exit)");
+            System.out.println("작업할 보험의 ID 또는 이름을 입력하세요. 보험 개발(new) 뒤로가기(exit)");
             System.out.print(">> ");
             String input = scanner.nextLine().trim();
             if(input.equals("exit")) break;

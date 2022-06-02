@@ -59,15 +59,12 @@ public class UWRepository {
 			if(beforeDocuments.size() < 1) {tobeDocuments.forEach(uwDocumentDao::create); return true; }
 
 			for (UWDocument tobeDocument : tobeDocuments) {
-				System.out.println("tobe in");
 				//추가
 				if(tobeDocument.getId() == null) uwDocumentDao.create(tobeDocument);
 				for (UWDocument beforeClause : beforeDocuments) {
-					System.out.println("before in");
 
 					//삭제
 					if(!tobeDocuments.contains(beforeClause)) {
-						System.out.println("delete in");
 						uwDocumentDao.delete(beforeClause.getId());
 					}
 					// 내용 수정

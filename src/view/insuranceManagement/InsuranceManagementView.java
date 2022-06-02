@@ -25,7 +25,7 @@ public class InsuranceManagementView extends View {
             refreshInsurance();
             System.out.println(insurance);
 
-            System.out.println("이름 변경(1), 상태 변경(2), 약관 관리(3), 삭제(delete), 뒤로가기(exit)");
+            System.out.println("이름 변경(1), 상태 변경(2), 약관 관리(3), 상품심사 요청(4) 삭제(delete), 뒤로가기(exit)");
             System.out.print(">>");
             String input = scanner.nextLine().trim();
             if(input.equals("exit")) break;
@@ -39,6 +39,9 @@ public class InsuranceManagementView extends View {
                 case "3":
                     new ClauseIntegratedManagementView(insurance.getId()).show();
                     break;
+                case "4":
+                    showRequestAuditView();
+                    break;
                 case "delete":
                     showDeletionView();
                     return;
@@ -47,6 +50,10 @@ public class InsuranceManagementView extends View {
                     break;
             }
         }
+    }
+
+    private void showRequestAuditView() {
+        System.out.println(insurance.getName() + "에 대한 심사를 요청합니다.");
     }
 
     private void showDeletionView() {

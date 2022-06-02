@@ -54,6 +54,7 @@ public class InsuranceRepository {
 	}
 	public Insurance getByName(String name) {
 		Insurance insurance = insuranceDao.retrieveByName(name);
+		if(insurance == null) return null;
 		ArrayList<Clause> clauses = clauseDao.retrieveAllByInsuranceId(insurance.getId());
 		insurance.setClauses(clauses);
 		return insurance;

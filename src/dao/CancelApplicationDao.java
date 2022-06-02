@@ -17,7 +17,7 @@ public class CancelApplicationDao extends Dao {
 	
 	public boolean create(CancelApplication cancelApplication) {
         String query = String.format(
-                "insert into cancel_application values (0, '%s', '%s', '%s')",
+                "insert into cancel_application values (0, %s, '%s', '%s')",
                 cancelApplication.getContractId(), Timestamp.valueOf(cancelApplication.getApplicationDate())
                 , cancelApplication.getState().name()
         );
@@ -27,7 +27,7 @@ public class CancelApplicationDao extends Dao {
 	
     public boolean update(CancelApplication cancelApplication) {
         String query = String.format(
-                "update cancel_application set contract_id=%s, application_date=%s, state=%s where id=%s",
+                "update cancel_application set contract_id=%s, application_date='%s', state='%s' where id=%s",
                 cancelApplication.getContractId(), Timestamp.valueOf(cancelApplication.getApplicationDate())
                 , cancelApplication.getState().name(), cancelApplication.getId()
         );

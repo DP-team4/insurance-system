@@ -12,6 +12,15 @@ public class InsuranceDao extends Dao {
         super.connect();
     }
 
+    public String createAndGetId(Insurance insurance) {
+        String query = String.format(
+                "insert into insurance values (0, '%s', '%s', '%s')",
+                insurance.getName(), insurance.getInsuranceCategory().name(), insurance.getInsuranceState().name()
+        );
+        System.out.println(query);
+        return super.createAndGetId(query);
+    }
+
     public boolean create(Insurance insurance) {
         String query = String.format(
                 "insert into insurance values (0, '%s', '%s', '%s')",
@@ -23,7 +32,7 @@ public class InsuranceDao extends Dao {
 
     public boolean update(Insurance insurance) {
         String query = String.format(
-                "update insurance set name=%s, insurance_category=%s, insurance_state=%s where id=%s",
+                "update insurance set name='%s', insurance_category='%s', insurance_state='%s' where id=%s",
                 insurance.getName(), insurance.getInsuranceCategory().name(), insurance.getInsuranceState().name(), insurance.getId()
         );
         System.out.println(query);

@@ -8,20 +8,30 @@ import java.util.StringJoiner;
 public abstract class Insurance {
 	private InsuranceCategory insuranceCategory;
 	private ArrayList<Clause> clauses = new ArrayList<>();
-	private String id = "Insurance" + System.currentTimeMillis();  // insuranceID, insuranceId
+	private String id;
 	private String name;
 	private InsuranceState insuranceState = InsuranceState.BEFORE_AUDIT;
 
 	public abstract double calculateRatio(Customer customer);
 
 	public void addClause(Clause clause) { this.clauses.add(clause); }
+	public void removeClause(Clause clause) {this.clauses.remove(clause);}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Insurance) {
-			return (((Insurance) obj).getId().equals(this.id));
+		if(obj instanceof Insurance ) {
+			return ((Insurance) obj).id.equals(this.id);
 		}
-		return false;
+		else return false;
+	}
+	public boolean equalsAttributes(Object obj) {
+		if(obj instanceof Insurance other &&
+				other.id.equals(this.id) &&
+				other.name.equals(this.name) &&
+				other.insuranceState.equals(this.insuranceState) &&
+				other.insuranceCategory.equals(this.insuranceCategory)
+		) return true;
+		else return false;
 	}
 	@Override
 	public String toString() {

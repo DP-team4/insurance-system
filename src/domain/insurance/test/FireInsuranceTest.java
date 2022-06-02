@@ -7,8 +7,6 @@ public class FireInsuranceTest {
         System.out.println("///// Test for Insurance, Creation, FireInsurance");
         FireInsurance fireInsurance = new FireInsurance();
         fireInsurance.setName(name);
-        InsuranceTest.testAddition(fireInsurance);
-        System.out.println(fireInsurance);
         return fireInsurance;
     }
 }

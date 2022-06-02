@@ -10,9 +10,22 @@ public class Dao {
     public void connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/insurance_system?serverTimezone=UTC&useSSL=false", "root", "12345678");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/insurance_system?serverTimezone=UTC&useSSL=false", "root", "1234");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public String createAndGetId(String query) {
+        try {
+            PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.executeUpdate();
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if(generatedKeys.next()) return generatedKeys.getString(1);
+            else return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

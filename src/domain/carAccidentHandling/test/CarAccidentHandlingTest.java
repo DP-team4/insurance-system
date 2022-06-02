@@ -20,52 +20,52 @@ public class CarAccidentHandlingTest {
 	}
 
 	public static void test(Scanner scanner) {
-		System.out.println("///// »ç°íÃ³¸®Á¢¼ö Test /////");
+		System.out.println("///// ì‚¬ê³ ì²˜ë¦¬ì ‘ìˆ˜ Test /////");
 
-		System.out.println("Å×½ºÆ® µ¥ÀÌÅÍ »ı¼º");
-		// Å×½ºÆ® µ¥ÀÌÅÍ »ı¼º
-		// Customer¿¡ °ü·Ã ³»¿ëÀÌ ¾ÆÁ÷ ¾ø´Â °ü°è·Î ÀÚÃ¼ »ı¼º
+		System.out.println("í…ŒìŠ¤íŠ¸ ë°ì´í„° ìƒì„±");
+		// í…ŒìŠ¤íŠ¸ ë°ì´í„° ìƒì„±
+		// Customerì— ê´€ë ¨ ë‚´ìš©ì´ ì•„ì§ ì—†ëŠ” ê´€ê³„ë¡œ ìì²´ ìƒì„±
 		// Insurance
 		for (int i = 0; i < 3; i++) {
 			CarAccidentHandling e = testAdd(scanner);
 			claims.add(e);
 			claimRepository.add(e);
-		}	
+		}
 		claimRepository.printAll();
 	}
 
 	public static CarAccidentHandling testAdd(Scanner scanner) {
 		CarAccidentHandling claim = new CarAccidentHandling();
-		System.out.println("Á¢¼öÀÚ º»ÀÎ °í°´ID ÀÔ·Â: ");
-		claim.setAppliedCustomerId(scanner.nextLine().trim());
-		System.out.println("»ç°í °æÀ§ ÀÔ·Â: ");
-		claim.setAccidentCause(scanner.nextLine().trim());
-		System.out.println("»ç°í Áö¿ª ÀÔ·Â: ");
-		claim.setAccidentLocation(scanner.nextLine().trim());
-		System.out.println("»ç°í ½Ã°¢ ÀÔ·Â: ");
-		//    	String year = scanner.nextLine().trim();
-		//    	String month = scanner.nextLine().trim();
-		//    	String day = scanner.nextLine().trim();
-		//    	String hour = scanner.nextLine().trim();
-		//    	String minute = scanner.nextLine().trim();
-		int timeElementCounts = 5;
-		int[] timeElement = new int[timeElementCounts];
-		for(int i = 0; i < timeElementCounts; i++) {
-			String temp = scanner.nextLine().trim();
-			if(validateNumInput(temp)) 
-				timeElement[i] =  Integer.parseInt(temp);	
-			else {
-				System.out.println("½Ã°£À» ÀÔ·ÂÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
-				i--;
-			}
-		}
-		LocalDate accidentDate = LocalDate.of(timeElement[0], timeElement[1], timeElement[2]);
-		LocalTime accidentTime = LocalTime.of(timeElement[3], timeElement[4]);
-		claim.setAccidentDate(LocalDateTime.of(accidentDate, accidentTime));
+//		System.out.println("ì ‘ìˆ˜ì ë³¸ì¸ ê³ ê°ID ì…ë ¥: ");
+//		claim.setAppliedCustomerId(scanner.nextLine().trim());
+//		System.out.println("ì‚¬ê³  ê²½ìœ„ ì…ë ¥: ");
+//		claim.setAccidentCause(scanner.nextLine().trim());
+//		System.out.println("ì‚¬ê³  ì§€ì—­ ì…ë ¥: ");
+//		claim.setAccidentLocation(scanner.nextLine().trim());
+//		System.out.println("ì‚¬ê³  ì‹œê° ì…ë ¥: ");
+//		//    	String year = scanner.nextLine().trim();
+//		//    	String month = scanner.nextLine().trim();
+//		//    	String day = scanner.nextLine().trim();
+//		//    	String hour = scanner.nextLine().trim();
+//		//    	String minute = scanner.nextLine().trim();
+//		int timeElementCounts = 5;
+//		int[] timeElement = new int[timeElementCounts];
+//		for(int i = 0; i < timeElementCounts; i++) {
+//			String temp = scanner.nextLine().trim();
+//			if(validateNumInput(temp))
+//				timeElement[i] =  Integer.parseInt(temp);
+//			else {
+//				System.out.println("ì‹œê°„ì„ ì…ë ¥í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
+//				i--;
+//			}
+//		}
+//		LocalDate accidentDate = LocalDate.of(timeElement[0], timeElement[1], timeElement[2]);
+//		LocalTime accidentTime = LocalTime.of(timeElement[3], timeElement[4]);
+//		claim.setAccidentDate(LocalDateTime.of(accidentDate, accidentTime));
 		return claim;
 	}
 
-	// ¼ıÀÚ ¿©ºÎ¸¸ Ã¼Å©. ÀÚ¸´¼ö ³Ñ±â´Â µîÀº ÀÏ´Ü Á¦¿Ü
+	// ìˆ«ì ì—¬ë¶€ë§Œ ì²´í¬. ìë¦¿ìˆ˜ ë„˜ê¸°ëŠ” ë“±ì€ ì¼ë‹¨ ì œì™¸
 	private static boolean validateNumInput(String input) {
 		try {
 			Integer.parseInt(input);

@@ -18,7 +18,6 @@ public class ClauseDao extends Dao {
                 "insert into clause values (0, '%s', '%s', %d, %d, %s)",
                 clause.getName(), clause.getClauseCategory().name(), clause.getInsuredAmount(), clause.getPremium(), clause.getInsuranceId()
         );
-        System.out.println(query);
         return super.createAndGetId(query);
     }
 
@@ -27,7 +26,6 @@ public class ClauseDao extends Dao {
                 "insert into clause values (0, '%s', '%s', %d, %d, %s)",
                 clause.getName(), clause.getClauseCategory().name(), clause.getInsuredAmount(), clause.getPremium(), clause.getInsuranceId()
         );
-        System.out.println(query);
         return super.create(query);
     }
 
@@ -36,26 +34,22 @@ public class ClauseDao extends Dao {
                 "update clause set name='%s', clause_category='%s', insured_amount=%d, premium=%d where id=%s",
                 clause.getName(), clause.getClauseCategory().name(), clause.getInsuredAmount(), clause.getPremium(), clause.getId()
         );
-        System.out.println(query);
         return super.update(query);
     }
 
     public boolean delete(String id) {
         String query = String.format("delete from clause where id=%s", id);
-        System.out.println(query);
         return super.delete(query);
     }
 
     public boolean deleteAllByInsuranceId(String insuranceId) {
         String query = String.format("delete from clause where insurance_id=%s", insuranceId);
-        System.out.println(query);
         return super.delete(query);
     }
 
     public ArrayList<Clause> retrieveAll() {
         try {
             String query = "select * from clause";
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if (resultSet == null) return null;
             ArrayList<Clause> clauses = new ArrayList<>();
@@ -73,7 +67,6 @@ public class ClauseDao extends Dao {
     public Clause retrieveById(String id) {
         try {
             String query = String.format("select * from clause where id=%s", id);
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if (resultSet == null || !resultSet.next()) return null;
             Clause clause = getCurrentClause(resultSet);
@@ -87,7 +80,6 @@ public class ClauseDao extends Dao {
     public ArrayList<Clause> retrieveAllByInsuranceId(String insuranceId) {
         try {
             String query = "select * from clause where insurance_id=" + insuranceId;
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if (resultSet == null) return null;
             ArrayList<Clause> clauses = new ArrayList<>();

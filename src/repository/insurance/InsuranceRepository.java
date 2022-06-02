@@ -28,6 +28,7 @@ public class InsuranceRepository {
 		for (Clause clause : insurance.getClauses()) {
 			clause.setInsuranceId(id);
 			String clauseId = clauseDao.createAndGetId(clause);
+			if(clauseId==null) return false;
 			clause.setId(clauseId);
 		}
 		return true;
@@ -53,6 +54,7 @@ public class InsuranceRepository {
 	}
 	public Insurance getByName(String name) {
 		Insurance insurance = insuranceDao.retrieveByName(name);
+		if(insurance == null) return null;
 		ArrayList<Clause> clauses = clauseDao.retrieveAllByInsuranceId(insurance.getId());
 		insurance.setClauses(clauses);
 		return insurance;

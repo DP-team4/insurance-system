@@ -58,7 +58,6 @@ public class UWTest {
         uwRepository.add(uw2);
 
         System.out.println("UW 목록:");
-        uwRepository.printAll();
         System.out.print("작업할 UW의 ID를 입력하세요 >> ");
         String uwId = scanner.nextLine().trim();
 

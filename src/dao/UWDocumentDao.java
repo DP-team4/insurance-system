@@ -18,7 +18,6 @@ public class UWDocumentDao extends Dao {
                 "insert into uw_document values (0, '%s', '%s', '%s', %s)",
                 uwDocument.getName(), uwDocument.getPath(), uwDocument.getUwDocumentState().name(), uwDocument.getUwId()
         );
-        System.out.println(query);
         return super.createAndGetId(query);
     }
 
@@ -27,7 +26,6 @@ public class UWDocumentDao extends Dao {
                 "insert into uw_document values (0, '%s', '%s', '%s', %s)",
                 uwDocument.getName(), uwDocument.getPath(), uwDocument.getUwDocumentState().name(), uwDocument.getUwId()
         );
-        System.out.println(query);
         return super.create(query);
     }
 
@@ -36,26 +34,22 @@ public class UWDocumentDao extends Dao {
                 "update uw_document set name='%s', path='%s', uw_document_state='%s' uw_id=%s where id=%s",
                 uwDocument.getName(), uwDocument.getPath(), uwDocument.getUwDocumentState().name(), uwDocument.getUwId(), uwDocument.getId()
         );
-        System.out.println(query);
         return super.update(query);
     }
 
     public boolean delete(String id) {
         String query = String.format("delete from uw_document where id=%s", id);
-        System.out.println(query);
         return super.delete(query);
     }
 
     public boolean deleteAllByInsuranceId(String uwId) {
         String query = String.format("delete from uw_document where uw_id=%s", uwId);
-        System.out.println(query);
         return super.delete(query);
     }
 
     public ArrayList<UWDocument> retrieveAll() {
         try {
             String query = "select * from uw_document";
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null) return null;
             ArrayList<UWDocument> uwDocuments = new ArrayList<>();
@@ -73,7 +67,6 @@ public class UWDocumentDao extends Dao {
     public UWDocument retrieveById(String id) {
         try {
             String query = String.format("select * from uw_document where id=%s", id);
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
             UWDocument uwDocument = getCurrentUwDocument(resultSet);
@@ -102,7 +95,6 @@ public class UWDocumentDao extends Dao {
     public ArrayList<UWDocument> retrieveAllByUwId(String uwId) {
         try {
             String query = "select * from uw_document where uw_id=" + uwId;
-            System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if (resultSet == null) return null;
             ArrayList<UWDocument> uwDocuments = new ArrayList<>();

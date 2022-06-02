@@ -17,7 +17,7 @@ public class ConsultApplicationDao extends Dao {
 	
     public boolean create(ConsultApplication consultApplication) {
         String query = String.format(
-                "insert into consult_application values (0, '%s', '%s', '%s', '%s', '%s')",
+                "insert into consult_application values (0, %s, '%s', '%s', '%s', '%s')",
                 consultApplication.getCustomerId(), consultApplication.getContent(), Timestamp.valueOf(consultApplication.getApplicationDate())
                 , Timestamp.valueOf(consultApplication.getConsultationDate()), consultApplication.getState().name()
         );
@@ -27,7 +27,7 @@ public class ConsultApplicationDao extends Dao {
 	
     public boolean update(ConsultApplication consultApplication) {
         String query = String.format(
-                "update consult_application set customer_id=%s, content=%s, application_date=%s, consultation_date=%s, state=%s where id=%s",
+                "update consult_application set customer_id=%s, content='%s', application_date='%s', consultation_date='%s', state='%s' where id=%s",
                 consultApplication.getCustomerId(), consultApplication.getContent(), Timestamp.valueOf(consultApplication.getApplicationDate())
                 , Timestamp.valueOf(consultApplication.getConsultationDate()), consultApplication.getState().name(), consultApplication.getId()
         );

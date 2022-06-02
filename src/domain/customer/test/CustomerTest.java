@@ -3,12 +3,14 @@ package domain.customer.test;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import dao.AdditionalInfoDao;
 import dao.CustomerDao;
 import domain.customer.AdditionalInfo;
 import domain.customer.Customer;
 
 public class CustomerTest {
     private static final CustomerDao customerDao = new CustomerDao();
+	private static final AdditionalInfoDao additionalInfoDao = new AdditionalInfoDao();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -89,8 +91,10 @@ public class CustomerTest {
             System.out.print("집값(원) >> "); additionalinfo.setHousePrice(Long.parseLong(scanner.nextLine().trim()));
             System.out.print("운전경력(년) >> "); additionalinfo.setDrivingCareer(Integer.parseInt(scanner.nextLine().trim()));
             System.out.print("선박가격(원) >> "); additionalinfo.setShipPrice(Long.parseLong(scanner.nextLine().trim()));
-    		if(customerDao.create(customer))System.out.println("레포지토리에 추가되었습니다.");
-            else System.out.println("레포지토리에 추가되지 않았습니다.");
+    		if(customerDao.create(customer))System.out.println("Customer DB에 추가되었습니다.");
+            else System.out.println("Customer DB에 추가되지 않았습니다.");
+    		if(additionalInfoDao.create(customer))System.out.println("AdditionalInfo DB에 추가되었습니다."); // customer Id = null
+            else System.out.println("AdditionalInfo DB에 추가되지 않았습니다.");
             System.out.print("고객 생성 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
             String continueInput = scanner.nextLine().trim();
             if(continueInput.equals("1")) continue;

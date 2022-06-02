@@ -11,10 +11,10 @@ public class CustomerDao extends Dao {
 	public CustomerDao() {
 		super.connect();
 	}
-
+	
     public boolean create(Customer customer) {
         String query = String.format(
-                "insert into customer values (0, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                "insert into customer values (0, '%s', '%s', '%s', %s, %s, '%s', '%s', '%s', %s)",
                 customer.getEmail(), customer.getPassword(), customer.getName()
                 , customer.getAge(), customer.getGender() ? 1 : 0, customer.getRegistrationNo()
                 , customer.getPhoneNo(), customer.getAccountNo(), customer.isMarried() ? 1 : 0
@@ -24,7 +24,7 @@ public class CustomerDao extends Dao {
 
     public boolean update(Customer customer) {
         String query = String.format(
-                "update customer set email=%s, password=%s, name=%s, age=%s, gender=%s, registration_no=%s, phone_no=%s, account_no=%s, is_married=%s where id=%s",
+                "update customer set email='%s', password='%s', name='%s', age='%s', gender=%s, registration_no='%s', phone_no='%s', account_no='%s', is_married=%s where id=%s",
                 customer.getEmail(), customer.getPassword(), customer.getName()
                 , customer.getAge(), customer.getGender(), customer.getRegistrationNo()
                 , customer.getPhoneNo(), customer.getAccountNo(), customer.isMarried(), customer.getId()

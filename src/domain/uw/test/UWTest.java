@@ -7,7 +7,7 @@ import domain.insurance.Insurance;
 import domain.uw.UWDocument;
 import domain.uw.UWDocumentState;
 import domain.uw.UWState;
-import repository.insurance.InsuranceListImpl;
+import repository.insurance.InsuranceRepository;
 import domain.uw.UW;
 import repository.uw.UWListImpl;
 
@@ -32,7 +32,7 @@ public class UWTest {
         // Customer -> 아직 Customer 구현이 완료되지 않은 관계로 ArrayList를 만들어 테스트
         for(int i=0; i<10; i++) {
             Customer customer = new Customer();
-            customer.setCustomerName("Customer" + i);
+            customer.setName("Customer" + i);
             customer.setAge(30 + i);
             customers.add(customer);
         }
@@ -41,7 +41,7 @@ public class UWTest {
             FireInsurance insurance = new FireInsurance();
             insurance.setName("insurance"+i);
             insurances.add(insurance);
-            InsuranceListImpl.getInstance().add(insurance);
+            InsuranceRepository.getInstance().add(insurance);
         }
         // UW
         UW uw1 = new UW();

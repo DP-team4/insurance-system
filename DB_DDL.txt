@@ -27,9 +27,9 @@ create table insurance (
 create table clause (
 	id int primary key auto_increment,
 	name varchar(255),
-	caluse_category varchar(30),
+	clause_category varchar(30),
 	insured_amount bigint,
-	preminum bigint,
+	premium bigint,
 	insurance_id int,
 	foreign key (insurance_id) references insurance (id)
 );

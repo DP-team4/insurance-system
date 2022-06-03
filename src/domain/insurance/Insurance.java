@@ -25,13 +25,14 @@ public abstract class Insurance {
 		else return false;
 	}
 	public boolean equalsAttributes(Object obj) {
-		if(obj instanceof Insurance other &&
-				other.id.equals(this.id) &&
-				other.name.equals(this.name) &&
-				other.insuranceState.equals(this.insuranceState) &&
-				other.insuranceCategory.equals(this.insuranceCategory)
-		) return true;
-		else return false;
+		if(obj instanceof Insurance) {
+			Insurance other = (Insurance) obj;
+			if (other.id.equals(this.id) &&
+					other.name.equals(this.name) &&
+					other.insuranceState.equals(this.insuranceState) &&
+					other.insuranceCategory.equals(this.insuranceCategory)) return true;
+		}
+		return false;
 	}
 	@Override
 	public String toString() {

@@ -91,10 +91,10 @@ public class InsuranceDao extends Dao {
         InsuranceState insuranceState = InsuranceState.valueOf(resultSet.getString("insurance_state"));
         Insurance insurance = null;
         switch (insuranceCategory) {
-            case FIRE -> insurance = new FireInsurance();
-            case MARINE -> insurance = new MarineInsurance();
-            case CAR -> insurance = new CarInsurance();
-            case DRIVER -> insurance = new DriverInsurance();
+            case FIRE: insurance = new FireInsurance(); break;
+            case MARINE: insurance = new MarineInsurance(); break;
+            case CAR: insurance = new CarInsurance(); break;
+            case DRIVER: insurance = new DriverInsurance(); break;
         }
         insurance.setId(id);
         insurance.setName(name);

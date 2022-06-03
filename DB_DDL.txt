@@ -122,3 +122,8 @@ create table coverage (
 	appliance_date timestamp, 
 	state_confirmed_date timestamp
 );
+
+insert into insurance values(1, '개인용자동차보험', 'CAR', 'ON_SALE');
+insert into insurance values(2, '차도리ECO운전자상해보험', 'DRIVER', 'ON_SALE');
+insert into insurance values(3, '기업용선박보험', 'MARINE', 'ON_SALE');
+insert into insurance values(4, 'Big Plus 재산종합보험', 'FIRE', 'ON_SALE');

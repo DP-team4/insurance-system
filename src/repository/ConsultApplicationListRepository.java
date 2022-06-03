@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import dao.ConsultApplicationDao;
 import domain.consultApplication.ConsultApplication;
 
-public class ConsultApplicationListImpl {
-	private static final ConsultApplicationListImpl consultApplicationList = new ConsultApplicationListImpl();
+public class ConsultApplicationListRepository {
+	private static final ConsultApplicationListRepository instance = new ConsultApplicationListRepository();
 	private static final ConsultApplicationDao consultApplicationDao = new ConsultApplicationDao();
 
-	private ConsultApplicationListImpl(){ }
-	public static ConsultApplicationListImpl getInstance() { return consultApplicationList; }
+	private ConsultApplicationListRepository(){ }
+	public static ConsultApplicationListRepository getInstance() { return instance; }
 
 	public boolean add(ConsultApplication consultApplication) {
 		return consultApplicationDao.create(consultApplication);

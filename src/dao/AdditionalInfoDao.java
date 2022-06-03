@@ -34,8 +34,8 @@ public class AdditionalInfoDao extends Dao{
     public boolean update(Customer customer) {
     	AdditionalInfo additionalInfo = customer.getAdditionalInfo();
         String query = String.format(
-                "update additional_info set customer_id=%s, car_price=%s, house_price=%s, driving_career=%s, ship_price=%s where id=%s",
-                customer.getId(), additionalInfo.getCarPrice(), additionalInfo.getHousePrice(),
+                "update additional_info set car_price=%s, house_price=%s, driving_career=%s, ship_price=%s where id=%s",
+                additionalInfo.getCarPrice(), additionalInfo.getHousePrice(),
                 additionalInfo.getDrivingCareer(), additionalInfo.getShipPrice(), additionalInfo.getId()
         );
         return super.update(query);

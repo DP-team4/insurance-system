@@ -1,11 +1,11 @@
 package service.customerInfo;
 
 import domain.customer.Customer;
-import repository.CustomerListImpl;
+import repository.CustomerRepository;
 
 public class LoginServiceImpl implements LoginService {
 	private final static LoginService loginService = new LoginServiceImpl();
-    private static final CustomerListImpl customerRepository = CustomerListImpl.getInstance();
+    private static final CustomerRepository customerRepository = CustomerRepository.getInstance();
 
 	// Singleton
 	private LoginServiceImpl(){}

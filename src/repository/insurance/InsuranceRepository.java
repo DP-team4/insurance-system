@@ -72,19 +72,13 @@ public class InsuranceRepository {
 			if(beforeClauses.size() < 1) {tobeClauses.forEach(clauseDao::create); return true; }
 
 			for (Clause tobeClause : tobeClauses) {
-				System.out.println("tobe in");
 				//추가
-				if(tobeClause.getId() == null) clauseDao.create(tobeClause);
+				if(tobeClause.getId() == null) { clauseDao.create(tobeClause); continue; }
 				for (Clause beforeClause : beforeClauses) {
-					System.out.println("before in");
-
 					//삭제
-					if(!tobeClauses.contains(beforeClause)) {
-						System.out.println("delete in");
-						clauseDao.delete(beforeClause.getId());
-					}
+					if(!tobeClauses.contains(beforeClause)) { clauseDao.delete(beforeClause.getId()); continue; }
 					// 내용 수정
-					if (tobeClause.equals(beforeClause) && !tobeClause.equalsAttributes(beforeClause)) clauseDao.update(tobeClause);
+					if (tobeClause.equals(beforeClause) && !tobeClause.equalsAttributes(beforeClause)) { clauseDao.update(tobeClause); continue;}
 				}
 			}
 		} catch (Exception e) {

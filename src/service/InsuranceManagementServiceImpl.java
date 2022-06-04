@@ -2,6 +2,7 @@ package service;
 
 import domain.insurance.Clause;
 import domain.insurance.Insurance;
+import domain.insurance.InsuranceState;
 import repository.insurance.InsuranceRepository;
 
 import java.util.ArrayList;
@@ -48,6 +49,14 @@ public class InsuranceManagementServiceImpl implements InsuranceManagementServic
     @Override
     public boolean updateClause(Clause clause) {
         return insuranceRepository.updateClause(clause);
+    }
+
+    @Override
+    public boolean requestAuditForSale(Insurance insurance) {
+        InsuranceState insuranceState = insurance.getInsuranceState();
+        if(!(insuranceState.equals(InsuranceState.BEFORE_AUDIT) || insuranceState.equals(InsuranceState.REJECTED))) return false;
+        insurance.setInsuranceState(InsuranceState.UNDER_AUDIT);
+        return insuranceRepository.update(insurance);
     }
 
     @Override

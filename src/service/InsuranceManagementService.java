@@ -14,4 +14,5 @@ public interface InsuranceManagementService {
     boolean updateInsurance(Insurance insurance);
     Clause getClauseById(String clauseId);
     boolean updateClause(Clause clause);
+    boolean requestAuditForSale(Insurance insurance);
 }

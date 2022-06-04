@@ -60,20 +60,21 @@ public class UWRepository {
 
 			for (UWDocument tobeDocument : tobeDocuments) {
 				//추가
-				if(tobeDocument.getId() == null) uwDocumentDao.create(tobeDocument);
-				for (UWDocument beforeClause : beforeDocuments) {
-
+				if(tobeDocument.getId() == null) { uwDocumentDao.create(tobeDocument); continue; }
+				for (UWDocument beforeDocument : beforeDocuments) {
 					//삭제
-					if(!tobeDocuments.contains(beforeClause)) {
-						uwDocumentDao.delete(beforeClause.getId());
-					}
+					if(!tobeDocuments.contains(beforeDocument)) { uwDocumentDao.delete(beforeDocument.getId()); continue; }
 					// 내용 수정
-					if (tobeDocument.equals(beforeClause) && !tobeDocument.equalsAttributes(beforeClause)) uwDocumentDao.update(tobeDocument);
+					if (tobeDocument.equals(beforeDocument) && !tobeDocument.equalsAttributes(beforeDocument)) { uwDocumentDao.update(tobeDocument); continue; }
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return true;
+	}
+
+	public boolean updateUwDocument(UWDocument uwDocument) {
+		return uwDocumentDao.update(uwDocument);
 	}
 }

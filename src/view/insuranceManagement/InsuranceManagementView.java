@@ -54,6 +54,14 @@ public class InsuranceManagementView extends View {
 
     private void showRequestAuditView() {
         System.out.println(insurance.getName() + "에 대한 심사를 요청합니다.");
+        InsuranceState insuranceState = insurance.getInsuranceState();
+        if(!(insuranceState.equals(InsuranceState.BEFORE_AUDIT) || insuranceState.equals(InsuranceState.REJECTED))) {
+            System.out.println("이미 심사 통과된 보험입니다.");
+            return;
+        }
+        boolean completed = insuranceManagementService.requestAuditForSale(insurance);
+        if(!completed) System.out.println("심사 요청에 실패하였습니다.");
+        refreshInsurance();
     }
 
     private void showDeletionView() {
@@ -69,6 +77,7 @@ public class InsuranceManagementView extends View {
                 System.out.println("잘못된 입력입니다.");
                 return;
         }
+        refreshInsurance();
     }
 
     private void showChangeStateView() {
@@ -91,6 +100,7 @@ public class InsuranceManagementView extends View {
             }
             insurance.setInsuranceState(insuranceState);
             insuranceManagementService.updateInsurance(insurance);
+            refreshInsurance();
             break;
         }
     }
@@ -107,6 +117,7 @@ public class InsuranceManagementView extends View {
             } else {
                 insurance.setName(name);
                 insuranceManagementService.updateInsurance(insurance);
+                refreshInsurance();
                 break;
             }
         }

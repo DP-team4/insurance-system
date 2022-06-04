@@ -1,6 +1,5 @@
 package domain.cancelApplication.test;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.CancelApplicationDao;

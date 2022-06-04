@@ -1,22 +1,22 @@
-package view.customer.consultationManagement;
+package view.customer.consultApplicationManagement;
 
 import java.util.Scanner;
 
 import domain.customer.Customer;
 import view.viewUtility.ScannerUtility;
 
-public class ConsultationManagementView {
+public class ConsultApplicationManagementView {
     private final Scanner scanner = ScannerUtility.getScanner();
     
     // View
-    private ConsultationApplicationView consultationApplicationView;
-    private ConsultationListView consultationListView;
-    private ConsultationRevocationView consultationRevocationView;
+    private ConsultApplicationApplyView consultationApplicationView;
+    private ConsultApplicationListView consultationListView;
+    private ConsultApplicationRevocationView consultationRevocationView;
     
-    public ConsultationManagementView() {
-    	consultationApplicationView = new ConsultationApplicationView();
-    	consultationListView = new ConsultationListView();
-    	consultationRevocationView = new ConsultationRevocationView();
+    public ConsultApplicationManagementView() {
+    	consultationApplicationView = new ConsultApplicationApplyView();
+    	consultationListView = new ConsultApplicationListView();
+    	consultationRevocationView = new ConsultApplicationRevocationView();
 	}
     
 	public void show(Customer customer) {

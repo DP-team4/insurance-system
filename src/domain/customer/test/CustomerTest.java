@@ -3,8 +3,6 @@ package domain.customer.test;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import dao.AdditionalInfoDao;
-import dao.CustomerDao;
 import domain.customer.AdditionalInfo;
 import domain.customer.Customer;
 import repository.CustomerRepository;

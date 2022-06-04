@@ -6,8 +6,6 @@ import java.util.Scanner;
 import domain.insurance.Clause;
 import domain.insurance.Insurance;
 import domain.insurance.InsuranceCategory;
-import service.InsuranceManagementService;
-import service.InsuranceManagementServiceImpl;
 import service.customer.InsuranceRetrieveService;
 import service.customer.InsuranceRetrieveServiceImpl;
 import view.viewUtility.ScannerUtility;

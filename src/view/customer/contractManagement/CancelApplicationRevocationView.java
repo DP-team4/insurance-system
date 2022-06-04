@@ -3,21 +3,21 @@ package view.customer.contractManagement;
 import java.util.Scanner;
 
 import domain.customer.Customer;
-import service.customer.MyCancelApplicationService;
-import service.customer.MyCancelApplicationServiceImpl;
+import service.customer.CancelApplicationManagementService;
+import service.customer.CancelApplicationManagementServiceImpl;
 import view.viewUtility.ScannerUtility;
 
-public class CancellationRevocationView {
+public class CancelApplicationRevocationView {
     private final Scanner scanner = ScannerUtility.getScanner();
     private Customer customer;
     
     // View
-    private CancellationListView cancellationListView;
+    private CancelApplicationListView cancellationListView;
 
 	// Service
-	private MyCancelApplicationService cancelApplicationService = MyCancelApplicationServiceImpl.getInstance();
+	private CancelApplicationManagementService cancelApplicationService = CancelApplicationManagementServiceImpl.getInstance();
 
-	public void show(CancellationListView cancellationListView, Customer customer) {
+	public void show(CancelApplicationListView cancellationListView, Customer customer) {
 		// 계약 해지 신청 취소 화면(해지 아이디 입력창  + '확인', '취소' 버튼)을 보여준다
 		this.cancellationListView = cancellationListView;
 		this.customer = customer;

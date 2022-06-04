@@ -3,9 +3,6 @@ package service.customer;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import dao.ContractDao;
-import domain.cancelApplication.CancelApplication;
-import domain.contract.Contract;
 import domain.insurance.Insurance;
 import domain.insurance.InsuranceCategory;
 import domain.insurance.InsuranceState;

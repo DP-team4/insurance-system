@@ -1,16 +1,16 @@
-package view.customer.consultationManagement;
+package view.customer.consultApplicationManagement;
 
 import java.util.ArrayList;
 
 import domain.consultApplication.ConsultApplication;
 import domain.customer.Customer;
-import service.customer.MyConsultApplicationService;
-import service.customer.MyConsultApplicationServiceImpl;
+import service.customer.ConsultApplicationService;
+import service.customer.ConsultApplicationServiceImpl;
 
-public class ConsultationListView {
+public class ConsultApplicationListView {
 	
 	// Service
-	private MyConsultApplicationService consultApplicationService = MyConsultApplicationServiceImpl.getInstance();
+	private ConsultApplicationService consultApplicationService = ConsultApplicationServiceImpl.getInstance();
 
 	public void show(Customer customer) {
 		System.out.println("\n[ 가입 상담 신청 목록 ]");

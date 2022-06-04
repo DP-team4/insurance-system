@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import dao.ContractDao;
 import domain.cancelApplication.CancelApplication;
 import domain.contract.Contract;
-import repository.CancelApplicationRepository;
+import repository.cancelApplication.CancelApplicationRepository;
 
-public class MyCancelApplicationServiceImpl implements MyCancelApplicationService {
-	private final static MyCancelApplicationService instance = new MyCancelApplicationServiceImpl();
+public class CancelApplicationManagementServiceImpl implements CancelApplicationManagementService {
+	private final static CancelApplicationManagementService instance = new CancelApplicationManagementServiceImpl();
     private static final CancelApplicationRepository cancelApplicationRepository = CancelApplicationRepository.getInstance();
     private static final ContractDao contractDao = new ContractDao(); // Repository
 
 	// Singleton
-	private MyCancelApplicationServiceImpl(){}
-	public static MyCancelApplicationService getInstance() { return instance; }
+	private CancelApplicationManagementServiceImpl(){}
+	public static CancelApplicationManagementService getInstance() { return instance; }
 	
 	@Override
 	public boolean applyCancellation(CancelApplication cancelApplication) {

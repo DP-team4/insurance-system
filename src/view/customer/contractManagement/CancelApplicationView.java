@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 import domain.cancelApplication.CancelApplication;
 import domain.customer.Customer;
-import service.customer.MyCancelApplicationService;
-import service.customer.MyCancelApplicationServiceImpl;
-import service.customer.MyContractManagementService;
-import service.customer.MyContractManagementServiceImpl;
+import service.customer.CancelApplicationManagementService;
+import service.customer.CancelApplicationManagementServiceImpl;
+import service.customer.ContractManagementService;
+import service.customer.ContractManagementServiceImpl;
 import view.viewUtility.ScannerUtility;
 
 public class CancelApplicationView {
@@ -15,13 +15,13 @@ public class CancelApplicationView {
 	private Customer customer;
     
     // View
-	private CancellationListView cancellationListView;
+	private CancelApplicationListView cancellationListView;
 
 	// Service
-	private MyCancelApplicationService cancelApplicationService = MyCancelApplicationServiceImpl.getInstance();
-    private MyContractManagementService myContractManagementService = MyContractManagementServiceImpl.getInstance();
+	private CancelApplicationManagementService cancelApplicationService = CancelApplicationManagementServiceImpl.getInstance();
+    private ContractManagementService myContractManagementService = ContractManagementServiceImpl.getInstance();
 	
-	public void show(ContractListView contractListView, CancellationListView cancellationListView, Customer customer) {
+	public void show(ContractListView contractListView, CancelApplicationListView cancellationListView, Customer customer) {
 		this.cancellationListView = cancellationListView;
 		
 		System.out.println("\n[ 계약 해지 신청 ]");

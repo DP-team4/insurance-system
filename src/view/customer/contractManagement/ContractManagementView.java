@@ -12,8 +12,8 @@ public class ContractManagementView {
     // View
     private ContractListView contractListView = new ContractListView();
 	private CancelApplicationView cancelApplicationView = new CancelApplicationView();
-	private CancellationListView cancellationListView = new CancellationListView();
-	private CancellationRevocationView cancellationRevocationView = new CancellationRevocationView();
+	private CancelApplicationListView cancellationListView = new CancelApplicationListView();
+	private CancelApplicationRevocationView cancellationRevocationView = new CancelApplicationRevocationView();
     
 	public void show(Customer customer) {
 		this.customer = customer;

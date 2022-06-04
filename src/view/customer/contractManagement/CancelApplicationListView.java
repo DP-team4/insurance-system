@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import domain.cancelApplication.CancelApplication;
 import domain.customer.Customer;
-import service.customer.MyCancelApplicationService;
-import service.customer.MyCancelApplicationServiceImpl;
+import service.customer.CancelApplicationManagementService;
+import service.customer.CancelApplicationManagementServiceImpl;
 
-public class CancellationListView {
+public class CancelApplicationListView {
 	
 	// Service
-	private MyCancelApplicationService cancelApplicationService = MyCancelApplicationServiceImpl.getInstance();
+	private CancelApplicationManagementService cancelApplicationService = CancelApplicationManagementServiceImpl.getInstance();
 
 	public void show(Customer customer) {
 		System.out.println("\n[ 가입 상담 신청 목록 ]");

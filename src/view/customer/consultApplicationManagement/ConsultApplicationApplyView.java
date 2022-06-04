@@ -1,25 +1,25 @@
-package view.customer.consultationManagement;
+package view.customer.consultApplicationManagement;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import domain.consultApplication.ConsultApplication;
 import domain.customer.Customer;
-import service.customer.MyConsultApplicationService;
-import service.customer.MyConsultApplicationServiceImpl;
+import service.customer.ConsultApplicationService;
+import service.customer.ConsultApplicationServiceImpl;
 import view.viewUtility.ScannerUtility;
 
-public class ConsultationApplicationView {
+public class ConsultApplicationApplyView {
     private final Scanner scanner = ScannerUtility.getScanner();
     private Customer customer;
 	
     // View
-	private ConsultationListView consultationListView;
+	private ConsultApplicationListView consultationListView;
 	
 	// Service
-	private MyConsultApplicationService consultApplicationService = MyConsultApplicationServiceImpl.getInstance();
+	private ConsultApplicationService consultApplicationService = ConsultApplicationServiceImpl.getInstance();
 	
-	public void show(ConsultationListView consultationListView, Customer customer) {
+	public void show(ConsultApplicationListView consultationListView, Customer customer) {
 		this.consultationListView = consultationListView;
 		this.customer = customer;
 		// 상담 신청 화면(상담 내용, 상담 날짜(년, 월, 일, 시, 분) 입력창  + '확인', '취소' 버튼)을 보여준다

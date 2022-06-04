@@ -3,8 +3,10 @@ package view.customer;
 import java.util.Scanner;
 
 import domain.customer.Customer;
-import view.customer.consultationManagement.ConsultationManagementView;
+import view.customer.consultApplicationManagement.ConsultApplicationManagementView;
 import view.customer.contractManagement.ContractManagementView;
+import view.customer.customerInfo.LoginView;
+import view.customer.customerInfo.SignUpView;
 import view.viewUtility.ScannerUtility;
 
 public class CustomerHomeView {
@@ -15,10 +17,10 @@ public class CustomerHomeView {
 	
 	// Views
 	private ClaimApplicationView claimApplicationView = new ClaimApplicationView();
-	private ConsultationManagementView consultationManagementView = new ConsultationManagementView();
+	private ConsultApplicationManagementView consultApplicationManagementView = new ConsultApplicationManagementView();
 	private CoverageApplicationView coverageApplicationView = new CoverageApplicationView();
 	private InsuranceListView insuranceListView = new InsuranceListView();
-	private ContractManagementView contractsManagementView = new ContractManagementView();
+	private ContractManagementView contractManagementView = new ContractManagementView();
 	private LoginView loginView = new LoginView();
 	private SignUpView signUpView = new SignUpView();
 	
@@ -70,11 +72,11 @@ public class CustomerHomeView {
 	}
 
 	private void manageConsultation() {
-		if(checkLogin()) consultationManagementView.show(customer);
+		if(checkLogin()) consultApplicationManagementView.show(customer);
 	}
 
 	private void manageContracts() {
-		if(checkLogin()) contractsManagementView.show(customer);
+		if(checkLogin()) contractManagementView.show(customer);
 	}
 	
 	private void applyCoverage() {

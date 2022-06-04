@@ -11,6 +11,7 @@ public class ScannerUtility {
     public static Scanner getScanner() {
         return scanner;
     }
+
     public static ScannerUtility getInstance() { return instance; }
 
     public String getString() {
@@ -27,5 +28,9 @@ public class ScannerUtility {
 
     public int getInt() throws NumberFormatException {
         return Integer.parseInt(getString());
+    }
+
+    public static void closeScanner() {
+    	scanner.close();
     }
 }

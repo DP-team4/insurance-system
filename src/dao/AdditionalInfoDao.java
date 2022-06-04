@@ -61,10 +61,10 @@ public class AdditionalInfoDao extends Dao{
 
     private AdditionalInfo getCurrentAdditionalInfo(ResultSet resultSet) throws SQLException {
         String id = resultSet.getString("id");
-        int carPrice = resultSet.getInt("car_price");
-        int housePrice = resultSet.getInt("house_price");
+        long carPrice = resultSet.getLong("car_price");
+        long housePrice = resultSet.getLong("house_price");
         int drivingCareer = resultSet.getInt("driving_career");
-        int shipPrice = resultSet.getInt("ship_price");
+        long shipPrice = resultSet.getLong("ship_price");
         AdditionalInfo additionalInfo = new AdditionalInfo();
         additionalInfo.setId(id);
         additionalInfo.setCarPrice(carPrice);

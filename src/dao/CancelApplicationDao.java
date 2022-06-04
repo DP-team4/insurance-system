@@ -73,21 +73,17 @@ public class CancelApplicationDao extends Dao {
         }
     }
 
-    public ArrayList<CancelApplication> retrieveByCustomerId(String customerId) {
+    public CancelApplication retrieveByContractId(String contractId) {
         try {
-            String query = String.format("select * from cancel_application where customer_id='%s'", customerId);
+            String query = String.format("select * from cancel_application where contract_id='%s'", contractId);
             System.out.println("Query >> " + query);
             ResultSet resultSet = super.retrieve(query);
-            if(resultSet==null) return null;
-            ArrayList<CancelApplication> cancelApplications = new ArrayList<>();
-            while (resultSet.next()) {
-            	CancelApplication cancelApplication = getCurrentCancelApplication(resultSet);
-            	cancelApplications.add(cancelApplication);
-            }
-            return cancelApplications;
+            if(resultSet==null || !resultSet.next()) return null;
+            CancelApplication cancelApplication = getCurrentCancelApplication(resultSet);
+            return cancelApplication;
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>();
+            return null;
         }
     }
 	

@@ -1,4 +1,4 @@
-package view.sales;
+package view.salesManagement;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,12 +7,13 @@ import domain.consultApplication.ConsultApplication;
 import domain.consultApplication.ConsultApplicationState;
 import domain.customer.Customer;
 import service.SalesService;
+import service.SalesServiceImpl;
 import view.viewUtility.ScannerUtility;
 
 public class ConsultApplicationListView {
 	
 	private final Scanner scanner = ScannerUtility.getScanner();
-	private final SalesService salesService = SalesService.getInstance();
+	private final SalesService salesService = SalesServiceImpl.getInstance();
 	
 	public ConsultApplicationListView() {}
 

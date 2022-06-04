@@ -3,7 +3,7 @@ package service.customer;
 import java.util.ArrayList;
 
 import domain.consultApplication.ConsultApplication;
-import repository.ConsultApplicationRepository;
+import repository.consultApplication.ConsultApplicationRepository;
 
 public class MyConsultApplicationServiceImpl implements MyConsultApplicationService {
 	private final static MyConsultApplicationService consultApplicationService = new MyConsultApplicationServiceImpl();

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import dao.ContractDao;
 import domain.cancelApplication.CancelApplication;
 import domain.contract.Contract;
-import repository.CancelApplicationRepository;
+import repository.cancelApplication.CancelApplicationRepository;
 
 public class MyCancelApplicationServiceImpl implements MyCancelApplicationService {
 	private final static MyCancelApplicationService instance = new MyCancelApplicationServiceImpl();

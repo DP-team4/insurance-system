@@ -1,6 +1,5 @@
 package service;
 
-import domain.consultApplication.ConsultApplication;
 import repository.consultApplication.ConsultApplicationRepository;
 
 public class ConsultApplicationServiceImpl implements ConsultApplicationService {

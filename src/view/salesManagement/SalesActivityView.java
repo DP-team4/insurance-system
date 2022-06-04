@@ -1,4 +1,4 @@
-package view.sales;
+package view.salesManagement;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,12 +9,13 @@ import domain.customer.Customer;
 import domain.insurance.Insurance;
 import domain.uw.UWDocument;
 import service.SalesService;
+import service.SalesServiceImpl;
 import view.viewUtility.ScannerUtility;
 
 public class SalesActivityView {
 	
 	private final Scanner scanner = ScannerUtility.getScanner();
-	private final SalesService salesService = SalesService.getInstance();
+	private final SalesService salesService = SalesServiceImpl.getInstance();
 	private Insurance insurance;
 	private Customer customer;
 	
@@ -90,7 +91,7 @@ public class SalesActivityView {
 		System.out.println("보험 이름을 입력하시오.");
 		System.out.print(">> ");
 		String input = this.scanner.nextLine().trim();
-		Insurance insurance = this.salesService.requestInsurance(input);
+		Insurance insurance = this.salesService.getInsuranceByName(input);
 		System.out.println("[보험 정보]");
 		System.out.println(insurance);
 		this.insurance = insurance;

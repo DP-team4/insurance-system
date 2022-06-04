@@ -32,7 +32,7 @@ public class CancelApplicationTest {
 	            	testRetrieve(scanner);
 	                break;
 	            case "4":
-	            	testRetrieveByCustomerId(scanner);
+	            	testRetrieveByContractId(scanner);
 	                break;
 	            case "5":
 	            	testRetrieveAll();
@@ -93,22 +93,14 @@ public class CancelApplicationTest {
         }
 	}
 
-	private static void testRetrieveByCustomerId(Scanner scanner) {
+	private static void testRetrieveByContractId(Scanner scanner) {
         while (true) {
             System.out.println("///// Test for CancelApplication, Retrieve By Customer Id/////");
-            System.out.print("고객 아이디 >> ");
-            String customerId = scanner.nextLine().trim();
-            ArrayList<CancelApplication> cancelApplications = cancelApplicationDao.retrieveByCustomerId(customerId);
-            if(cancelApplications.size() == 0) System.out.println("해당하는 이름의 해지 신청을 찾지 못했습니다.");
-            else {
-            	System.out.println();
-            	System.out.println(cancelApplications.size() + "명의 해지 신청을 찾았습니다!!");
-            	System.out.println();
-            	cancelApplications.forEach(c -> {
-                    System.out.println(c);
-                    System.out.println();
-                });
-            }
+            System.out.print("계약 아이디 >> ");
+            String contractId = scanner.nextLine().trim();
+            CancelApplication cancelApplication = cancelApplicationDao.retrieveByContractId(contractId);
+            if(cancelApplication == null) System.out.println("해당하는 계약 ID의 해지 신청을 찾지 못했습니다.");
+            else System.out.println(cancelApplication);
             System.out.print("해지 신청 조회 테스트를 계속 하시겠습니까? 예(1), 아니오(그 외) >> ");
             String continueInput = scanner.nextLine().trim();
             if(continueInput.equals("1")) continue;

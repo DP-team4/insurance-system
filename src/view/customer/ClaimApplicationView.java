@@ -2,10 +2,9 @@ package view.customer;
 
 import java.util.Scanner;
 
-import domain.customer.Customer;
 import view.viewUtility.ScannerUtility;
 
-public class ApplyClaimView {
+public class ClaimApplicationView {
     private final static Scanner scanner = ScannerUtility.getScanner();
 	
 	public void show() {

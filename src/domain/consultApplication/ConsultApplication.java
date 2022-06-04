@@ -39,7 +39,13 @@ public class ConsultApplication {
 	@Override
 	public String toString() {		
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("신청 고객 ID: " + this.customerId).add("상담 내용: " + this.content).add("신청날짜: " + this.applicationDate).add("상담날짜: " + this.consultationDate).add("진행 상태: " + this.state);
+		sj.add("ID: " + this.id).add("고객 ID: " + this.customerId).add("상담 내용: " + this.content).add("신청날짜: " + this.applicationDate).add("상담날짜: " + this.consultationDate).add("진행 상태: " + this.state);
+		return sj.toString();
+	}
+	
+	public String toStringForCustomer() {		
+		StringJoiner sj = new StringJoiner(System.lineSeparator());
+		sj.add("ID: " + this.id).add("상담 내용: " + this.content).add("신청날짜: " + this.applicationDate).add("상담날짜: " + this.consultationDate).add("진행 상태: " + this.state);
 		return sj.toString();
 	}
 	

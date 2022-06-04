@@ -9,14 +9,14 @@ public class ConsultApplicationManagementView {
     private final Scanner scanner = ScannerUtility.getScanner();
     
     // View
-    private ConsultApplicationApplyView consultationApplicationView;
-    private ConsultApplicationListView consultationListView;
-    private ConsultApplicationRevocationView consultationRevocationView;
+    private ConsultApplicationApplyView consultApplicationApplyView;
+    private ConsultApplicationListView consultApplicationListView;
+    private ConsultApplicationRevocationView consultApplicationRevocationView;
     
     public ConsultApplicationManagementView() {
-    	consultationApplicationView = new ConsultApplicationApplyView();
-    	consultationListView = new ConsultApplicationListView();
-    	consultationRevocationView = new ConsultApplicationRevocationView();
+    	consultApplicationApplyView = new ConsultApplicationApplyView();
+    	consultApplicationListView = new ConsultApplicationListView();
+    	consultApplicationRevocationView = new ConsultApplicationRevocationView();
 	}
     
 	public void show(Customer customer) {
@@ -26,9 +26,9 @@ public class ConsultApplicationManagementView {
 	        System.out.print(">> ");
 	        String input = scanner.nextLine().trim();
 	        switch (input) {
-	            case "1": consultationApplicationView.show(consultationListView, customer); break;
-	            case "2": consultationListView.show(customer); break;
-	            case "3": consultationRevocationView.show(consultationListView, customer); break;
+	            case "1": consultApplicationApplyView.show(consultApplicationListView, customer); break;
+	            case "2": consultApplicationListView.show(customer); break;
+	            case "3": consultApplicationRevocationView.show(consultApplicationListView, customer); break;
 	            default: return;
 	        }
 		}

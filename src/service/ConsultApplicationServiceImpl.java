@@ -1,11 +1,11 @@
 package service;
 
 import domain.consultApplication.ConsultApplication;
-import repository.ConsultApplicationListImpl;
+import repository.consultApplication.ConsultApplicationRepository;
 
 public class ConsultApplicationServiceImpl implements ConsultApplicationService {
 	private final static ConsultApplicationService consultApplicationService = new ConsultApplicationServiceImpl();
-    private static final ConsultApplicationListImpl ConsultApplicationRepository = ConsultApplicationListImpl.getInstance();
+    private static final ConsultApplicationRepository consultApplicationRepository = ConsultApplicationRepository.getInstance();
 
 	// Singleton
 	private ConsultApplicationServiceImpl(){}
@@ -13,6 +13,6 @@ public class ConsultApplicationServiceImpl implements ConsultApplicationService 
 	
 	@Override
 	public boolean applyConsultation(ConsultApplication consultApplication) {
-		return (ConsultApplicationRepository.add(consultApplication));
+		return consultApplicationRepository.add(consultApplication);
 	}
 }

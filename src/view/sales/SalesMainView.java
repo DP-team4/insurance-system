@@ -2,9 +2,10 @@ package view.sales;
 
 import java.util.Scanner;
 
-public class SalesMainView {
+import view.viewUtility.ScannerUtility;
 
-	Scanner scanner;
+public class SalesMainView {
+	private final Scanner scanner = ScannerUtility.getScanner();
 	
 	private enum EMenu {
 		salesActivity("영업활동", "1"),
@@ -27,11 +28,7 @@ public class SalesMainView {
 		
 	};
 	
-	public SalesMainView(Scanner scanner) {
-		this.scanner = scanner;
-	}
-	
-	public void showView() {
+	public void show() {
 		while(true) {
 			System.out.println();
 			System.out.println("================영업 메인 화면================");
@@ -40,9 +37,9 @@ public class SalesMainView {
 			String input = this.scanner.nextLine().trim();
 			if(input.equals("0")) break;
 			switch(input) {
-				case "1": new SalesActivityView(this.scanner).showView();			break;
+				case "1": new SalesActivityView().show();			break;
 				case "2": new ContractCompletionView(this.scanner).showView();		break;
-				case "3": new ConsultApplicationListView(this.scanner).showView();	break;
+				case "3": new ConsultApplicationListView().show();	break;
 				case "x": break;
 				default:  System.out.println("잘못된 입력입니다.");						break;
 			}

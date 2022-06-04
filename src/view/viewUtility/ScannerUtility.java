@@ -10,4 +10,8 @@ public class ScannerUtility {
     public static Scanner getScanner() {
         return scanner;
     }
+    
+    public static void closeScanner() {
+    	scanner.close();
+    }
 }

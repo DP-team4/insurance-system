@@ -3,7 +3,9 @@ package repository;
 import java.util.ArrayList;
 
 import dao.CancelApplicationDao;
+import dao.ContractDao;
 import domain.cancelApplication.CancelApplication;
+import domain.contract.Contract;
 
 /**
  * @author bigst
@@ -13,6 +15,7 @@ import domain.cancelApplication.CancelApplication;
 public class CancelApplicationRepository {
 	private static final CancelApplicationRepository instance = new CancelApplicationRepository();
 	private static final CancelApplicationDao cancelApplicationDao = new CancelApplicationDao();
+	private static final ContractDao contractDao = new ContractDao();
 
 	private CancelApplicationRepository(){ }
 	public static CancelApplicationRepository getInstance() { return instance; }
@@ -38,6 +41,12 @@ public class CancelApplicationRepository {
 	}
 
 	public ArrayList<CancelApplication> getByCustomerId(String customerId) {
-		return cancelApplicationDao.retrieveByCustomerId(customerId);
+		ArrayList<Contract> contracts = contractDao.retrieveByCustomerId(customerId);
+		ArrayList<CancelApplication> cancelApplications = new ArrayList<>();
+		for(Contract contract : contracts) {
+			CancelApplication cancelApplication = cancelApplicationDao.retrieveByContractId(contract.getId());
+			if(cancelApplication != null) cancelApplications.add(cancelApplication);
+		}
+		return cancelApplications;
 	}
 }//end CancelApplicationListImpl

@@ -1,4 +1,4 @@
-package view.sales;
+package view.salesManagement;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class SalesMainView {
 	
 	private enum EMenu {
 		salesActivity("영업활동", "1"),
-		contractCompletion("가입접수", "2"),
+		contractCompletion("가입접수목록", "2"),
 		consultApplicationList("상담신청목록", "3"),
 		exit("뒤로가기", "x");
 		
@@ -37,11 +37,11 @@ public class SalesMainView {
 			String input = this.scanner.nextLine().trim();
 			if(input.equals("0")) break;
 			switch(input) {
-				case "1": new SalesActivityView().show();			break;
-				case "2": new ContractCompletionView(this.scanner).showView();		break;
-				case "3": new ConsultApplicationListView().show();	break;
+				case "1": new SalesActivityView().show();						break;
+				case "2": new ContractCompletionView();	break;
+				case "3": new ConsultApplicationListView().show();				break;
 				case "x": break;
-				default:  System.out.println("잘못된 입력입니다.");						break;
+				default:  System.out.println("잘못된 입력입니다.");					break;
 			}
 			System.out.println("반복됩니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
 	        input = scanner.nextLine().trim();

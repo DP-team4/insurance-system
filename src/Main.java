@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import view.customer.CustomerHomeView;
+import view.salesManagement.SalesMainView;
 import view.viewUtility.ScannerUtility;
 
 public class Main {
@@ -11,7 +12,7 @@ public class Main {
 		if(input.equals("1")) new CustomerHomeView().show();
 		else if(input.equals("2")) System.out.println("직원 화면 미구현"); // new EmployeeView().show();
 		else System.out.println("Invalid Option");
-		
+		new SalesMainView().show();
 		ScannerUtility.closeScanner();
 	}
 }

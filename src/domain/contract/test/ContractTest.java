@@ -7,10 +7,9 @@ import java.util.Scanner;
 import domain.customer.Customer;
 import domain.insurance.FireInsurance;
 import domain.insurance.Insurance;
+import service.contractManagement.ContractManagementServiceImpl;
 import domain.contract.Contract;
 import domain.contract.ContractState;
-//import repository.contract.ContractListImpl;
-import service.ContractService;
 
 public class ContractTest {
 //	private static final ArrayList<Customer> customers = new ArrayList<>();

@@ -1,4 +1,4 @@
-package repository;
+package repository.cancelApplication;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import domain.contract.Contract;
 /**
  * @author bigst
  * @version 1.0
- * @created 09-5-2022 ¿ÀÈÄ 4:48:25
+ * @created 09-5-2022 ¿?ÈÄ 4:48:25
  */
 public class CancelApplicationRepository {
 	private static final CancelApplicationRepository instance = new CancelApplicationRepository();

@@ -25,14 +25,15 @@ public class Clause {
 	}
 
 	public boolean equalsAttributes(Object obj) {
-		if (obj instanceof Clause other &&
-				other.id.equals(this.id) &&
-				other.name.equals(this.name) &&
-				other.clauseCategory.equals(this.clauseCategory) &&
-				other.insuredAmount == this.insuredAmount &&
-				other.premium == this.premium
-		) return true;
-		else return false;
+		if (obj instanceof Clause ) {
+			Clause other = (Clause) obj;
+			if(other.id.equals(this.id) &&
+					other.name.equals(this.name) &&
+					other.clauseCategory.equals(this.clauseCategory) &&
+					other.insuredAmount == this.insuredAmount &&
+					other.premium == this.premium) return true;
+		}
+		return false;
 	}
 
 	@Override

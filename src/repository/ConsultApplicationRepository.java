@@ -1,4 +1,4 @@
-package repository;
+package repository.consultApplication;
 
 import java.util.ArrayList;
 

@@ -9,7 +9,7 @@ import domain.uw.UWDocumentState;
 import domain.uw.UWState;
 import repository.insurance.InsuranceRepository;
 import domain.uw.UW;
-import repository.uw.UWListImpl;
+import repository.uw.UWRepository;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class UWTest {
     private static final ArrayList<Customer> customers = new ArrayList<>();
     private static final ArrayList<Insurance> insurances = new ArrayList<>();
-    private static final UWListImpl uwRepository = UWListImpl.getInstance();
+    private static final UWRepository uwRepository = UWRepository.getInstance();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -58,7 +58,6 @@ public class UWTest {
         uwRepository.add(uw2);
 
         System.out.println("UW 목록:");
-        uwRepository.printAll();
         System.out.print("작업할 UW의 ID를 입력하세요 >> ");
         String uwId = scanner.nextLine().trim();
 

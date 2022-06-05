@@ -1,1 +1,8 @@
 out/
+bin/
+.project
+.classpath
+.gitignore
+.idea
+.settings
+src/service/CustomerServiceExample.java

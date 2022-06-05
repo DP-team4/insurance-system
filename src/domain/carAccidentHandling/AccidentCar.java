@@ -1,22 +1,51 @@
 package domain.carAccidentHandling;
 
 public class AccidentCar {
-	private boolean isDomestic;
-	private String carNum;
+	private String id;
+	private String carAccidentHandlingId;
+	private String carNo;
+	private long cost;
 	private String ownerName;
-	private String ownerTel;
-	private String mechanic;
-	public boolean isDomestic() {
-		return isDomestic;
+	private String ownerPhoneNo;
+	private String visitedShopName;
+
+	public boolean equalsAttributes(Object obj) {
+		if(obj instanceof AccidentCar) {
+			AccidentCar other = (AccidentCar) obj;
+			if (other.id.equals(this.id) && other.carAccidentHandlingId.equals(this.carAccidentHandlingId) &&
+					other.carNo.equals(this.carNo) &&
+					(other.cost ==this.cost) &&
+					other.ownerName.equals(this.ownerName) &&
+					other.ownerPhoneNo.equals(this.ownerPhoneNo) &&
+					other.visitedShopName.equals(this.visitedShopName))
+				return true;
+		}
+		return false;
 	}
-	public void setDomestic(boolean isDomestic) {
-		this.isDomestic = isDomestic;
+
+	public String getId() {
+		return id;
 	}
-	public String getCarNum() {
-		return carNum;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public void setCarNum(String carNum) {
-		this.carNum = carNum;
+	public String getCarAccidentHandlingId() {
+		return carAccidentHandlingId;
+	}
+	public void setCarAccidentHandlingId(String carAccidentHandlingId) {
+		this.carAccidentHandlingId = carAccidentHandlingId;
+	}
+	public String getCarNo() {
+		return carNo;
+	}
+	public void setCarNo(String carNo) {
+		this.carNo = carNo;
+	}
+	public long getCost() {
+		return cost;
+	}
+	public void setCost(long cost) {
+		this.cost = cost;
 	}
 	public String getOwnerName() {
 		return ownerName;
@@ -24,16 +53,16 @@ public class AccidentCar {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
-	public String getOwnerTel() {
-		return ownerTel;
+	public String getOwnerPhoneNo() {
+		return ownerPhoneNo;
 	}
-	public void setOwnerTel(String ownerTel) {
-		this.ownerTel = ownerTel;
+	public void setOwnerPhoneNo(String ownerPhoneNo) {
+		this.ownerPhoneNo = ownerPhoneNo;
 	}
-	public String getMechanic() {
-		return mechanic;
+	public String getVisitedShopName() {
+		return visitedShopName;
 	}
-	public void setMechanic(String mechanic) {
-		this.mechanic = mechanic;
+	public void setVisitedShopName(String visitedShopName) {
+		this.visitedShopName = visitedShopName;
 	}
 }

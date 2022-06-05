@@ -139,4 +139,6 @@ insert into clause values(5, '운전자보장형', 'NORMAL', 100000, 11520, 2);
 insert into clause values(6, '상해사망', 'SPECIAL', 50000000, 612000, 2);
 insert into clause values(7, '상해수술비', 'SPECIAL', 100000, 101880, 2);
 
-insert into clause values(8, '화재피해보상', 'NORMAL', 1000000000, 80000000, 3);
+insert into clause values(8, '선박피해보상', 'NORMAL', 2000000000, 900000000, 3);
+
+insert into clause values(9, '화재피해보상', 'NORMAL', 1000000000, 80000000, 4);

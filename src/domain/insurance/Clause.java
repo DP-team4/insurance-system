@@ -9,7 +9,7 @@ import java.util.StringJoiner;
  */
 public class Clause {
 	private ClauseCategory clauseCategory;
-	private String id = "Clause" + System.currentTimeMillis();
+	private String id;
 	private long insuredAmount;
 	private long premium;
 	private String name;
@@ -18,7 +18,20 @@ public class Clause {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Clause) {
-			return ((Clause) obj).getId().equals(this.id);
+			return ((Clause) obj).id.equals(this.id);
+		}
+		return false;
+
+	}
+
+	public boolean equalsAttributes(Object obj) {
+		if (obj instanceof Clause ) {
+			Clause other = (Clause) obj;
+			if(other.id.equals(this.id) &&
+					other.name.equals(this.name) &&
+					other.clauseCategory.equals(this.clauseCategory) &&
+					other.insuredAmount == this.insuredAmount &&
+					other.premium == this.premium) return true;
 		}
 		return false;
 	}

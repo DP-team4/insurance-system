@@ -33,6 +33,16 @@ public class UWDocument {
 		}
 		return false;
 	}
+	public boolean equalsAttributes(Object obj) {
+		if(obj instanceof UWDocument other &&
+				other.id.equals(this.id) &&
+				other.name.equals(this.name) &&
+				other.path.equals(this.path) &&
+				other.uwDocumentState.equals(this.uwDocumentState) &&
+				other.uwId.equals(this.uwId)
+		) return true;
+		else return false;
+	}
 
 	// getters setters
 	public String getId() {

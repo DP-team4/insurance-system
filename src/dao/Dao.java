@@ -16,6 +16,19 @@ public class Dao {
         }
     }
 
+    public String createAndGetId(String query) {
+        try {
+            PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.executeUpdate();
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if(generatedKeys.next()) return generatedKeys.getString(1);
+            else return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public boolean create(String query) {
         try {
             statement = connect.createStatement();

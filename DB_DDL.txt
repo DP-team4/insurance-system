@@ -1,10 +1,8 @@
 1. db naming convention: snake
-
 2. type of id: varchar or int
+3. enum to varchar
+4. db name: insurance_system
 
-3. enum은 varchar로
-
-4. db 이름: insurance_system
 
 
 drop table benefit_payment;
@@ -12,6 +10,7 @@ drop table car_accident_handling;
 drop table consult_application;
 drop table cancel_application;
 drop table contract;
+drop table additional_info;
 drop table customer;
 drop table uw_document;
 drop table uw;
@@ -28,9 +27,9 @@ create table insurance (
 create table clause (
 	id int primary key auto_increment,
 	name varchar(255),
-	caluse_category varchar(30),
+	clause_category varchar(30),
 	insured_amount bigint,
-	preminum bigint,
+	premium bigint,
 	insurance_id int,
 	foreign key (insurance_id) references insurance (id)
 );
@@ -53,12 +52,13 @@ create table uw_document (
 
 create table customer (
 	id int primary key auto_increment,
-	customerName varchar(255),
+	email varchar(50),
+	password varchar(255),
+	name varchar(255),
 	age int,
 	gender boolean,
 	registration_no varchar(30),
 	phone_no varchar(30),
-	email varchar(50),
 	account_no varchar(30),
 	is_married boolean
 );
@@ -79,7 +79,7 @@ create table contract (
 	expiration_datetime timestamp,
 	customer_id int,
 	insurance_id int,
-	contract_state varchar(30) ,
+	state varchar(30),
 	foreign key (customer_id) references customer (id),
 	foreign key (insurance_id) references insurance (id)
 );
@@ -115,37 +115,15 @@ create table car_accident_handling (
 
 create table benefit_payment (
 	id int primary key auto_increment,
-	contract_id int,
-	request_date timestamp,
-	accident_date timestamp,
-	accident_content varchar(4000),
-	total_property_loss bigint,
-	total_person_loss bigint,
-	total_property_benefit bigint,
-	total_person_benefit bigint,
-	state tinyint,
-	foreign key (contract_id) references contract (id)
+	contract_id int, 
+	state tinyint, 
+	accident_cause varchar(4000), 
+	accident_date timestamp, 
+	appliance_date timestamp, 
+	state_confirmed_date timestamp
 );
 
-create table accident_car (
-    id int auto_increment,
-    car_accident_handling_id int,
-    car_no varchar(10),
-    cost bigint,
-    owner_name varchar(255),
-    owner_phone_no varchar(30),
-    visited_shop_name varchar(255),
-    primary key (id, car_accident_handling_id),
-    foreign key (car_accident_handling_id) references car_accident_handling (id)
-);
-
-create table accident_person (
-    id int auto_increment,
-    car_accident_handling_id int,
-    cost bigint,
-    name varchar(255),
-    phone_no varchar(30),
-    visited_hospital_name varchar(255),
-    primary key (id, car_accident_handling_id),
-    foreign key (car_accident_handling_id) references car_accident_handling (id)
-);
+insert into insurance values(1, '개인용자동차보험', 'CAR', 'ON_SALE');
+insert into insurance values(2, '차도리ECO운전자상해보험', 'DRIVER', 'ON_SALE');
+insert into insurance values(3, '기업용선박보험', 'MARINE', 'ON_SALE');
+insert into insurance values(4, 'Big Plus 재산종합보험', 'FIRE', 'ON_SALE');

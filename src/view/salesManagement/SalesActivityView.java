@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 import domain.contract.Contract;
 import domain.customer.Customer;
+import domain.insurance.Clause;
 import domain.insurance.Insurance;
 import domain.uw.UWDocument;
+import exception.InvalidInputException;
 import service.SalesService;
 import service.SalesServiceImpl;
 import view.viewUtility.ScannerUtility;
@@ -25,31 +27,37 @@ public class SalesActivityView {
 	public void show() {
 		while(true) {
 			System.out.println("\n================영업활동 화면================");
-			this.showInsurance();
-			this.showCustomer();
-			// 월 납입료, 보상금액
-			this.showInsurancePremiumAndInsuredAmount();
-			System.out.println();
-			System.out.println("가입하시겠습니까? 예 (1) 아니오 (2)");
-			String input = this.scanner.nextLine().trim();
-			if(input.equals("1")) {
-				this.showRequestUW(this.insurance.getId(), this.customer.getId());
-				break;
-			} else if(input.equals("2")) {
-				break;
-			} else {
-				System.out.println("잘못된 입력값입니다."); 
-				break;
+			try {
+				this.showInsurance();
+				this.showCustomer();
+				// 월 납입료, 보상금액
+				this.showInsurancePremiumAndInsuredAmount();
+				System.out.println();
+				System.out.println("가입하시겠습니까? 예 (1) 아니오 (2)");
+				String input = this.scanner.nextLine().trim();
+				if(input.equals("1")) {
+					this.showRequestUW(this.insurance.getId(), this.customer.getId());
+					break;
+				} else if(input.equals("2")) {
+					break;
+				} else {
+					System.out.println("잘못된 입력값입니다."); 
+					break;
+				}
+			} catch (InvalidInputException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	}
 
-	private void showInsurancePremiumAndInsuredAmount() {
+	private void showInsurancePremiumAndInsuredAmount() throws InvalidInputException {
 		System.out.println();
 		System.out.println("총납입월을 입력하시오. ex) 12, 24");
 		System.out.print(">> ");
 		this.totalPaymentMonth = Integer.parseInt(this.scanner.nextLine().trim());
-		
+		if(this.totalPaymentMonth < 1) {
+			throw new InvalidInputException("유효하지 않은 총납입월수 입니다.");
+		}
 		System.out.println();
 		System.out.println("[보험 가입 정보]");
 		System.out.println("보험 이름: " + this.insurance.getName());
@@ -97,17 +105,25 @@ public class SalesActivityView {
 		
 	}
 
-	private void showInsurance() {
+	private void showInsurance() throws InvalidInputException {
 		System.out.println("보험 이름을 입력하시오.");
 		System.out.print(">> ");
 		String input = this.scanner.nextLine().trim();
 		Insurance insurance = this.salesService.getInsuranceByName(input);
+		if(insurance == null) {
+			throw new InvalidInputException("해당 보험을 찾을 수 없습니다.");
+		}
 		System.out.println("[보험 정보]");
 		System.out.println(insurance);
+		System.out.println("[보험 정보_약관 목록]");
+		ArrayList<Clause> clauses = insurance.getClauses();
+		clauses.forEach(i -> {
+			System.out.println(i);
+		});
 		this.insurance = insurance;
 	}
 
-	private void showCustomer() {
+	private void showCustomer() throws InvalidInputException {
 		System.out.println();
 		String email;
 		// 이름, 나이, 성별로 고객 찾기 => 이메일
@@ -116,6 +132,9 @@ public class SalesActivityView {
 		email = (this.scanner.nextLine().trim());
 
 		Customer customer = this.salesService.getCustomerByEmail(email);
+		if(customer == null) {
+			throw new InvalidInputException("해당 고객을 찾을 수 없습니다.");
+		}
 		System.out.println("[고객 정보]");
 		System.out.println(customer.toStringBySecurity());
 		this.customer = customer;

@@ -7,10 +7,12 @@ import domain.consultApplication.ConsultApplicationState;
 import domain.contract.Contract;
 import domain.contract.ContractState;
 import domain.customer.Customer;
+import domain.insurance.Clause;
 import domain.insurance.Insurance;
 import domain.uw.UW;
 import domain.uw.UWDocument;
 import domain.uw.UWState;
+import exception.InvalidInputException;
 import service.SalesService;
 import service.SalesServiceImpl;
 import view.viewUtility.ScannerUtility;
@@ -23,21 +25,27 @@ public class ContractCompletionView {
 
 	public void show() {
 		while(true) {
-			System.out.println("\n================가입접수 목록 화면================");
-			this.showContractRegisterList();
-			this.showManageContractRegister();
-			
-			System.out.println("가입접수 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
-			 String input = scanner.nextLine().trim();
-			 if(!input.equals("1")) break;
+			try {
+				System.out.println("\n================가입접수 목록 화면================");
+				this.showContractRegisterList();
+				this.showManageContractRegister();
+				System.out.println("가입접수 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+				String input = scanner.nextLine().trim();
+				if(!input.equals("1")) break;
+			} catch (InvalidInputException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
-	private void showManageContractRegister() {
+	private void showManageContractRegister() throws InvalidInputException {
 		System.out.print("작업할 가입접수의 ID를 입력하세요");
 		System.out.print(">> ");
         String input = scanner.nextLine().trim();
         Contract contract = salesService.getContract(input);
+        if(contract == null) {
+        	throw new InvalidInputException("유효하지 않은 ID 입니다.");
+        }
         
         while(true) {
 		    System.out.println("////// 해당 가입접수에 대한 작업을 시작합니다. //////");
@@ -120,6 +128,11 @@ public class ContractCompletionView {
 		String id = contract.getInsuranceId();
 		Insurance insurance = salesService.getInsurance(id);
 		System.out.println(insurance);
+		System.out.println("[보험 정보_약관 목록]");
+		ArrayList<Clause> clauses = insurance.getClauses();
+		clauses.forEach(i -> {
+			System.out.println(i);
+		});
 	}
 
 	private void showCustomerView(Contract contract) {

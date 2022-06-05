@@ -35,7 +35,7 @@ public class ContractIntergratedManagementView extends View{
 			case "0": break;
 			default:  System.out.println("잘못된 입력입니다.");		break;
 		}
-		System.out.println("반복됩니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+		System.out.println("계약통합관리 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
         input = scanner.nextLine().trim();
         if(!input.equals("1")) break;
 		}

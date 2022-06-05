@@ -68,6 +68,15 @@ public class Customer {
 		return sj.toString();
 	}
 	
+	public String toStringBySecurity() {
+		StringJoiner sj = new StringJoiner(System.lineSeparator());
+		sj.add("ID: " + this.id).add("이메일: " + this.email).add("이름: " + this.name).add("나이: " + this.age)
+		.add("성별: " + (this.gender ? "남성" : "여성")).add("주민등록번호: " + this.registrationNo).add("이메일: " + this.email).add("전화번호: " + this.phoneNo)
+		.add("계좌번호: " + this.accountNo).add("결혼여부: " + this.isMarried)
+		.add(this.additionalInfo == null ? "" : this.additionalInfo.toString());
+		return sj.toString();
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Customer) {

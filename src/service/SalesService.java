@@ -31,7 +31,7 @@ public interface SalesService {
 	Customer getCustomerByEmail(String email);
 	Customer getCustomer(String id);
 	long getInsuredAmount(Insurance insurance, Customer customer);
-	long getInsurancePremium(Insurance insurance, Customer customer);
+	long getInsurancePremium(Insurance insurance, Customer customer, int totalPaymentMonth);
 	ConsultApplication getConsultApplication(String id);
 	boolean addContract(Contract contract);
 	ArrayList<Contract> getAllContractRegister();

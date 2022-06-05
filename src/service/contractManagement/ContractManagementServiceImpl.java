@@ -38,8 +38,8 @@ public class ContractManagementServiceImpl implements ContractManagementService{
 		 ArrayList<Contract> matureContracts = new ArrayList<>();
 		 ArrayList<Contract> contracts = contractRepository.getAll();
 		 for (Contract contract: contracts) { 
-			 long difference = ChronoUnit.DAYS.between(contract.getContractDateTime(), contract.getExpirationDateTime());
-			 if (difference < 15) {
+			 long difference = ChronoUnit.MONTHS.between(contract.getContractDateTime(), contract.getExpirationDateTime());
+			 if (difference <= 1) {
 				 matureContracts.add(contract);
 			 }
 		 }

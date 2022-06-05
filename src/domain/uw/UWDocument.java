@@ -23,7 +23,7 @@ public class UWDocument {
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(System.lineSeparator());
-		sj.add("ID: " + this.id).add("UW ID: " + this.uwId).add("이름: " + this.name).add("저장 위치: " + this.path);
+		sj.add("ID: " + this.id).add("UW ID: " + this.uwId).add("이름: " + this.name).add("저장 위치: " + this.path).add("상태: " + this.uwDocumentState.name());
 		return sj.toString();
 	}
 	@Override

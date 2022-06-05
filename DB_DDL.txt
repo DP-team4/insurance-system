@@ -124,29 +124,41 @@ create table benefit_payment (
 );
 
 # insurance insert
-insert into insurance values(1, '개인용자동차보험', 'CAR', 'ON_SALE');
-insert into insurance values(2, '차도리ECO운전자상해보험', 'DRIVER', 'ON_SALE');
-insert into insurance values(3, '기업용선박보험', 'MARINE', 'ON_SALE');
-insert into insurance values(4, 'Big Plus 재산종합보험', 'FIRE', 'ON_SALE');
+insert into insurance values(1, '媛쒖씤�슜�옄�룞李⑤낫�뿕', 'CAR', 'ON_SALE');
+insert into insurance values(2, '李⑤룄由촃CO�슫�쟾�옄�긽�빐蹂댄뿕', 'DRIVER', 'ON_SALE');
+insert into insurance values(3, '湲곗뾽�슜�꽑諛뺣낫�뿕', 'MARINE', 'ON_SALE');
+insert into insurance values(4, 'Big Plus �옱�궛醫낇빀蹂댄뿕', 'FIRE', 'ON_SALE');
 
 # clause insert
-insert into clause values(1, '대인배상 1', 'NORMAL', 20000000, 2500000, 1);
-insert into clause values(2, '대인배상 2', 'NORMAL', 200000000, 25000000, 1);
-insert into clause values(3, '자기신체사고 또는 자동차상해', 'NORMAL', 100000000, 125000, 1);
-insert into clause values(4, '무보험차상해', 'SPECIAL', 300000000, 30000000, 1);
+insert into clause values(1, '���씤諛곗긽 1', 'NORMAL', 20000000, 2500000, 1);
+insert into clause values(2, '���씤諛곗긽 2', 'NORMAL', 200000000, 25000000, 1);
+insert into clause values(3, '�옄湲곗떊泥댁궗怨� �삉�뒗 �옄�룞李⑥긽�빐', 'NORMAL', 100000000, 125000, 1);
+insert into clause values(4, '臾대낫�뿕李⑥긽�빐', 'SPECIAL', 300000000, 30000000, 1);
 
-insert into clause values(5, '운전자보장형', 'NORMAL', 100000, 11520, 2);
-insert into clause values(6, '상해사망', 'SPECIAL', 50000000, 612000, 2);
-insert into clause values(7, '상해수술비', 'SPECIAL', 100000, 101880, 2);
+insert into clause values(5, '�슫�쟾�옄蹂댁옣�삎', 'NORMAL', 100000, 11520, 2);
+insert into clause values(6, '�긽�빐�궗留�', 'SPECIAL', 50000000, 612000, 2);
+insert into clause values(7, '�긽�빐�닔�닠鍮�', 'SPECIAL', 100000, 101880, 2);
 
-insert into clause values(8, '선박피해보상', 'NORMAL', 2000000000, 900000000, 3);
+insert into clause values(8, '�꽑諛뺥뵾�빐蹂댁긽', 'NORMAL', 2000000000, 900000000, 3);
 
-insert into clause values(9, '화재피해보상', 'NORMAL', 1000000000, 80000000, 4);
+insert into clause values(9, '�솕�옱�뵾�빐蹂댁긽', 'NORMAL', 1000000000, 80000000, 4);
 
 # customer insert
-insert into customer values(1, 'asdf@asdf.com', '1234', '홍길동', 37, 1, '860507-1212123', '010-1234-1234', '333-1234-12-123', 0);
-insert into customer values(2, 'qwer@qwer.com', '1234', '유지민', 29, 0, '920508-2212123', '010-4321-4321', '333-4321-21-321', 1);
+insert into customer values(1, 'asdf@asdf.com', '1234', '�솉湲몃룞', 37, 1, '860507-1212123', '010-1234-1234', '333-1234-12-123', 0);
+insert into customer values(2, 'qwer@qwer.com', '1234', '�쑀吏�誘�', 29, 0, '920508-2212123', '010-4321-4321', '333-4321-21-321', 1);
 
 # addtional_info insert
 insert into additional_info values(1, 1, 1000000000, 1000000000, 10, 0);
 insert into additional_info values(2, 2, 400000000, 0, 3, 0);
+
+# contract insert
+insert into contract values(1, '2022-06-05 19:25:48', '2024-06-05 19:25:48', 1, 1, 'UNDER_UW');
+insert into contract values(2, '2022-06-05 19:25:48', '2023-06-05 19:25:48', 2, 2, 'UNDER_UW');
+insert into contract values(3, '2022-06-05 19:25:48', '2022-07-05 19:25:48', 1, 3, 'UNDER_UW');
+insert into contract values(4, '2022-06-05 19:25:48', '2022-07-05 19:25:48', 2, 4, 'UNDER_UW');
+
+# consult_application insert
+insert into consult_application values(1, 1, '자동차보험가입상담', '2022-06-05 17:23:18.1846961', '2022-06-06 17:23:18.1846961', 'NEW');
+insert into consult_application values(2, 2, '운전자상해보험가입상담', '2022-06-05 17:23:18.1846961', '2022-06-07 17:23:18.1846961', 'NEW');
+insert into consult_application values(3, 1, '기업용선박보험가입상담', '2022-06-05 17:23:18.1846961', '2022-06-08 17:23:18.1846961', 'NEW');
+insert into consult_application values(4, 2, '재산종합보험가입상담', '2022-06-05 17:23:18.1846961', '2022-06-09 17:23:18.1846961', 'NEW');

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import domain.consultApplication.ConsultApplication;
 import domain.consultApplication.ConsultApplicationState;
 import domain.customer.Customer;
+import exception.InvalidInputException;
 import service.SalesService;
 import service.SalesServiceImpl;
 import view.viewUtility.ScannerUtility;
@@ -19,14 +20,16 @@ public class ConsultApplicationListView {
 
 	public void show() {
 		while(true) {
-			System.out.println("\n================상담신청 목록 화면================");
-			this.showConsultApplicationList();
-			this.showConsultApplicationManage();
-			
-			
-			 System.out.println("상담신청 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
-			 String input = scanner.nextLine().trim();
-			 if(!input.equals("1")) break;
+			try {
+				System.out.println("\n================상담신청 목록 화면================");
+				this.showConsultApplicationList();
+				this.showConsultApplicationManage();
+				System.out.println("상담신청 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+				String input = scanner.nextLine().trim();
+				if(!input.equals("1")) break;
+			} catch (InvalidInputException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
@@ -39,11 +42,14 @@ public class ConsultApplicationListView {
 		});
 	}
 	
-	private void showConsultApplicationManage() {
+	private void showConsultApplicationManage() throws InvalidInputException {
 		System.out.print("작업할 상담신청의 ID를 입력하세요 >> ");
 		System.out.print(">> ");
         String input = scanner.nextLine().trim();
 		ConsultApplication consultApplication = salesService.getConsultApplication(input);
+		if(consultApplication == null) {
+			throw new InvalidInputException("유요하지 않은 상담신청 ID 입니다.");
+		}
 		
 		while(true) {
 		    System.out.println("////// 해당 상담신청에 대한 작업을 시작합니다. //////");

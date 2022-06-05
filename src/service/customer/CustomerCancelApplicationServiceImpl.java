@@ -7,14 +7,14 @@ import domain.cancelApplication.CancelApplication;
 import domain.contract.Contract;
 import repository.cancelApplication.CancelApplicationRepository;
 
-public class CancelApplicationManagementServiceImpl implements CancelApplicationManagementService {
-	private final static CancelApplicationManagementService instance = new CancelApplicationManagementServiceImpl();
+public class CustomerCancelApplicationServiceImpl implements CustomerCancelApplicationService {
+	private final static CustomerCancelApplicationService instance = new CustomerCancelApplicationServiceImpl();
     private static final CancelApplicationRepository cancelApplicationRepository = CancelApplicationRepository.getInstance();
     private static final ContractDao contractDao = new ContractDao(); // Repository
 
 	// Singleton
-	private CancelApplicationManagementServiceImpl(){}
-	public static CancelApplicationManagementService getInstance() { return instance; }
+	private CustomerCancelApplicationServiceImpl(){}
+	public static CustomerCancelApplicationService getInstance() { return instance; }
 	
 	@Override
 	public boolean applyCancellation(CancelApplication cancelApplication) {

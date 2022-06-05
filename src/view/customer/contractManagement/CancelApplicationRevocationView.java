@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import domain.customer.Customer;
 import exception.InvalidInputException;
-import service.customer.CancelApplicationManagementService;
-import service.customer.CancelApplicationManagementServiceImpl;
+import service.customer.CustomerCancelApplicationService;
+import service.customer.CustomerCancelApplicationServiceImpl;
 import view.viewUtility.ScannerUtility;
 
 public class CancelApplicationRevocationView {
@@ -16,7 +16,7 @@ public class CancelApplicationRevocationView {
     private CancelApplicationListView cancelApplicationListView;
 
 	// Service
-	private CancelApplicationManagementService cancelApplicationManagementService = CancelApplicationManagementServiceImpl.getInstance();
+	private CustomerCancelApplicationService customerCancelApplicationService = CustomerCancelApplicationServiceImpl.getInstance();
 
 	public void show(CancelApplicationListView cancellationListView, Customer customer) {
 		try {
@@ -25,7 +25,7 @@ public class CancelApplicationRevocationView {
 			this.customer = customer;
 			
 			System.out.println("\n[ 계약 해지 신청 취소 ]");
-			if(cancelApplicationManagementService.getByCustomerId(customer.getId()).size() == 0) {
+			if(customerCancelApplicationService.getByCustomerId(customer.getId()).size() == 0) {
 				System.out.println("신청 내역이 없어 해지 신청 취소가 불가합니다. 이전 화면으로 돌아갑니다."); return;
 			}
 			System.out.println("계약 해지 신청 목록을 조회하려면 (list)");
@@ -55,7 +55,7 @@ public class CancelApplicationRevocationView {
 	}
 
 	private void revokeCancellation(String id, String customerId) {
-        if(cancelApplicationManagementService.deleteMyCancellation(id, customerId)) {
+        if(customerCancelApplicationService.deleteMyCancellation(id, customerId)) {
         	System.out.println("삭제되었습니다.");
         	cancelApplicationListView.show(customer);
         }

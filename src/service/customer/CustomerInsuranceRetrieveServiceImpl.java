@@ -8,13 +8,13 @@ import domain.insurance.InsuranceCategory;
 import domain.insurance.InsuranceState;
 import repository.insurance.InsuranceRepository;
 
-public class InsuranceRetrieveServiceImpl implements InsuranceRetrieveService {
-	private final static InsuranceRetrieveService insuranceRetrieveService = new InsuranceRetrieveServiceImpl();
+public class CustomerInsuranceRetrieveServiceImpl implements CustomerInsuranceRetrieveService {
+	private final static CustomerInsuranceRetrieveService customerInsuranceRetrieveService = new CustomerInsuranceRetrieveServiceImpl();
 	private static final InsuranceRepository insuranceRepository = InsuranceRepository.getInstance();
 
 	// Singleton
-	private InsuranceRetrieveServiceImpl(){}
-	public static InsuranceRetrieveService getInstance() { return insuranceRetrieveService; }
+	private CustomerInsuranceRetrieveServiceImpl(){}
+	public static CustomerInsuranceRetrieveService getInstance() { return customerInsuranceRetrieveService; }
 
 	@Override
 	public ArrayList<Insurance> getInsurancesOnSale() {

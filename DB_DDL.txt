@@ -123,7 +123,20 @@ create table benefit_payment (
 	state_confirmed_date timestamp
 );
 
+# insurance insert
 insert into insurance values(1, '개인용자동차보험', 'CAR', 'ON_SALE');
 insert into insurance values(2, '차도리ECO운전자상해보험', 'DRIVER', 'ON_SALE');
 insert into insurance values(3, '기업용선박보험', 'MARINE', 'ON_SALE');
 insert into insurance values(4, 'Big Plus 재산종합보험', 'FIRE', 'ON_SALE');
+
+# clause insert
+insert into clause values(1, '대인배상 1', 'NORMAL', 20000000, 2500000, 1);
+insert into clause values(2, '대인배상 2', 'NORMAL', 200000000, 25000000, 1);
+insert into clause values(3, '자기신체사고 또는 자동차상해', 'NORMAL', 100000000, 125000, 1);
+insert into clause values(4, '무보험차상해', 'SPECIAL', 300000000, 30000000, 1);
+
+insert into clause values(5, '운전자보장형', 'NORMAL', 100000, 11520, 2);
+insert into clause values(6, '상해사망', 'SPECIAL', 50000000, 612000, 2);
+insert into clause values(7, '상해수술비', 'SPECIAL', 100000, 101880, 2);
+
+insert into clause values(8, '화재피해보상', 'NORMAL', 1000000000, 80000000, 3);

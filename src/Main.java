@@ -1,18 +1,16 @@
 import java.util.Scanner;
 
 import view.EmployeeView;
-import view.contractMangement.ContractIntergratedManagementView;
 import view.customer.CustomerHomeView;
-import view.salesManagement.SalesMainView;
 import view.viewUtility.ScannerUtility;
 
 public class Main {
     private final static Scanner scanner = ScannerUtility.getScanner();
 
 	public static void main(String[] args) {
-		System.out.println("////////////////////// DP 2022-1 º¸Çè»çÁ¶ //////////////////////");
+		System.out.println("////////////////////// DP 2022-1 ë³´í—˜ì‚¬ì¡° //////////////////////");
 		while (true) {
-			System.out.print("ÀÌ¿ëÇÒ ¼­ºñ½º¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä - °í°´(1), Á÷¿ø(2), Á¾·á(exit) >> "); String input = scanner.nextLine().trim();
+			System.out.print("ì´ìš©í•  ì„œë¹„ìŠ¤ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš” - ê³ ê°(1), ì§ì›(2), ì¢…ë£Œ(exit) >> "); String input = scanner.nextLine().trim();
 			switch (input) {
 				case "1":
 					new CustomerHomeView().show();
@@ -24,7 +22,7 @@ public class Main {
 					System.out.println("Bye~");
 					return;
 				default:
-					System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ÀÔ·Â: " + input);
+					System.out.println("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ì…ë ¥: " + input);
 					break;
 			}
 		}

@@ -17,16 +17,16 @@ public class InsuranceListView {
     private final InsuranceRetrieveService insuranceRetrieveService = InsuranceRetrieveServiceImpl.getInstance();
 	
 	public void show() {
-		System.out.println("\n[ º¸Çè»óÇ° Á¶È¸ ]");
-		// °¡ÀÔÇÒ º¸Çè»óÇ°(ÇØ»óº¸Çè, ÀÚµ¿Â÷º¸Çè, ¿îÀüÀÚº¸Çè, È­Àçº¸Çè)À» ¼±ÅÃÇÏ°í °Ë»ö¹öÆ°À» Å¬¸¯ÇÑ´Ù(A1, A2, E1, E2)
-		System.out.println("Á¶È¸ÇÒ º¸Çè»óÇ° Á¾·ù¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä -");
-		System.out.print("ÇØ»óº¸Çè(1), ÀÚµ¿Â÷º¸Çè(2), ¿îÀüÀÚº¸Çè(3), È­Àçº¸Çè(4), ÀüÃ¼Á¶È¸(5) >> ");
+		System.out.println("\n[ ë³´í—˜ìƒí’ˆ ì¡°íšŒ ]");
+		// ê°€ì…í•  ë³´í—˜ìƒí’ˆ(í•´ìƒë³´í—˜, ìë™ì°¨ë³´í—˜, ìš´ì „ìë³´í—˜, í™”ì¬ë³´í—˜)ì„ ì„ íƒí•˜ê³  ê²€ìƒ‰ë²„íŠ¼ì„ í´ë¦­í•œë‹¤(A1, A2, E1, E2)
+		System.out.println("ì¡°íšŒí•  ë³´í—˜ìƒí’ˆ ì¢…ë¥˜ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš” -");
+		System.out.print("í•´ìƒë³´í—˜(1), ìë™ì°¨ë³´í—˜(2), ìš´ì „ìë³´í—˜(3), í™”ì¬ë³´í—˜(4), ì „ì²´ì¡°íšŒ(5) >> ");
 		String input = scanner.nextLine().trim();
-        // °Ë»ö Á¶°Ç ÀÔ·Â ¿©ºÎ¸¦ Ã¼Å©ÇÑ´Ù
-		// A1. °Ë»ö Á¶°ÇÀ» ´ú ÀÔ·ÂÇÑ °æ¿ì -> '°Ë»ö Á¶°ÇÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä' ¸Ş½ÃÁö¸¦ º¸¿©ÁØ´Ù
-		if(input.equals("")) System.out.println("\n°Ë»ö Á¶°ÇÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+        // ê²€ìƒ‰ ì¡°ê±´ ì…ë ¥ ì—¬ë¶€ë¥¼ ì²´í¬í•œë‹¤
+		// A1. ê²€ìƒ‰ ì¡°ê±´ì„ ëœ ì…ë ¥í•œ ê²½ìš° -> 'ê²€ìƒ‰ ì¡°ê±´ì„ ì…ë ¥í•´ì£¼ì„¸ìš”' ë©”ì‹œì§€ë¥¼ ë³´ì—¬ì¤€ë‹¤
+		if(input.equals("")) System.out.println("\nê²€ìƒ‰ ì¡°ê±´ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 		else {
-	        // °Ë»ö Á¶°Ç¿¡ ¸Â´Â ÆÇ¸ÅÁßÀÎ º¸Çè»óÇ° Á¤º¸¸¦ ¿äÃ»ÇÑ´Ù
+	        // ê²€ìƒ‰ ì¡°ê±´ì— ë§ëŠ” íŒë§¤ì¤‘ì¸ ë³´í—˜ìƒí’ˆ ì •ë³´ë¥¼ ìš”ì²­í•œë‹¤
 	        ArrayList<Insurance> insurances = insuranceRetrieveService.getInsurancesOnSale();
 	        InsuranceCategory insuranceCategory = null;
 			switch(input) {
@@ -35,22 +35,24 @@ public class InsuranceListView {
 				case "3": insuranceCategory = InsuranceCategory.DRIVER; break;
 				case "4": insuranceCategory = InsuranceCategory.FIRE; break;
 				case "5": insuranceCategory = null; break;
-				// A3. ¿Ã¹Ù¸£Áö ¾ÊÀº °Ë»ö Á¶°ÇÀ» ÀÔ·ÂÇÑ °æ¿ì -> "ÀÔ·Â°ªÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù" ¸Ş½ÃÁö¸¦ º¸¿©ÁØ´Ù
-				default : System.out.println("\nÀÔ·Â°ªÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù."); return;
+				// A3. ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²€ìƒ‰ ì¡°ê±´ì„ ì…ë ¥í•œ ê²½ìš° -> "ì…ë ¥ê°’ì´ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤" ë©”ì‹œì§€ë¥¼ ë³´ì—¬ì¤€ë‹¤
+				default : System.out.println("\nì…ë ¥ê°’ì´ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."); return;
 			}
-			insuranceRetrieveService.filterInsuranceByCategory(insurances, insuranceCategory);
-	        // º¸Çè¸ñ·Ï(º¸Çè»óÇ°¸í, º¸ÇèÁ¾·ù, ¾à°ü¸í, °¡ÀÔ±İ¾×, º¸Çè·á)À» º¸¿©ÁØ´Ù
-	        // A2. °Ë»ö Á¶°Ç¿¡ ÇØ´çÇÏ´Â º¸Çè»óÇ°ÀÌ 0°³ÀÎ °æ¿ì -> ¸Ş½ÃÁö '°í°´´ÔÀÇ Á¶°Ç¿¡ ¸Â´Â »óÇ°ÀÌ ¾ø½À´Ï´Ù'¸¦ º¸¿©ÁØ´Ù
-	        if(insurances.size() == 0) { System.out.println("°í°´´ÔÀÇ Á¶°Ç¿¡ ¸Â´Â »óÇ°ÀÌ ¾ø½À´Ï´Ù. ¸Ş´ºÈ­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù."); return; }
+			insurances = insuranceRetrieveService.filterInsuranceByCategory(insurances, insuranceCategory);
+	        // ë³´í—˜ëª©ë¡(ë³´í—˜ìƒí’ˆëª…, ë³´í—˜ì¢…ë¥˜, ì•½ê´€ëª…, ê°€ì…ê¸ˆì•¡, ë³´í—˜ë£Œ)ì„ ë³´ì—¬ì¤€ë‹¤
+	        // A2. ê²€ìƒ‰ ì¡°ê±´ì— í•´ë‹¹í•˜ëŠ” ë³´í—˜ìƒí’ˆì´ 0ê°œì¸ ê²½ìš° -> ë©”ì‹œì§€ 'ê³ ê°ë‹˜ì˜ ì¡°ê±´ì— ë§ëŠ” ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤'ë¥¼ ë³´ì—¬ì¤€ë‹¤
+	        if(insurances.size() == 0) { System.out.println("ê³ ê°ë‹˜ì˜ ì¡°ê±´ì— ë§ëŠ” ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤. ë©”ë‰´í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤."); return; }
             insurances.forEach(i -> {
             	ArrayList<Clause> clauses = i.getClauses();
-                System.out.print("º¸Çè»óÇ°¸í: " + i.getName());
-                System.out.print("º¸ÇèÁ¾·ù: " + i.getName());
+            	System.out.println();
+                System.out.println("ë³´í—˜ìƒí’ˆëª…: " + i.getName());
+                System.out.println("ë³´í—˜ì´ë¦„: " + i.getName());
+                System.out.println("ë³´í—˜ì¢…ë¥˜: " + i.getInsuranceCategory().name());
+            	System.out.println("<ì•½ê´€ ëª©ë¡>");
                 for(Clause clause : clauses) {
-                	System.out.println("<¾à°ü ¸ñ·Ï>");
-                	System.out.print("¾à°ü¸í: " + clause.getName() + ", ");
-	                System.out.print("°¡ÀÔ±İ¾×: " + clause.getInsuredAmount());
-	                System.out.print("º¸Çè·á: " + clause.getPremium());
+                	System.out.print("ì•½ê´€ëª…: " + clause.getName() + ", ");
+	                System.out.print("ê°€ì…ê¸ˆì•¡: " + clause.getInsuredAmount() + ", ");
+	                System.out.println("ë³´í—˜ë£Œ: " + clause.getPremium());
                 }
             });
 		}

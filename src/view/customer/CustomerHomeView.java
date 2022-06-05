@@ -12,8 +12,8 @@ import view.viewUtility.ScannerUtility;
 public class CustomerHomeView {
     private final Scanner scanner = ScannerUtility.getScanner();
     
-	private boolean logined; // ·Î±×ÀÎ ¿©ºÎ
-	private Customer customer; // ·Î±×ÀÎ µÈ °í°´Á¤º¸ (·Î±×ÀÎ ¾ÈµÈ °æ¿ì null)
+	private boolean logined; // ë¡œê·¸ì¸ ì—¬ë¶€
+	private Customer customer; // ë¡œê·¸ì¸ ëœ ê³ ê°ì •ë³´ (ë¡œê·¸ì¸ ì•ˆëœ ê²½ìš° null)
 	
 	// Views
 	private ClaimApplicationView claimApplicationView = new ClaimApplicationView();
@@ -25,12 +25,12 @@ public class CustomerHomeView {
 	private SignUpView signUpView = new SignUpView();
 	
 	private enum EMenu {
-		insuranceList("º¸Çè»óÇ° Á¶È¸", "1"),
-		consultationManagement("°¡ÀÔ »ó´ã ½ÅÃ» °ü¸®", "2"),
-		contractsManagement("³ªÀÇ º¸Çè»óÇ° °ü¸® ¹× °è¾à ÇØÁö", "3"),
-		coverageApplication("»ç°íÃ³¸® ½ÅÃ»", "4"),
-		claimApplication("º¸Çè±İ Ã»±¸", "5"),
-		exit("ÇÁ·Î±×·¥ Á¾·á", "±âÅ¸");
+		insuranceList("ë³´í—˜ìƒí’ˆ ì¡°íšŒ", "1"),
+		consultationManagement("ê°€ì… ìƒë‹´ ì‹ ì²­ ê´€ë¦¬", "2"),
+		contractsManagement("ë‚˜ì˜ ë³´í—˜ìƒí’ˆ ê´€ë¦¬ ë° ê³„ì•½ í•´ì§€", "3"),
+		coverageApplication("ì‚¬ê³ ì²˜ë¦¬ ì‹ ì²­", "4"),
+		claimApplication("ë³´í—˜ê¸ˆ ì²­êµ¬", "5"),
+		exit("í”„ë¡œê·¸ë¨ ì¢…ë£Œ", "ê¸°íƒ€");
 		
 		private String string;
 		private String key;
@@ -43,24 +43,24 @@ public class CustomerHomeView {
 	public void show() {
 		boolean exit = false;
 		while(!exit) {
-			System.out.println("\n[ ¸Ş´º ]");
+			System.out.println("\n[ ë©”ë‰´ ]");
 			for(EMenu menu: EMenu.values()) {
 				System.out.print(menu.getString() + "(" + menu.getKey() + ") ");
 			}
-			if(!logined) System.out.print("·Î±×ÀÎ(l) È¸¿ø°¡ÀÔ(s)");
-			else System.out.print("·Î±×¾Æ¿ô(l) ");
+			if(!logined) System.out.print("ë¡œê·¸ì¸(l) íšŒì›ê°€ì…(s)");
+			else System.out.print("ë¡œê·¸ì•„ì›ƒ(l) ");
 	        System.out.print("\n>> ");
 			switch(scanner.nextLine().trim()) {
-				case "1": showInsurances(); break; // ¿Ï·á
-				case "2": manageConsultation(); break; // Date ÀÌ»óÇÒ ¶§ Exception Ã³¸®
-				case "3": manageContracts(); break; // ¿Ï·á
+				case "1": showInsurances(); break;
+				case "2": manageConsultation(); break;
+				case "3": manageContracts(); break;
 				case "4": applyCoverage(); break;
 				case "5": applyClaim(); break;
-				case "l": // ÀÔ·Â°ª Ã¼Å©
+				case "l":
 					if(!logined) login();
 					else logout();
 					break;
-				case "s": // ÀÔ·Â°ª Ã¼Å©, ¾ÆÀÌµğ(ÀÌ¸ŞÀÏ) Áßº¹ È®ÀÎ
+				case "s":
 					if(!logined) { signUpView.show(); break; }
 				default: exit = true; break;
 			}
@@ -88,10 +88,10 @@ public class CustomerHomeView {
 	}
 	
 	private boolean checkLogin() {
-		// ·Î±×ÀÎ ¿©ºÎ¸¦ È®ÀÎÇÑ´Ù
+		// ë¡œê·¸ì¸ ì—¬ë¶€ë¥¼ í™•ì¸í•œë‹¤
 		if(!logined) {
-			// A?. ·Î±×ÀÎÀÌ µÇ¾îÀÖÁö ¾ÊÀº °æ¿ì
-			System.out.println("·Î±×ÀÎÀÌ ÇÊ¿äÇÑ ±â´ÉÀÔ´Ï´Ù."); return login();
+			// A?. ë¡œê·¸ì¸ì´ ë˜ì–´ìˆì§€ ì•Šì€ ê²½ìš°
+			System.out.println("ë¡œê·¸ì¸ì´ í•„ìš”í•œ ê¸°ëŠ¥ì…ë‹ˆë‹¤."); return login();
 		}
 		return true;
 	}
@@ -106,9 +106,9 @@ public class CustomerHomeView {
 	}
 
 	private void logout() {
-		System.out.println("\n[ ·Î±×¾Æ¿ô ]");
+		System.out.println("\n[ ë¡œê·¸ì•„ì›ƒ ]");
 		this.customer = null;
 		this.logined = false;
-		System.out.println("·Î±×¾Æ¿ô ¿Ï·á.");
+		System.out.println("ë¡œê·¸ì•„ì›ƒ ì™„ë£Œ.");
 	}
 }

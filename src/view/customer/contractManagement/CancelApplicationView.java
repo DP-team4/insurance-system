@@ -5,10 +5,10 @@ import java.util.Scanner;
 import domain.cancelApplication.CancelApplication;
 import domain.customer.Customer;
 import exception.InvalidInputException;
-import service.customer.CancelApplicationManagementService;
-import service.customer.CancelApplicationManagementServiceImpl;
-import service.customer.ContractManagementService;
-import service.customer.ContractManagementServiceImpl;
+import service.customer.CustomerCancelApplicationService;
+import service.customer.CustomerCancelApplicationServiceImpl;
+import service.customer.CustomerContractService;
+import service.customer.CustomerContractServiceImpl;
 import view.viewUtility.ScannerUtility;
 
 public class CancelApplicationView {
@@ -19,15 +19,15 @@ public class CancelApplicationView {
 	private CancelApplicationListView cancelApplicationListView;
 
 	// Service
-	private CancelApplicationManagementService cancelApplicationManagementService = CancelApplicationManagementServiceImpl.getInstance();
-    private ContractManagementService contractManagementService = ContractManagementServiceImpl.getInstance();
+	private CustomerCancelApplicationService customerCancelApplicationService = CustomerCancelApplicationServiceImpl.getInstance();
+    private CustomerContractService customerContractService = CustomerContractServiceImpl.getInstance();
 	
 	public void show(ContractListView contractListView, CancelApplicationListView cancellationListView, Customer customer) {
 		try {
 			this.cancelApplicationListView = cancellationListView;
 			
 			System.out.println("\n[ 계약 해지 신청 ]");
-			if(contractManagementService.getCustomerContracts(customer.getId()).size() == 0) {
+			if(customerContractService.getCustomerContracts(customer.getId()).size() == 0) {
 				System.out.println("가입한 보험이 없어 해지 신청이 불가합니다. 이전 화면으로 돌아갑니다."); return;
 			}
 			System.out.println("계약 목록을 조회하려면 (list)");
@@ -60,7 +60,7 @@ public class CancelApplicationView {
 	private void applyCancellation(String contractId) {
 		CancelApplication cancelApplication = new CancelApplication();
 		cancelApplication.setContractId(contractId);
-		if(cancelApplicationManagementService.applyCancellation(cancelApplication)) {
+		if(customerCancelApplicationService.applyCancellation(cancelApplication)) {
 			System.out.println("\n접수가 완료 되었습니다.");
 			cancelApplicationListView.show(customer);
 		}

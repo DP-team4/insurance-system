@@ -8,8 +8,8 @@ import domain.consultApplication.ConsultApplication;
 import domain.customer.Customer;
 import exception.InvalidConsultDateTimeException;
 import exception.InvalidInputException;
-import service.customer.ConsultApplicationService;
-import service.customer.ConsultApplicationServiceImpl;
+import service.customer.CustomerConsultApplicationService;
+import service.customer.CustomerConsultApplicationServiceImpl;
 import view.viewUtility.ScannerUtility;
 
 public class ConsultApplicationApplyView {
@@ -20,7 +20,7 @@ public class ConsultApplicationApplyView {
 	private ConsultApplicationListView consultApplicationListView;
 	
 	// Service
-	private ConsultApplicationService consultApplicationService = ConsultApplicationServiceImpl.getInstance();
+	private CustomerConsultApplicationService customerConsultApplicationService = CustomerConsultApplicationServiceImpl.getInstance();
 	
 	public void show(ConsultApplicationListView consultationListView, Customer customer) {
 		try {
@@ -66,7 +66,7 @@ public class ConsultApplicationApplyView {
             consultApplication.setConsultationDate(consultDateTime);
             checkInvalidDate(consultDateTime);
             // "접수가 완료 되었습니다" 메시지를 보여주고 가입 상담 신청 현황 화면을 보여준다
-    		if(consultApplicationService.applyConsultation(consultApplication)) {
+    		if(customerConsultApplicationService.applyConsultation(consultApplication)) {
     			System.out.println("\n접수가 완료 되었습니다.");
     			consultApplicationListView.show(customer);
     		}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import domain.consultApplication.ConsultApplication;
 
-public interface ConsultApplicationService {
+public interface CustomerConsultApplicationService {
 	boolean applyConsultation(ConsultApplication consultApplication);
 	ArrayList<ConsultApplication> getByCustomerId(String customerId);
 	boolean deleteMyConsultation(String id, String customerId);

@@ -51,16 +51,16 @@ public class CustomerHomeView {
 			else System.out.print("로그아웃(l) ");
 	        System.out.print("\n>> ");
 			switch(scanner.nextLine().trim()) {
-				case "1": showInsurances(); break; // 완료
-				case "2": manageConsultation(); break; // Date 이상할 때 Exception 처리
-				case "3": manageContracts(); break; // 완료
+				case "1": showInsurances(); break;
+				case "2": manageConsultation(); break;
+				case "3": manageContracts(); break;
 				case "4": applyCoverage(); break;
 				case "5": applyClaim(); break;
-				case "l": // 입력값 체크
+				case "l":
 					if(!logined) login();
 					else logout();
 					break;
-				case "s": // 입력값 체크, 아이디(이메일) 중복 확인
+				case "s":
 					if(!logined) { signUpView.show(); break; }
 				default: exit = true; break;
 			}

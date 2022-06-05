@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 import view.EmployeeView;
-import view.contractMangement.ContractIntergratedManagementView;
 import view.customer.CustomerHomeView;
-import view.salesManagement.SalesMainView;
 import view.viewUtility.ScannerUtility;
 
 public class Main {

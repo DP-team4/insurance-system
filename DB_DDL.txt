@@ -144,8 +144,8 @@ insert into clause values(8, '선박피해보상', 'NORMAL', 2000000000, 9000000
 insert into clause values(9, '화재피해보상', 'NORMAL', 1000000000, 80000000, 4);
 
 # customer insert
-insert into customer values(1, 'asdf@asdf.com', '1234', '홍길동', 37, 1, '860507-1212123', '010-1234-1234', '333-1234-12-123', 0);
-insert into customer values(2, 'qwer@qwer.com', '1234', '유지민', 29, 0, '920508-2212123', '010-4321-4321', '333-4321-21-321', 1);
+insert into customer values(1, 'asdf@asdf.com', '1234', '홍길동', 37, 1, '860507-1212123', '01012341234', '하나 333123412123', 0);
+insert into customer values(2, 'qwer@qwer.com', '1234', '유지민', 29, 0, '920508-2212123', '01043214321', '신한 333432121321', 1);
 
 # addtional_info insert
 insert into additional_info values(1, 1, 1000000000, 1000000000, 10, 0);

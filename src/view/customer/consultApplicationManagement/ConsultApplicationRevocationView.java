@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import domain.customer.Customer;
 import exception.InvalidInputException;
-import service.customer.ConsultApplicationService;
-import service.customer.ConsultApplicationServiceImpl;
+import service.customer.CustomerConsultApplicationService;
+import service.customer.CustomerConsultApplicationServiceImpl;
 import view.viewUtility.ScannerUtility;
 
 public class ConsultApplicationRevocationView {
@@ -16,7 +16,7 @@ public class ConsultApplicationRevocationView {
 	private ConsultApplicationListView consultApplicationListView;
 
 	// Service
-	private ConsultApplicationService consultApplicationService = ConsultApplicationServiceImpl.getInstance();
+	private CustomerConsultApplicationService customerConsultApplicationService = CustomerConsultApplicationServiceImpl.getInstance();
 
 	public void show(ConsultApplicationListView consultationListView, Customer customer) {
 		try {
@@ -24,7 +24,7 @@ public class ConsultApplicationRevocationView {
 			this.customer = customer;
 			// 상담 신청 취소 화면(상담 아이디 입력창  + '확인', '취소' 버튼)을 보여준다
 			System.out.println("\n[ 가입 상담 신청 취소 ]");
-			if(consultApplicationService.getByCustomerId(customer.getId()).size() == 0) {
+			if(customerConsultApplicationService.getByCustomerId(customer.getId()).size() == 0) {
 				System.out.println("신청 내역이 없어 상담 신청 취소가 불가합니다. 이전 화면으로 돌아갑니다."); return;
 			}
 			System.out.println("가입 상담 신청 목록을 조회하려면 (list)");
@@ -54,7 +54,7 @@ public class ConsultApplicationRevocationView {
 	}
 
 	private void revokeConsultation(String id, String customerId) {
-        if(consultApplicationService.deleteMyConsultation(id, customerId)) {
+        if(customerConsultApplicationService.deleteMyConsultation(id, customerId)) {
         	System.out.println("삭제되었습니다.");
         	consultApplicationListView.show(customer);
         }

@@ -10,13 +10,13 @@ import domain.customer.Customer;
 import domain.insurance.Clause;
 import domain.insurance.Insurance;
 
-public class ContractManagementServiceImpl implements ContractManagementService {
-	private final static ContractManagementService myContractManagementService = new ContractManagementServiceImpl();
+public class CustomerContractServiceImpl implements CustomerContractService {
+	private final static CustomerContractService myContractManagementService = new CustomerContractServiceImpl();
     private static final ContractDao contractDao = new ContractDao(); // Repository
 
 	// Singleton
-	private ContractManagementServiceImpl(){}
-	public static ContractManagementService getInstance() { return myContractManagementService; }
+	private CustomerContractServiceImpl(){}
+	public static CustomerContractService getInstance() { return myContractManagementService; }
 	
 	@Override
 	public ArrayList<Contract> getCustomerContracts(String customerId) {

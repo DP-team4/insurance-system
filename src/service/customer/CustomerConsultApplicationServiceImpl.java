@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import domain.consultApplication.ConsultApplication;
 import repository.consultApplication.ConsultApplicationRepository;
 
-public class ConsultApplicationServiceImpl implements ConsultApplicationService {
-	private final static ConsultApplicationService consultApplicationService = new ConsultApplicationServiceImpl();
+public class CustomerConsultApplicationServiceImpl implements CustomerConsultApplicationService {
+	private final static CustomerConsultApplicationService customerConsultApplicationService = new CustomerConsultApplicationServiceImpl();
     private static final ConsultApplicationRepository consultApplicationRepository = ConsultApplicationRepository.getInstance();
 
 	// Singleton
-	private ConsultApplicationServiceImpl(){}
-	public static ConsultApplicationService getInstance() { return consultApplicationService; }
+	private CustomerConsultApplicationServiceImpl(){}
+	public static CustomerConsultApplicationService getInstance() { return customerConsultApplicationService; }
 	
 	@Override
 	public boolean applyConsultation(ConsultApplication consultApplication) {

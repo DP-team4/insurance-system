@@ -27,7 +27,7 @@ public class ContractListView {
 				System.out.println("Exception : 계약의 보험 정보가 삭제되었습니다."); return false;// Exception 3
 			}
 			// 내 보험 관리 화면(보험상품명, 보험종류, 계약일, 만기일, 보험료, 해지 신청 버튼)을 출력한다.
-			System.out.println("계약 ID : " + contract.getId());
+			System.out.println("\n계약 ID : " + contract.getId());
 			System.out.println("계약일 : " + contract.getContractDateTime());
 			System.out.println("보험상품명 : " + insurance.getName());
 			System.out.println("보험종류 : " + insurance.getInsuranceCategory().name());

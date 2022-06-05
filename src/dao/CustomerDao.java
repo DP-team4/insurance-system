@@ -90,6 +90,32 @@ public class CustomerDao extends Dao {
         }
 	}
 
+	public Customer retrieveByRegistrationNo(String registrationNo) {
+        try {
+            String query = String.format("select * from customer where registration_no='%s'", registrationNo);
+            ResultSet resultSet = super.retrieve(query);
+            if(resultSet==null || !resultSet.next()) return null;
+            Customer customer = getCurrentCustomer(resultSet);
+            return customer;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+	}
+
+	public Customer retrieveByPhoneNo(String phoneNo) {
+        try {
+            String query = String.format("select * from customer where phone_no='%s'", phoneNo);
+            ResultSet resultSet = super.retrieve(query);
+            if(resultSet==null || !resultSet.next()) return null;
+            Customer customer = getCurrentCustomer(resultSet);
+            return customer;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+	}
+
     public ArrayList<Customer> retrieveByName(String name) {
         try {
             String query = String.format("select * from customer where name='%s'", name);

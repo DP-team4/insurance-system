@@ -12,8 +12,8 @@ public class ContractManagementView {
     // View
     private ContractListView contractListView = new ContractListView();
 	private CancelApplicationView cancelApplicationView = new CancelApplicationView();
-	private CancelApplicationListView cancellationListView = new CancelApplicationListView();
-	private CancelApplicationRevocationView cancellationRevocationView = new CancelApplicationRevocationView();
+	private CancelApplicationListView cancelApplicationListView = new CancelApplicationListView();
+	private CancelApplicationRevocationView cancelApplicationRevocationView = new CancelApplicationRevocationView();
     
 	public void show(Customer customer) {
 		this.customer = customer;
@@ -33,7 +33,7 @@ public class ContractManagementView {
 	}
 	
 	private void showContracts() {
-		boolean contractExist = contractListView.show(cancellationListView, customer);
+		boolean contractExist = contractListView.show(cancelApplicationListView, customer);
 		if(contractExist) {
 			System.out.println("\n해지 신청하기(1) 메뉴 화면으로 돌아가기(기타)");
 			System.out.print(">> ");
@@ -45,14 +45,14 @@ public class ContractManagementView {
 	}
 	
 	private void applyCancellation() {
-		cancelApplicationView.show(contractListView, cancellationListView, customer);
+		cancelApplicationView.show(contractListView, cancelApplicationListView, customer);
 	}
 	
 	private void showCancellations() {
-		cancellationListView.show(customer);
+		cancelApplicationListView.show(customer);
 	}
 
 	private void revokeCancellation() {
-		cancellationRevocationView.show(cancellationListView, customer);
+		cancelApplicationRevocationView.show(cancelApplicationListView, customer);
 	}
 }

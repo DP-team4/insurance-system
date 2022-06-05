@@ -63,6 +63,22 @@ public class CustomerRepository {
 		customer.setAdditionalInfo(additionalInfo);
 		return customer;
 	}
+	
+	public Customer getByRegistrationNo(String registrationNo) {
+		Customer customer = customerDao.retrieveByRegistrationNo(registrationNo);
+		if(customer == null) return null;
+		AdditionalInfo additionalInfo = additionalInfoDao.retrieveByCustomerId(customer.getId());
+		customer.setAdditionalInfo(additionalInfo);
+		return customer;
+	}
+	
+	public Customer getByPhoneNo(String phoneNo) {
+		Customer customer = customerDao.retrieveByPhoneNo(phoneNo);
+		if(customer == null) return null;
+		AdditionalInfo additionalInfo = additionalInfoDao.retrieveByCustomerId(customer.getId());
+		customer.setAdditionalInfo(additionalInfo);
+		return customer;
+	}
 
 	public ArrayList<Customer> getByName(String name) {
 		ArrayList<Customer> customers = customerDao.retrieveByName(name);

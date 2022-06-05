@@ -5,8 +5,8 @@
 
 
 
-drop table coverage;
-drop table claim;
+drop table benefit_payment;
+drop table car_accident_handling;
 drop table consult_application;
 drop table cancel_application;
 drop table contract;
@@ -102,18 +102,18 @@ create table consult_application(
 	foreign key (customer_id) references customer (id)
 );
 
-create table claim (
+create table car_accident_handling (
 	id int primary key auto_increment,
 	contract_id int,
-	caraccident_cause varchar(4000),
-	accident_location varchar(100),
+	request_date timestamp,
 	accident_date timestamp,
-	claim_date timestamp,
-	confirmed_date timestamp,
-	confirmed tinyint
+	accident_content varchar(4000),
+	accident_location varchar(100),
+	state tinyint,
+	foreign key (contract_id) references contract (id)
 );
 
-create table coverage (
+create table benefit_payment (
 	id int primary key auto_increment,
 	contract_id int, 
 	state tinyint, 
@@ -123,7 +123,7 @@ create table coverage (
 	state_confirmed_date timestamp
 );
 
-insert into insurance values(1, '°³ÀÎ¿ëÀÚµ¿Â÷º¸Çè', 'CAR', 'ON_SALE');
-insert into insurance values(2, 'Â÷µµ¸®ECO¿îÀüÀÚ»óÇØº¸Çè', 'DRIVER', 'ON_SALE');
-insert into insurance values(3, '±â¾÷¿ë¼±¹Úº¸Çè', 'MARINE', 'ON_SALE');
-insert into insurance values(4, 'Big Plus Àç»êÁ¾ÇÕº¸Çè', 'FIRE', 'ON_SALE');
+insert into insurance values(1, 'ê°œì¸ìš©ìë™ì°¨ë³´í—˜', 'CAR', 'ON_SALE');
+insert into insurance values(2, 'ì°¨ë„ë¦¬ECOìš´ì „ììƒí•´ë³´í—˜', 'DRIVER', 'ON_SALE');
+insert into insurance values(3, 'ê¸°ì—…ìš©ì„ ë°•ë³´í—˜', 'MARINE', 'ON_SALE');
+insert into insurance values(4, 'Big Plus ì¬ì‚°ì¢…í•©ë³´í—˜', 'FIRE', 'ON_SALE');

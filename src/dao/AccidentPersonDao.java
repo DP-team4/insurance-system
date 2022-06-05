@@ -1,5 +1,6 @@
 package dao;
 
+import domain.carAccidentHandling.AccidentCar;
 import domain.carAccidentHandling.AccidentPerson;
 
 import java.sql.ResultSet;
@@ -15,12 +16,24 @@ public class AccidentPersonDao extends Dao{
     }
 
     public boolean create(AccidentPerson accidentPerson){
+        String query = this.makeCreationQuery(accidentPerson);
+        System.out.println(query);
+        return super.create(query);
+    }
+
+    public String createAndGetId(AccidentPerson accidentPerson){
+        String query = this.makeCreationQuery(accidentPerson);
+        System.out.println(query);
+        return super.createAndGetId(query);
+    }
+
+    private String makeCreationQuery(AccidentPerson accidentPerson){
         String query = String.format(
                 "insert into '%s' values (0, '%d', '%d', '%s', '%s', '%s',)",
                 this.tableName,  Integer.parseInt(accidentPerson.getCarAccidentHandlingId()),
                 accidentPerson.getCost(), accidentPerson.getName(), accidentPerson.getPhoneNo(), accidentPerson.getVisitedHospitalName()
     );
-        return super.create(query);
+        return query;
     }
 
     public boolean update(AccidentPerson accidentPerson) {
@@ -38,6 +51,11 @@ public class AccidentPersonDao extends Dao{
     public boolean delete(String id, String carAccidentHandlingId) {
         String query = String.format("delete from %s where id=%s and car_accident_handling_id=%s ", this.tableName, id, carAccidentHandlingId);
         System.out.println(query);
+        return super.delete(query);
+    }
+
+    public boolean deleteByCarAccidentHandlingId(String id) {
+        String query = String.format("delete from %s where car_accident_handling_id=%s", this.tableName, id);
         return super.delete(query);
     }
 
@@ -59,9 +77,9 @@ public class AccidentPersonDao extends Dao{
         }
     }
 
-    public AccidentPerson retrieveById(String id){
+    public AccidentPerson retrieveById(String id, String carAccidentHandlingId){
         try{
-            String query = String.format("select * from "+this.tableName+"where id=%s and car_accident_handling_id=%s", id);
+            String query = String.format("select * from "+this.tableName+"where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
             System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
@@ -70,6 +88,23 @@ public class AccidentPersonDao extends Dao{
         } catch (SQLException e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public ArrayList<AccidentPerson> retrieveByCarAccidentHandlingId(String carAccidentHandlingId){
+        try {
+            String query = "select * from accident_person where car_accident_handling_id=" + carAccidentHandlingId;
+            ResultSet resultSet = super.retrieve(query);
+            if (resultSet == null) return null;
+            ArrayList<AccidentPerson> accidentPeople = new ArrayList<>();
+            while (resultSet.next()) {
+                AccidentPerson accidentPerson = getCurrentRecord(resultSet);
+                accidentPeople.add(accidentPerson);
+            }
+            return accidentPeople;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 

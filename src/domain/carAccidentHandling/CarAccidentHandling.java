@@ -4,7 +4,6 @@ import domain.benefitPayment.EBenefitPaymentState;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.StringJoiner;
 
 public class CarAccidentHandling {
 	private String id;
@@ -15,7 +14,20 @@ public class CarAccidentHandling {
 	private String accidentLocation;
 	private ArrayList<AccidentCar> accidentCars;
 	private ArrayList<AccidentPerson> accidentPeople;
-	private EBenefitPaymentState state;
+	private ECarAccidentHandlingState state;
+
+	public boolean equalsAttributes(Object obj) {
+		if(obj instanceof CarAccidentHandling) {
+			CarAccidentHandling other = (CarAccidentHandling) obj;
+			if (other.id.equals(this.id) && other.contractId.equals(this.contractId) &&
+					other.accidentDate.equals(this.accidentDate) &&
+					other.requestDate.equals(this.requestDate) &&
+					other.accidentContent.equals(this.accidentContent) &&
+					other.accidentLocation.equals(this.accidentLocation))
+				return true;
+		}
+		return false;
+	}
 
 	//GTRSTR
 	public String getId() {
@@ -54,10 +66,10 @@ public class CarAccidentHandling {
 	public void setAccidentLocation(String accidentLocation) {
 		this.accidentLocation = accidentLocation;
 	}
-	public EBenefitPaymentState getState() {
+	public ECarAccidentHandlingState getState() {
 		return state;
 	}
-	public void setState(EBenefitPaymentState state) {
+	public void setState(ECarAccidentHandlingState state) {
 		this.state = state;
 	}
 	public ArrayList<AccidentCar> getAccidentCars() {

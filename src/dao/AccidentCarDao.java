@@ -15,6 +15,18 @@ public class AccidentCarDao extends Dao{
     }
 
     public boolean create(AccidentCar accidentCar){
+        String query = this.makeCreationQuery(accidentCar);
+        System.out.println(query);
+        return super.create(query);
+    }
+
+    public String createAndGetId(AccidentCar accidentCar){
+        String query = this.makeCreationQuery(accidentCar);
+        System.out.println(query);
+        return super.createAndGetId(query);
+    }
+
+    private String makeCreationQuery(AccidentCar accidentCar){
         String query = String.format(
             "insert into '%s' values (" +
                     "0, '%d', " +
@@ -22,7 +34,7 @@ public class AccidentCarDao extends Dao{
             this.tableName,  Integer.parseInt(accidentCar.getCarAccidentHandlingId()),
             accidentCar.getCarNo(), accidentCar.getCost(), accidentCar.getOwnerName(),  accidentCar.getOwnerPhoneNo(), accidentCar.getVisitedShopName()
     );
-        return super.create(query);
+        return query;
     }
 
     public boolean update(AccidentCar accidentCar) {
@@ -40,6 +52,11 @@ public class AccidentCarDao extends Dao{
     public boolean delete(String id, String carAccidentHandlingId) {
         String query = String.format("delete from %s where id=%s and car_accident_handling_id=%s ", this.tableName, id, carAccidentHandlingId);
         System.out.println(query);
+        return super.delete(query);
+    }
+
+    public boolean deleteByCarAccidentHandlingId(String id) {
+        String query = String.format("delete from %s where car_accident_handling_id=%s", this.tableName, id);
         return super.delete(query);
     }
 
@@ -61,9 +78,9 @@ public class AccidentCarDao extends Dao{
         }
     }
 
-    public AccidentCar retrieveById(String id){
+    public AccidentCar retrieveById(String id, String carAccidentHandlingId){
         try{
-            String query = String.format("select * from "+this.tableName+"where id=%s and car_accident_handling_id=%s", id);
+            String query = String.format("select * from "+this.tableName+"where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
             System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
@@ -72,6 +89,23 @@ public class AccidentCarDao extends Dao{
         } catch (SQLException e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public ArrayList<AccidentCar> retrieveByCarAccidentHandlingId(String carAccidentHandlingId){
+        try {
+            String query = "select * from accident_car where car_accident_handling_id=" + carAccidentHandlingId;
+            ResultSet resultSet = super.retrieve(query);
+            if (resultSet == null) return null;
+            ArrayList<AccidentCar> accidentCars = new ArrayList<>();
+            while (resultSet.next()) {
+                AccidentCar accidentCar = getCurrentRecord(resultSet);
+                accidentCars.add(accidentCar);
+            }
+            return accidentCars;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 

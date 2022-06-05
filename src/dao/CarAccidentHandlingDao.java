@@ -4,7 +4,6 @@ import domain.carAccidentHandling.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -18,13 +17,24 @@ public class CarAccidentHandlingDao extends Dao {
 
 	//LocalDateTime을 mysql timestamp로 전환하는 방법
 	public boolean create(CarAccidentHandling carAccidentHandling){
+		String query = this.makeCreationQuery(carAccidentHandling);
+		System.out.println(query);
+		return super.create(query);
+	}
+
+	public String createAndGetId(CarAccidentHandling carAccidentHandling){
+		String query = this.makeCreationQuery(carAccidentHandling);
+		System.out.println(query);
+		return super.createAndGetId(query);
+	}
+
+	private String makeCreationQuery(CarAccidentHandling carAccidentHandling){
 		String query = String.format(
-			"insert into '%s' values (0, '%d', '%t', '%t', '%s', '%s', '%d')",
+				"insert into '%s' values (0, '%d', '%t', '%t', '%s', '%s', '%d')",
 				this.tableName,  Integer.parseInt(carAccidentHandling.getContractId()), carAccidentHandling.getRequestDate(), carAccidentHandling.getAccidentDate(),
 				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState()
 		);
-		System.out.println(query);
-		return super.create(query);
+		return query;
 	}
 
 	public boolean update(CarAccidentHandling carAccidentHandling) {

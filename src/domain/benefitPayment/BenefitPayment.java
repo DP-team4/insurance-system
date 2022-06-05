@@ -8,11 +8,27 @@ public class BenefitPayment {
     private LocalDateTime requestDate;
     private LocalDateTime accidentDate;
     private String accidentContent;
-    private int totalPropertyLoss;
-    private int totalPersonLoss;
-    private int totalPropertyBenefit;
-    private int totalPersonBenefit;
+    private long totalPropertyLoss;
+    private long totalPersonLoss;
+    private long totalPropertyBenefit;
+    private long totalPersonBenefit;
     private EBenefitPaymentState state;
+
+    public boolean equalsAttributes(Object obj) {
+        if(obj instanceof BenefitPayment) {
+            BenefitPayment other = (BenefitPayment) obj;
+            if (other.id.equals(this.id) && other.contractId.equals(this.contractId) &&
+                    other.accidentDate.equals(this.accidentDate) &&
+                    other.requestDate.equals(this.requestDate) &&
+                    other.accidentContent.equals(this.accidentContent) &&
+                    other.totalPropertyLoss==this.totalPropertyLoss &&
+                    other.totalPersonLoss==this.totalPersonLoss &&
+                    other.totalPropertyBenefit==this.totalPropertyBenefit &&
+                    other.totalPersonBenefit==this.totalPersonBenefit)
+                return true;
+        }
+        return false;
+    }
 
     //GTRSTR
     public String getId() {
@@ -45,28 +61,28 @@ public class BenefitPayment {
     public void setAccidentContent(String accidentContent) {
         this.accidentContent = accidentContent;
     }
-    public int getTotalPropertyBenefit() {
+    public long getTotalPropertyBenefit() {
         return totalPropertyBenefit;
     }
-    public void setTotalPropertyBenefit(int totalPropertyBenefit) {
+    public void setTotalPropertyBenefit(long totalPropertyBenefit) {
         this.totalPropertyBenefit = totalPropertyBenefit;
     }
-    public int getTotalPersonBenefit() {
+    public long getTotalPersonBenefit() {
         return totalPersonBenefit;
     }
-    public void setTotalPersonBenefit(int totalPersonBenefit) {
+    public void setTotalPersonBenefit(long totalPersonBenefit) {
         this.totalPersonBenefit = totalPersonBenefit;
     }
-    public int getTotalPropertyLoss() {
+    public long getTotalPropertyLoss() {
         return totalPropertyLoss;
     }
-    public void setTotalPropertyLoss(int totalPropertyLoss) {
+    public void setTotalPropertyLoss(long totalPropertyLoss) {
         this.totalPropertyLoss = totalPropertyLoss;
     }
-    public int getTotalPersonLoss() {
+    public long getTotalPersonLoss() {
         return totalPersonLoss;
     }
-    public void setTotalPersonLoss(int totalPersonLoss) {
+    public void setTotalPersonLoss(long totalPersonLoss) {
         this.totalPersonLoss = totalPersonLoss;
     }
     public EBenefitPaymentState getState() {

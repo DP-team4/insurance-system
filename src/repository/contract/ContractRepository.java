@@ -16,6 +16,10 @@ public class ContractRepository {
 		return contractDao.create(contract);
 	}
 	
+	public String addAndGetId(Contract contract) {
+		return contractDao.createAndGetId(contract);
+	}
+	
 	public boolean update(Contract contract) {
 		return contractDao.update(contract);
 	}

@@ -64,11 +64,12 @@ public class SalesServiceImpl implements SalesService{
 	 @Override
 	 public boolean requestUW(Contract contract, ArrayList<UWDocument> documents) {
 		 contract.setState(ContractState.UNDER_UW);
-		 this.addContract(contract);
+		 String contractId = this.addContractAndGetId(contract);
+		 
 		 UW uw = new UW();
 		 uw.setDocuments(documents);
 		 uw.setUwState(UWState.UNDER_AUDIT);
-		 uw.setContractId(contract.getId());
+		 uw.setContractId(contractId);
 		 return uwRepository.add(uw);
 	 }
 	 
@@ -110,7 +111,7 @@ public class SalesServiceImpl implements SalesService{
 	 }
 	 // ¿ù ³³ÀÔ·á
 	 @Override
-	 public long getInsurancePremium(Insurance insurance, Customer customer) {
+	 public long getInsurancePremium(Insurance insurance, Customer customer, int totalPaymentMonth) {
 		 ArrayList<Clause> clauses = insurance.getClauses();
 		 long premium = 0;
 		 for(Clause clause: clauses) {
@@ -118,7 +119,7 @@ public class SalesServiceImpl implements SalesService{
 		 }
 		 double ratio = insurance.calculateRatio(customer);
 		 
-		 return (long) (premium * ratio);
+		 return (long) (premium * ratio)/totalPaymentMonth;
 	 }
 	 @Override
 	 public ConsultApplication getConsultApplication(String id) {
@@ -127,6 +128,9 @@ public class SalesServiceImpl implements SalesService{
 	@Override
 	public boolean addContract(Contract contract) {
 		return contractRepository.add(contract);
+	}
+	public String addContractAndGetId(Contract contract) {
+		return contractRepository.addAndGetId(contract);
 	}
 	@Override
 	public ArrayList<Contract> getAllContractRegister() {

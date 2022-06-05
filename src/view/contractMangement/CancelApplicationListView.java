@@ -21,11 +21,11 @@ public class CancelApplicationListView extends View {
 	public void show() {
 		while(true) {
 			System.out.println("\n================ 계약 해지 신청 목록 화면================");
-			this.showCancelApplicationList();
+			if(!this.showCancelApplicationList()) break;;
 			this.showCancelApplicationManage();
 			
 			
-			 System.out.println("반복합니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+			 System.out.println("계약해지신청 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
 			 String input = scanner.nextLine().trim();
 			 if(!input.equals("1")) break;
 		}
@@ -72,7 +72,7 @@ public class CancelApplicationListView extends View {
 		String contractId = cancelApplication.getContractId();
 		Contract contract = contractManagementService.getContract(contractId);
 		Customer customer = contractManagementService.getCustomer(contract.getCustomerId());
-		System.out.println(customer);
+		System.out.println(customer.toStringBySecurity());
 	}
 
 	private void showInsuranceInfoView(CancelApplication cancelApplication) {
@@ -98,13 +98,19 @@ public class CancelApplicationListView extends View {
 		System.out.println(cancelApplication);
 	}
 
-	private void showCancelApplicationList() {
+	private boolean showCancelApplicationList() {
 		ArrayList<CancelApplication> cancelApplications = contractManagementService.getAllCancelApplications();
-		if(cancelApplications.size() < 1) System.out.println("현재 저장된 계약해지신청이 없습니다.");
-		else cancelApplications.forEach(i -> {
-			System.out.println(i);
-            System.out.println();
-		});
+		if(cancelApplications.size() < 1) {
+			System.out.println("현재 저장된 계약해지신청이 없습니다.");
+			return false;
+		}
+		else {
+			cancelApplications.forEach(i -> {
+				System.out.println(i);
+	            System.out.println();
+			});
+			return true;
+		}
 	}
 
 }

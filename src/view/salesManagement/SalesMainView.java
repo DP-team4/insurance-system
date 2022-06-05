@@ -35,15 +35,15 @@ public class SalesMainView {
 			this.showMenu();
 			System.out.print(">> ");
 			String input = this.scanner.nextLine().trim();
-			if(input.equals("0")) break;
+			if(input.equals("x")) break;
 			switch(input) {
-				case "1": new SalesActivityView().show();						break;
-				case "2": new ContractCompletionView();	break;
-				case "3": new ConsultApplicationListView().show();				break;
+				case "1": new SalesActivityView().show();			break;
+				case "2": new ContractCompletionView().show();		break;
+				case "3": new ConsultApplicationListView().show();	break;
 				case "x": break;
-				default:  System.out.println("잘못된 입력입니다.");					break;
+				default:  System.out.println("잘못된 입력입니다.");		break;
 			}
-			System.out.println("반복됩니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+			System.out.println("영업 메인 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
 	        input = scanner.nextLine().trim();
 	        if(!input.equals("1")) break;
 		}

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
 public class Contract {
-	private String id = "Contract" + System.currentTimeMillis();
+	private String id;
 	private LocalDateTime contractDateTime;
 	private LocalDateTime expirationDateTime;
 	private String customerId;

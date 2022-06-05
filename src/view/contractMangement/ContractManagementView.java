@@ -19,22 +19,28 @@ public class ContractManagementView extends View {
 	
 	private final Scanner scanner = ScannerUtility.getScanner();
 	private final ContractManagementService contractManagementService = ContractManagementServiceImpl.getInstance();
-
+	private Contract contract;
+	
 	@Override
 	public void show() {
 		while(true) {
 			System.out.println("\n================계약관리 목록 화면================");
-			showContractList();
+			if(!showContractList()) {
+				break;
+			};
 			showContractManage();
+			
+			System.out.println("계약관리 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+	        String input = scanner.nextLine().trim();
+	        if(!input.equals("1")) break;
 		}
 		
 	}
 
 	private void showContractManage() {
-		System.out.print("작업할 상담신청의 ID를 입력하세요 >> ");
-		System.out.print(">> ");
+		System.out.print("작업할 계약의 ID를 입력하세요 >> ");
         String input = scanner.nextLine().trim();
-        Contract contract = contractManagementService.getContract(input);
+        this.contract = contractManagementService.getContract(input);
         
         while(true) {
     	    System.out.println("////// 해당 상담신청에 대한 작업을 시작합니다. //////");
@@ -43,13 +49,13 @@ public class ContractManagementView extends View {
             if(input.equals("0")) break;
             switch (input) {
                 case "1":
-                    showCustomerInfoView(contract);
+                    showCustomerInfoView(this.contract);
                     break;
                 case "2":
-                	showInsuranceInfoView(contract);
+                	showInsuranceInfoView(this.contract);
                     break;
                 case "3":
-                	showDeleteView(contract);
+                	showDeleteView(this.contract);
                     break;
                 case "0":
                 	break;
@@ -66,10 +72,11 @@ public class ContractManagementView extends View {
 		System.out.print(">> ");
         String input = scanner.nextLine().trim();
         if(input.equals("1")) {
-        	System.out.println(contract.getId() + "을 삭제합니다.");
-        	if(!contractManagementService.deleteContract(input)) {
+        	if(!contractManagementService.deleteContract(contract.getId())) {
         		System.out.println("삭제 실패하였습니다.");
-        	};
+        	} else {
+        		System.out.println("계약 " + contract.getId() + " 삭제합니다.");
+        	}
         }
 	}
 
@@ -84,17 +91,23 @@ public class ContractManagementView extends View {
 		System.out.println("[고객 정보]");
 		String customerId = contract.getCustomerId();
 		Customer customer = contractManagementService.getCustomer(customerId);
-		System.out.println(customer);
+		System.out.println(customer.toStringBySecurity());
 		
 	}
 
-	private void showContractList() {
+	private boolean showContractList() {
 		ArrayList<Contract> contracts = contractManagementService.getAllContracts();
-		if(contracts.size() < 1) System.out.println("현재 저장된 계약이 없습니다.");
-		else contracts.forEach(i -> {
-			System.out.println(i);
-            System.out.println();
-		});
+		if(contracts.size() < 1) {
+			System.out.println("현재 저장된 계약이 없습니다.");
+			return false;
+		}
+		else {
+			contracts.forEach(i -> {
+				System.out.println(i);
+	            System.out.println();
+			});
+			return true;
+		}
 	}
 	
 

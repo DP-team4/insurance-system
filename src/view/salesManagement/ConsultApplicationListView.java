@@ -24,7 +24,7 @@ public class ConsultApplicationListView {
 			this.showConsultApplicationManage();
 			
 			
-			 System.out.println("반복합니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+			 System.out.println("상담신청 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
 			 String input = scanner.nextLine().trim();
 			 if(!input.equals("1")) break;
 		}
@@ -76,7 +76,7 @@ public class ConsultApplicationListView {
 		System.out.println("[고객 정보]");
 		String customerId = consultApplication.getCustomerId();
 		Customer customer = salesService.getCustomer(customerId);
-		System.out.println(customer);
+		System.out.println(customer.toStringBySecurity());
 	}
 
 	private void showChangeStateView(ConsultApplication consultApplication, ConsultApplicationState state) {

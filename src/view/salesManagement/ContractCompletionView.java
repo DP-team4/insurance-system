@@ -26,11 +26,15 @@ public class ContractCompletionView {
 			System.out.println("\n================가입접수 목록 화면================");
 			this.showContractRegisterList();
 			this.showManageContractRegister();
+			
+			System.out.println("가입접수 목록 화면입니다. 계속하시겠습니가? 계속(1) 뒤로가기(그 외)");
+			 String input = scanner.nextLine().trim();
+			 if(!input.equals("1")) break;
 		}
 	}
 
 	private void showManageContractRegister() {
-		System.out.print("작업할 가입접수의 ID를 입력하세요 >> ");
+		System.out.print("작업할 가입접수의 ID를 입력하세요");
 		System.out.print(">> ");
         String input = scanner.nextLine().trim();
         Contract contract = salesService.getContract(input);
@@ -122,7 +126,7 @@ public class ContractCompletionView {
 		System.out.println("[고객 정보]");
 		String id = contract.getCustomerId();
 		Customer customer = salesService.getCustomer(id);
-		System.out.println(customer);
+		System.out.println(customer.toStringBySecurity());
 	}
 
 	private void showContractRegisterList() {

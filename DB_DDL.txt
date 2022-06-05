@@ -1,3 +1,155 @@
+1. db naming convention: snake
+2. type of id: varchar or int
+3. enum to varchar
+4. db name: insurance_system
+
+
+
+drop table benefit_payment;
+drop table car_accident_handling;
+drop table consult_application;
+drop table cancel_application;
+drop table contract;
+drop table additional_info;
+drop table customer;
+drop table uw_document;
+drop table uw;
+drop table clause;
+drop table insurance;
+
+create table insurance (
+	id int primary key auto_increment,
+	name varchar(255),
+	insurance_category varchar(30),
+	insurance_state varchar(30)
+);
+
+create table clause (
+	id int primary key auto_increment,
+	name varchar(255),
+	clause_category varchar(30),
+	insured_amount bigint,
+	premium bigint,
+	insurance_id int,
+	foreign key (insurance_id) references insurance (id)
+);
+
+create table uw (
+	id int primary key auto_increment,
+	request_date_time timestamp,
+	uw_state varchar(30),
+	contract_id int
+);
+
+create table uw_document (
+	id int primary key auto_increment,
+	name varchar(255),
+	path varchar(500),
+	uw_document_state varchar(30),
+	uw_id int,
+	foreign key (uw_id) references uw (id)
+);
+
+create table customer (
+	id int primary key auto_increment,
+	email varchar(50),
+	password varchar(255),
+	name varchar(255),
+	age int,
+	gender boolean,
+	registration_no varchar(30),
+	phone_no varchar(30),
+	account_no varchar(30),
+	is_married boolean
+);
+
+create table additional_info (
+	id int primary key auto_increment,
+	customer_id int,
+	car_price bigint,
+	house_price bigint,
+	driving_career int,
+	ship_price bigint,
+	foreign key (customer_id) references customer (id)
+);
+
+create table contract (
+	id int primary key auto_increment,
+	contract_datetime timestamp,
+	expiration_datetime timestamp,
+	customer_id int,
+	insurance_id int,
+	state varchar(30),
+	foreign key (customer_id) references customer (id),
+	foreign key (insurance_id) references insurance (id)
+);
+
+create table cancel_application(
+	id int primary key auto_increment,
+	contract_id int,
+	application_date timestamp,
+	state varchar(30),
+	foreign key (contract_id) references contract (id)
+);
+
+create table consult_application(
+	id int primary key auto_increment,
+	customer_id int,
+	content varchar(100),
+	application_date timestamp,
+	consultation_date timestamp,
+	state varchar(30),
+	foreign key (customer_id) references customer (id)
+);
+
+create table car_accident_handling (
+	id int primary key auto_increment,
+	contract_id int,
+	request_date timestamp,
+	accident_date timestamp,
+	accident_content varchar(4000),
+	accident_location varchar(100),
+	state tinyint,
+	foreign key (contract_id) references contract (id)
+);
+
+create table benefit_payment (
+	id int primary key auto_increment,
+	contract_id int, 
+	state tinyint, 
+	accident_cause varchar(4000), 
+	accident_date timestamp, 
+	appliance_date timestamp, 
+	state_confirmed_date timestamp
+);
+
+# insurance insert
+insert into insurance values(1, '개인용자동차보험', 'CAR', 'ON_SALE');
+insert into insurance values(2, '차도리ECO운전자상해보험', 'DRIVER', 'ON_SALE');
+insert into insurance values(3, '기업용선박보험', 'MARINE', 'ON_SALE');
+insert into insurance values(4, 'Big Plus 재산종합보험', 'FIRE', 'ON_SALE');
+
+# clause insert
+insert into clause values(1, '대인배상 1', 'NORMAL', 20000000, 2500000, 1);
+insert into clause values(2, '대인배상 2', 'NORMAL', 200000000, 25000000, 1);
+insert into clause values(3, '자기신체사고 또는 자동차상해', 'NORMAL', 100000000, 125000, 1);
+insert into clause values(4, '무보험차상해', 'SPECIAL', 300000000, 30000000, 1);
+
+insert into clause values(5, '운전자보장형', 'NORMAL', 100000, 11520, 2);
+insert into clause values(6, '상해사망', 'SPECIAL', 50000000, 612000, 2);
+insert into clause values(7, '상해수술비', 'SPECIAL', 100000, 101880, 2);
+
+insert into clause values(8, '선박피해보상', 'NORMAL', 2000000000, 900000000, 3);
+
+insert into clause values(9, '화재피해보상', 'NORMAL', 1000000000, 80000000, 4);
+
+# customer insert
+insert into customer values(1, 'asdf@asdf.com', '1234', '홍길동', 37, 1, '860507-1212123', '010-1234-1234', '333-1234-12-123', 0);
+insert into customer values(2, 'qwer@qwer.com', '1234', '유지민', 29, 0, '920508-2212123', '010-4321-4321', '333-4321-21-321', 1);
+
+# addtional_info insert
+insert into additional_info values(1, 1, 1000000000, 1000000000, 10, 0);
+insert into additional_info values(2, 2, 400000000, 0, 3, 0);
 
 # contract insert
 insert into contract values(1, '2022-06-05 19:25:48', '2024-06-05 19:25:48', 1, 1, 'UNDER_UW');

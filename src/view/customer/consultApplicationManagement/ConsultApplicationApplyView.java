@@ -31,10 +31,10 @@ public class ConsultApplicationApplyView {
 	        System.out.print("상담 내용 >> "); String content = getInputAndCheckInvalid();
 	        System.out.println("상담 날짜 (신청은 최소 하루 후부터 가능합니다) >> ");
 	        System.out.print("년(year) : "); String year = getInputAndCheckInvalid();
-	        System.out.print("월(month) : "); String month = getInputAndCheckInvalid()
-	        System.out.print("일(day) : "); String dayOfMonth = getInputAndCheckInvalid()
-	        System.out.print("시(hour) : "); String hour = getInputAndCheckInvalid()
-	        System.out.print("분(minute) : "); String minute = getInputAndCheckInvalid()
+	        System.out.print("월(month) : "); String month = getInputAndCheckInvalid();
+	        System.out.print("일(day) : "); String dayOfMonth = getInputAndCheckInvalid();
+	        System.out.print("시(hour) : "); String hour = getInputAndCheckInvalid();
+	        System.out.print("분(minute) : "); String minute = getInputAndCheckInvalid();
 	        System.out.print("\n상담을 신청하시겠습니까? 예(1) 아니오(기타) >> "); String input = scanner.nextLine().trim();
 	        if(input.equals("1")) {
 	            // A1. 상담 신청 양식을 덜 입력한 경우

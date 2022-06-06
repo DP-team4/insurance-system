@@ -3,6 +3,7 @@ package service;
 import dao.UWDocumentDao;
 import domain.uw.UW;
 import domain.uw.UWDocument;
+import domain.uw.UWDocumentState;
 import domain.uw.UWState;
 import repository.uw.UWRepository;
 
@@ -53,6 +54,7 @@ public class UwManagementServiceImpl implements UwManagementService {
         uwDocument.setName(documentName);
         uwDocument.setUwId(uwId);
         uwDocument.setPath("/documents/" + documentName);
+        uwDocument.setUwDocumentState(UWDocumentState.REQUESTED);
         uw.addDocument(uwDocument);
         return uwRepository.update(uw);
     }

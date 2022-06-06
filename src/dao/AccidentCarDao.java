@@ -28,7 +28,7 @@ public class AccidentCarDao extends Dao{
 
     private String makeCreationQuery(AccidentCar accidentCar){
         String query = String.format(
-            "insert into '%s' values (" +
+            "insert into %s values (" +
                     "0, '%d', " +
                     "'%s', '%d', '%s', '%s', '%s')",
             this.tableName,  Integer.parseInt(accidentCar.getCarAccidentHandlingId()),

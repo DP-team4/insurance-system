@@ -19,7 +19,7 @@ public class BenefitPaymentDao extends Dao{
 
 	public boolean create(BenefitPayment benefitPayment){
 		String query = String.format(
-				"insert into '%s' values (" +
+				"insert into %s values (" +
 						"0, '%d', '%s', '%s', '%s', " +
 						"'%d', '%d', '%d', '%d', " +
 						"'%d')",

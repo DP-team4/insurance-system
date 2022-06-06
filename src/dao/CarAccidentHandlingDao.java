@@ -34,7 +34,7 @@ public class CarAccidentHandlingDao extends Dao {
 		String query = String.format(
 				"insert into %s values (0, '%d', '%s', '%s', '%s', '%s', '%d')",
 				this.tableName,  Integer.parseInt(carAccidentHandling.getContractId()), Timestamp.valueOf(carAccidentHandling.getRequestDate()), Timestamp.valueOf(carAccidentHandling.getAccidentDate()),
-				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState()
+				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState().ordinal()
 		);
 		return query;
 	}
@@ -43,7 +43,7 @@ public class CarAccidentHandlingDao extends Dao {
 		String query = String.format(
 			"update %s set request_date=%s, accident_date=%s, accident_content=%s, accident_location=%s, state=%d",
 				this.tableName, Timestamp.valueOf(carAccidentHandling.getRequestDate()), Timestamp.valueOf(carAccidentHandling.getAccidentDate()),
-				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState()
+				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState().ordinal()
 		);
 		System.out.println(query);
 		return super.create(query);
@@ -109,7 +109,7 @@ public class CarAccidentHandlingDao extends Dao {
 		LocalDateTime accidentDate = resultSet.getTimestamp("accident_date").toLocalDateTime();
 		String accidentContent = resultSet.getString("accident_content");
 		String accidentLocation = resultSet.getString("accident_location");
-		ECarAccidentHandlingState state = ECarAccidentHandlingState.valueOf(resultSet.getString("state"));
+		ECarAccidentHandlingState state = ECarAccidentHandlingState.values()[resultSet.getInt("state")];
 
 		CarAccidentHandling carAccidentHandling = new CarAccidentHandling();
 		carAccidentHandling.setId(id);

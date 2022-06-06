@@ -71,7 +71,7 @@ public class BenefitPaymentDao extends Dao{
 
 	public BenefitPayment retrieveById(String id){
 		try{
-			String query = String.format("select * from "+this.tableName+"where id=%s", id);
+			String query = String.format("select * from "+this.tableName+" where id=%s", id);
 			System.out.println(query);
 			ResultSet resultSet = super.retrieve(query);
 			if(resultSet==null || !resultSet.next()) return null;

@@ -40,21 +40,21 @@ public class BenefitPaymentDao extends Dao{
 				benefitPayment.getTotalPropertyLoss(), benefitPayment.getTotalPersonLoss(), benefitPayment.getTotalBenefit(),
 				benefitPayment.getState().ordinal()
 		);
-		System.out.println(query);
+		
 		return super.create(query);
 	}
 
 
 	public boolean delete(String id) {
 		String query = String.format("delete from %s where id=%s", this.tableName, id);
-		System.out.println(query);
+		
 		return super.delete(query);
 	}
 
 	public ArrayList<BenefitPayment> retrieveAll() {
 		try{
 			String query = "select * from "+this.tableName;
-			System.out.println(query); //나중에 없앨 것
+			 //나중에 없앨 것
 			ResultSet resultSet = super.retrieve(query);
 			if(resultSet==null) return null;
 			ArrayList<BenefitPayment> benefitPayments = new ArrayList<>();
@@ -72,7 +72,7 @@ public class BenefitPaymentDao extends Dao{
 	public BenefitPayment retrieveById(String id){
 		try{
 			String query = String.format("select * from "+this.tableName+" where id=%s", id);
-			System.out.println(query);
+			
 			ResultSet resultSet = super.retrieve(query);
 			if(resultSet==null || !resultSet.next()) return null;
 			BenefitPayment benefitPayment = this.getCurrentRecord(resultSet);

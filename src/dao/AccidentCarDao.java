@@ -16,13 +16,13 @@ public class AccidentCarDao extends Dao{
 
     public boolean create(AccidentCar accidentCar){
         String query = this.makeCreationQuery(accidentCar);
-        System.out.println(query);
+        
         return super.create(query);
     }
 
     public String createAndGetId(AccidentCar accidentCar){
         String query = this.makeCreationQuery(accidentCar);
-        System.out.println(query);
+        
         return super.createAndGetId(query);
     }
 
@@ -44,14 +44,14 @@ public class AccidentCarDao extends Dao{
                 this.tableName,
                 accidentCar.getCarNo(), accidentCar.getOwnerName(), accidentCar.getOwnerPhoneNo(), accidentCar.getVisitedShopName()
         );
-        System.out.println(query);
+        
         return super.create(query);
     }
 
 
     public boolean delete(String id, String carAccidentHandlingId) {
         String query = String.format("delete from %s where id=%s and car_accident_handling_id=%s ", this.tableName, id, carAccidentHandlingId);
-        System.out.println(query);
+        
         return super.delete(query);
     }
 
@@ -63,7 +63,7 @@ public class AccidentCarDao extends Dao{
     public ArrayList<AccidentCar> retrieveAll() {
         try{
             String query = "select * from "+this.tableName;
-            System.out.println(query); //나중에 없앨 것
+             //나중에 없앨 것
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null) return null;
             ArrayList<AccidentCar> accidentCars = new ArrayList<>();
@@ -81,7 +81,7 @@ public class AccidentCarDao extends Dao{
     public AccidentCar retrieveById(String id, String carAccidentHandlingId){
         try{
             String query = String.format("select * from "+this.tableName+" where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
-            System.out.println(query);
+            
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
             AccidentCar accidentCar = this.getCurrentRecord(resultSet);

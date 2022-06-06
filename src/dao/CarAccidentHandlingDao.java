@@ -20,13 +20,13 @@ public class CarAccidentHandlingDao extends Dao {
 	//LocalDateTime을 mysql timestamp로 전환하는 방법
 	public boolean create(CarAccidentHandling carAccidentHandling){
 		String query = this.makeCreationQuery(carAccidentHandling);
-		System.out.println(query);
+		
 		return super.create(query);
 	}
 
 	public String createAndGetId(CarAccidentHandling carAccidentHandling){
 		String query = this.makeCreationQuery(carAccidentHandling);
-		System.out.println(query);
+		
 		return super.createAndGetId(query);
 	}
 
@@ -45,21 +45,21 @@ public class CarAccidentHandlingDao extends Dao {
 				this.tableName, Timestamp.valueOf(carAccidentHandling.getRequestDate()), Timestamp.valueOf(carAccidentHandling.getAccidentDate()),
 				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState().ordinal()
 		);
-		System.out.println(query);
+		
 		return super.create(query);
 	}
 
 
 	public boolean delete(String id) {
 		String query = String.format("delete from %s where id=%s", this.tableName, id);
-		System.out.println(query);
+		
 		return super.delete(query);
 	}
 
 	public ArrayList<CarAccidentHandling> retrieveAll() {
 		try{
 			String query = "select * from "+this.tableName;
-			System.out.println(query); //나중에 없앨 것
+			 //나중에 없앨 것
 			ResultSet resultSet = super.retrieve(query);
 			if(resultSet==null) return null;
 			ArrayList<CarAccidentHandling> carAccidentHandlings = new ArrayList<>();
@@ -77,7 +77,7 @@ public class CarAccidentHandlingDao extends Dao {
 	public CarAccidentHandling retrieveById(String id){
 		try{
 			String query = String.format("select * from "+this.tableName+" where id=%s", id);
-			System.out.println(query);
+			
 			ResultSet resultSet = super.retrieve(query);
 			if(resultSet==null || !resultSet.next()) return null;
 			CarAccidentHandling carAccidentHandling = this.getCurrentRecord(resultSet);
@@ -91,7 +91,7 @@ public class CarAccidentHandlingDao extends Dao {
 	public CarAccidentHandling retrieveByName(String name) {
 		try {
 			String query = String.format("select * from insurance where name='%s'", name);
-			System.out.println(query);
+			
 			ResultSet resultSet = super.retrieve(query);
 			if(resultSet==null || !resultSet.next()) return null;
 			CarAccidentHandling carAccidentHandling = getCurrentRecord(resultSet);

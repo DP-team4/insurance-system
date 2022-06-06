@@ -42,7 +42,7 @@ public class CarAccidentHandlingListView extends View {
             String accidentLocation = e.getAccidentLocation();
             String accidentContent = e.getAccidentContent();
             String state = e.getState().getTitle();
-            System.out.printf("%s %s %t %t %s %s %s", id, customerName, requestDate, accidentDate, accidentLocation, accidentContent, state);
+            System.out.printf("%s %s %s %s %s %s %s", id, customerName, requestDate, accidentDate, accidentLocation, accidentContent, state);
             System.out.println();
         }
         return true;

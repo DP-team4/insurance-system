@@ -10,8 +10,7 @@ public class BenefitPayment {
     private String accidentContent;
     private long totalPropertyLoss;
     private long totalPersonLoss;
-    private long totalPropertyBenefit;
-    private long totalPersonBenefit;
+    private long totalBenefit;
     private EBenefitPaymentState state;
 
     public boolean equalsAttributes(Object obj) {
@@ -23,8 +22,7 @@ public class BenefitPayment {
                     other.accidentContent.equals(this.accidentContent) &&
                     other.totalPropertyLoss==this.totalPropertyLoss &&
                     other.totalPersonLoss==this.totalPersonLoss &&
-                    other.totalPropertyBenefit==this.totalPropertyBenefit &&
-                    other.totalPersonBenefit==this.totalPersonBenefit)
+                    other.totalBenefit == this.totalBenefit)
                 return true;
         }
         return false;
@@ -61,17 +59,11 @@ public class BenefitPayment {
     public void setAccidentContent(String accidentContent) {
         this.accidentContent = accidentContent;
     }
-    public long getTotalPropertyBenefit() {
-        return totalPropertyBenefit;
+    public long getTotalBenefit() {
+        return totalBenefit;
     }
-    public void setTotalPropertyBenefit(long totalPropertyBenefit) {
-        this.totalPropertyBenefit = totalPropertyBenefit;
-    }
-    public long getTotalPersonBenefit() {
-        return totalPersonBenefit;
-    }
-    public void setTotalPersonBenefit(long totalPersonBenefit) {
-        this.totalPersonBenefit = totalPersonBenefit;
+    public void setTotalBenefit(long totalBenefit) {
+        this.totalBenefit = totalBenefit;
     }
     public long getTotalPropertyLoss() {
         return totalPropertyLoss;

@@ -18,8 +18,7 @@ create table benefit_payment (
 	accident_content varchar(4000),
 	total_property_loss bigint,
 	total_person_loss bigint,
-	total_property_benefit bigint,
-	total_person_benefit bigint,
+	total_benefit bigint,
 	state tinyint,
 	foreign key (contract_id) references contract (id)
 );

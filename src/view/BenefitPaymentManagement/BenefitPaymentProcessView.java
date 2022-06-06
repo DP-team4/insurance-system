@@ -2,9 +2,15 @@ package view.BenefitPaymentManagement;
 
 import domain.benefitPayment.BenefitPayment;
 import domain.benefitPayment.EBenefitPaymentState;
+import domain.contract.Contract;
+import domain.customer.Customer;
+import domain.insurance.Clause;
+import domain.insurance.Insurance;
 import exception.InvalidInputException;
 import service.BenefitPaymentService;
 import service.BenefitPaymentServiceImpl;
+import service.InsuranceManagementService;
+import service.InsuranceManagementServiceImpl;
 import service.contractManagement.ContractManagementService;
 import service.contractManagement.ContractManagementServiceImpl;
 import view.viewUtility.ScannerUtility;
@@ -18,6 +24,7 @@ public class BenefitPaymentProcessView  extends View {
     private final Scanner scanner = ScannerUtility.getScanner();
     private BenefitPaymentService benefitPayManagementService = BenefitPaymentServiceImpl.getInstance();
     private ContractManagementService contractManagementService = ContractManagementServiceImpl.getInstance();
+    private InsuranceManagementService insuranceManagementService = InsuranceManagementServiceImpl.getInstance();
 
     @Override
     public void show() {
@@ -53,7 +60,7 @@ public class BenefitPaymentProcessView  extends View {
             if(input.equals("0")) break;
             switch (input) {
                 case "1":
-                    this.payBenefitToRelatedCustomer(this.contractManagementService.getCustomer(this.contractManagementService.getContract(benefitPayment.getContractId()).getCustomerId()).getAccountNo());
+                    this.payBenefitToRelatedCustomer(benefitPayment);
                     benefitPayment.setState(EBenefitPaymentState.PAID);
                     break;
                 case "2":
@@ -69,6 +76,27 @@ public class BenefitPaymentProcessView  extends View {
         }
     }
 
+    private void payBenefitToRelatedCustomer(BenefitPayment benefitPayment) {
+        Contract contract =  this.contractManagementService.getContract(benefitPayment.getContractId());
+        Insurance insurance = this.insuranceManagementService.getById(contract.getInsuranceId());
+        Customer customer = this.contractManagementService.getCustomer(contract.getCustomerId());
+        long lossTotal = benefitPayment.getTotalPropertyLoss()+ benefitPayment.getTotalPersonLoss();
+        long benefitLimitation = 0;
+        for(Clause e : insurance.getClauses())
+            benefitLimitation += e.getInsuredAmount();
+
+        if(lossTotal > benefitLimitation){
+            System.out.println("보장한도 초과! 최대보장액만큼만 보험금을 지급합니다.");
+            lossTotal = benefitLimitation;
+        }
+        benefitPayment.setTotalBenefit(lossTotal);
+
+        System.out.println("총 지급금액: "+lossTotal);
+        System.out.println("다음의 계좌로 지급 처리 중: "+customer.getAccountNo());
+        System.out.println("...");
+        System.out.println("지급 완료!");
+    }
+
     private boolean showOnReviewCarAccidentHandlingList() {
         System.out.printf(" %s %s %s %s %s", "보험금 청구 번호", "고객명", "요청 시각","사고 발생 시각","사고 내용");
         ArrayList<BenefitPayment> benefitPayments = this.benefitPayManagementService.getAll();
@@ -81,15 +109,10 @@ public class BenefitPaymentProcessView  extends View {
             LocalDateTime accidentDate = e.getAccidentDate();
             String accidentContent = e.getAccidentContent();
 
-            System.out.printf("%s %s %t %t %s", id, customerName, requestDate, accidentDate, accidentContent);
+            System.out.printf("%s %s %s %s %s", id, customerName, requestDate, accidentDate, accidentContent);
             System.out.println();
         }
         return true;
     }
 
-    private void payBenefitToRelatedCustomer(String accountNo) {
-        System.out.println("다음의 계좌로 지급 처리 중: "+accountNo);
-        System.out.println("...");
-        System.out.println("지급 완료!");
-    }
 }

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import domain.customer.Customer;
 import view.customer.benefitPaymentManagement.CustomerBenefitPaymentManageView;
-import view.customer.carAccidentHandlingManagement.CustomerCarAccidentHandlingApplyView;
 import view.customer.carAccidentHandlingManagement.CustomerCarAccidentHandlingManageView;
 import view.customer.consultApplicationManagement.CustomerConsultApplicationManageView;
 import view.customer.contractManagement.CustomerContractManageView;
@@ -33,7 +32,7 @@ public class CustomerHomeView {
 		contractsManagement("나의 보험상품 관리 및 계약 해지", "3"),
 		carAccidentHandlingManagement("사고처리 신청 관리", "4"),
 		benefitPaymentManagement("보험금 청구 관리", "5"),
-		exit("프로그램 종료", "기타");
+		exit("서비스 선택 화면으로", "기타");
 		
 		private String string;
 		private String key;
@@ -93,7 +92,7 @@ public class CustomerHomeView {
 	private boolean checkLogin() {
 		// 로그인 여부를 확인한다
 		if(!logined) {
-			// A?. 로그인이 되어있지 않은 경우
+			// 로그인이 되어있지 않은 경우
 			System.out.println("로그인이 필요한 기능입니다."); return login();
 		}
 		return true;

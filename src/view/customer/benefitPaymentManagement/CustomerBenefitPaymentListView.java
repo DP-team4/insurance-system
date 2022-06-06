@@ -22,7 +22,7 @@ public class CustomerBenefitPaymentListView {
 			System.out.println("청구 내용: " + b.getAccidentContent());
 			System.out.println("사고 일시: " + b.getAccidentDate());
 			System.out.println("신청 일시: " + b.getRequestDate());
-			System.out.println("재산 피해: " + b.getTotalPersonLoss());
+			System.out.println("재산 피해: " + b.getTotalPropertyLoss());
 			System.out.println("인적 피해: " + b.getTotalPersonLoss());
 			System.out.println("신청 상태: " + b.getState());
 			System.out.println();

@@ -24,6 +24,7 @@ public class CustomerCancelApplicationApplyView {
 	
 	public void show(CustomerContractListView customerContractListView, CustomerCancelApplicationListView cancellationListView, Customer customer) {
 		try {
+			this.customer = customer;
 			this.customerCancelApplicationListView = cancellationListView;
 			
 			System.out.println("\n[ 계약 해지 신청 ]");

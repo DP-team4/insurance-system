@@ -4,17 +4,17 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-import dao.ContractDao;
 import domain.contract.Contract;
 import domain.customer.Customer;
 import domain.insurance.Clause;
 import domain.insurance.Insurance;
 import domain.insurance.InsuranceCategory;
+import repository.contract.ContractRepository;
 import repository.insurance.InsuranceRepository;
 
 public class CustomerContractServiceImpl implements CustomerContractService {
 	private final static CustomerContractService myContractManagementService = new CustomerContractServiceImpl();
-    private static final ContractDao contractDao = new ContractDao(); // Repository
+	private static final ContractRepository contractRepository = ContractRepository.getInstance();
     private static final InsuranceRepository insuranceRepository = InsuranceRepository.getInstance();
 
 	// Singleton
@@ -23,7 +23,7 @@ public class CustomerContractServiceImpl implements CustomerContractService {
 	
 	@Override
 	public ArrayList<Contract> getCustomerContracts(String customerId) {
-		return contractDao.retrieveByCustomerId(customerId);
+		return contractRepository.getByCustomerId(customerId);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class CustomerContractServiceImpl implements CustomerContractService {
 	
 	@Override
 	public Contract getUnmaturedContractByCategory(String customerId, InsuranceCategory insuranceCategory) {
-		ArrayList<Contract> customerContracts = contractDao.retrieveByCustomerId(customerId);
+		ArrayList<Contract> customerContracts = contractRepository.getByCustomerId(customerId);
 		for(Contract contract : customerContracts) {
 			Insurance insurance = insuranceRepository.get(contract.getInsuranceId());
 			if(insurance.getInsuranceCategory() == insuranceCategory) {

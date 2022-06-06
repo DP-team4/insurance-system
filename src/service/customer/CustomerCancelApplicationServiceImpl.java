@@ -2,15 +2,15 @@ package service.customer;
 
 import java.util.ArrayList;
 
-import dao.ContractDao;
 import domain.cancelApplication.CancelApplication;
 import domain.contract.Contract;
 import repository.cancelApplication.CancelApplicationRepository;
+import repository.contract.ContractRepository;
 
 public class CustomerCancelApplicationServiceImpl implements CustomerCancelApplicationService {
 	private final static CustomerCancelApplicationService instance = new CustomerCancelApplicationServiceImpl();
     private static final CancelApplicationRepository cancelApplicationRepository = CancelApplicationRepository.getInstance();
-    private static final ContractDao contractDao = new ContractDao(); // Repository
+    private static final ContractRepository contractRepository = ContractRepository.getInstance();
 
 	// Singleton
 	private CustomerCancelApplicationServiceImpl(){}
@@ -18,7 +18,7 @@ public class CustomerCancelApplicationServiceImpl implements CustomerCancelAppli
 	
 	@Override
 	public boolean applyCancellation(CancelApplication cancelApplication) {
-		if(contractDao.retrieveById(cancelApplication.getContractId()) == null) return false;
+		if(contractRepository.get(cancelApplication.getContractId()) == null) return false;
 		return (cancelApplicationRepository.add(cancelApplication));
 	}
 	@Override
@@ -29,7 +29,7 @@ public class CustomerCancelApplicationServiceImpl implements CustomerCancelAppli
 	public boolean deleteMyCancellation(String id, String customerId) {
 		CancelApplication cancelApplication = cancelApplicationRepository.get(id);
 		if(cancelApplication == null) return false;
-		Contract contract = contractDao.retrieveById(cancelApplication.getContractId());
+		Contract contract = contractRepository.get(cancelApplication.getContractId());
 		if(contract == null) return false;
 		else if(contract.getCustomerId().equals(customerId)) return cancelApplicationRepository.delete(id);
 		return false;

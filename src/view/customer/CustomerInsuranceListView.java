@@ -10,7 +10,7 @@ import service.customer.CustomerInsuranceRetrieveService;
 import service.customer.CustomerInsuranceRetrieveServiceImpl;
 import view.viewUtility.ScannerUtility;
 
-public class InsuranceListView {
+public class CustomerInsuranceListView {
     private final Scanner scanner = ScannerUtility.getScanner();
     
     // Service
@@ -19,7 +19,7 @@ public class InsuranceListView {
 	public void show() {
 		System.out.println("\n[ 보험상품 조회 ]");
 		// 가입할 보험상품(해상보험, 자동차보험, 운전자보험, 화재보험)을 선택하고 검색버튼을 클릭한다(A1, A2, E1, E2)
-		System.out.println("조회할 보험상품 종류를 선택해주세요 -");
+		System.out.println("조회할 보험상품 종류를 선택해주세요.");
 		System.out.print("해상보험(1), 자동차보험(2), 운전자보험(3), 화재보험(4), 전체조회(5) >> ");
 		String input = scanner.nextLine().trim();
         // 검색 조건 입력 여부를 체크한다
@@ -43,14 +43,9 @@ public class InsuranceListView {
 	        // A2. 검색 조건에 해당하는 보험상품이 0개인 경우 -> 메시지 '고객님의 조건에 맞는 상품이 없습니다'를 보여준다
 	        if(insurances.size() == 0) { System.out.println("고객님의 조건에 맞는 상품이 없습니다. 메뉴화면으로 돌아갑니다."); return; }
             insurances.forEach(i -> {
-            	ArrayList<Clause> clauses = i.getClauses();
                 System.out.println("\n보험상품명: " + i.getName());
-            	System.out.println("<약관 목록>");
-                for(Clause clause : clauses) {
-                	System.out.print("약관명: " + clause.getName() + ", ");
-	                System.out.print("가입금액: " + clause.getInsuredAmount() + ", ");
-	                System.out.println("총보험료: " + clause.getPremium());
-                }
+                System.out.println("최대 가입금액: " + customerInsuranceRetrieveService.getInsuredAmountSum(i));
+                System.out.println("총보험료: " + customerInsuranceRetrieveService.getPremiumSum(i));
             });
 		}
 	}

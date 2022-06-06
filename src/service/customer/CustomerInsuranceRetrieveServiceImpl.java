@@ -3,6 +3,7 @@ package service.customer;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import domain.insurance.Clause;
 import domain.insurance.Insurance;
 import domain.insurance.InsuranceCategory;
 import domain.insurance.InsuranceState;
@@ -32,5 +33,25 @@ public class CustomerInsuranceRetrieveServiceImpl implements CustomerInsuranceRe
 				.filter(insurance -> insurance.getInsuranceCategory().equals(insuranceCategory))
 				.collect(Collectors.toList());
 		return filtered;
+	}
+	
+	@Override
+	public long getInsuredAmountSum(Insurance insurance) {
+		ArrayList<Clause> clauses = insurance.getClauses();
+		long sum = 0;
+        for(Clause clause : clauses) {
+            sum += clause.getInsuredAmount();
+        }
+        return sum;
+	}
+	
+	@Override
+	public long getPremiumSum(Insurance insurance) {
+		ArrayList<Clause> clauses = insurance.getClauses();
+		long sum = 0;
+        for(Clause clause : clauses) {
+            sum += clause.getPremium();
+        }
+        return sum;
 	}
 }

@@ -11,7 +11,7 @@ import service.customer.CustomerContractService;
 import service.customer.CustomerContractServiceImpl;
 import view.viewUtility.ScannerUtility;
 
-public class CustomerCancelApplicationView {
+public class CustomerCancelApplicationApplyView {
     private final Scanner scanner = ScannerUtility.getScanner();
 	private Customer customer;
     
@@ -41,7 +41,7 @@ public class CustomerCancelApplicationView {
 		        	showList = false;
 		        }
 			}
-			// 해지 신청 화면(해지할 아이디 입력창  + '확인', '취소' 버튼)을 보여준다
+			// 계약 해지 신청 화면(해지할 아이디 입력창  + '확인', '취소' 버튼)을 보여준다
 	        System.out.print("\n계약 해지를 진행하시겠습니까? 예(1) 아니오(기타) >> "); String input = scanner.nextLine().trim();
 			if(input.equals("1")) {
 	        	applyCancellation(contractId);
@@ -56,7 +56,7 @@ public class CustomerCancelApplicationView {
 		}
 	}
 
-	// 해지 신청 정보를 저장을 요청한다
+	// 계약 해지 신청 정보 저장을 요청한다
 	private void applyCancellation(String contractId) {
 		CancelApplication cancelApplication = new CancelApplication();
 		cancelApplication.setContractId(contractId);
@@ -67,7 +67,7 @@ public class CustomerCancelApplicationView {
         else System.out.println("\n해지신청 실패. 이전 화면으로 돌아갑니다.");
 	}
 
-    // 로그인 내용 입력 여부를 체크한다
+    // 아이디 작성 여부를 체크한다
 	private String getInputAndCheckInvalid() throws InvalidInputException {
 		String input = scanner.nextLine().trim();
 		// 공백

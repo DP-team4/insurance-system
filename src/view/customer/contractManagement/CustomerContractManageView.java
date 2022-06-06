@@ -11,7 +11,7 @@ public class CustomerContractManageView {
     
     // View
     private CustomerContractListView customerContractListView = new CustomerContractListView();
-	private CustomerCancelApplicationView customerCancelApplicationView = new CustomerCancelApplicationView();
+	private CustomerCancelApplicationApplyView customerCancelApplicationApplyView = new CustomerCancelApplicationApplyView();
 	private CustomerCancelApplicationListView customerCancelApplicationListView = new CustomerCancelApplicationListView();
 	private CustomerCancelApplicationRevokeView customerCancelApplicationRevokeView = new CustomerCancelApplicationRevokeView();
     
@@ -45,7 +45,7 @@ public class CustomerContractManageView {
 	}
 	
 	private void applyCancellation() {
-		customerCancelApplicationView.show(customerContractListView, customerCancelApplicationListView, customer);
+		customerCancelApplicationApplyView.show(customerContractListView, customerCancelApplicationListView, customer);
 	}
 	
 	private void showCancellations() {

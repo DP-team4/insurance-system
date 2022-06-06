@@ -34,11 +34,13 @@ public class CustomerCarAccidentHandlingApplyView {
 	public void show(CustomerCarAccidentHandlingListView customerCarAccidentHandlingListView, Customer customer) {
 		try {
 			this.customer = customer;
+			this.customerCarAccidentHandlingListView = customerCarAccidentHandlingListView;
+			
 			System.out.println("\n[ 사고처리 신청 ]");
-			// 자격 검사 (해당 고객이 가진 모든 Contract의 InsuranceId를 비교해서 만료되지 않은 CarInsurance가 있는지 확인)
+			// 사고처리신청 가능 여부를 확인한다 (해당 고객이 가진 모든 Contract의 InsuranceId를 비교해서 만료되지 않은 CarInsurance가 있는지 확인)
 			Contract carContract = customerContractService.getUnmaturedContractByCategory(this.customer.getId(), InsuranceCategory.CAR);
 			if(carContract == null) { System.out.println("가입된 만료되지 않은 자동차 보험이 없어 서비스를 이용하실 수 없습니다. 이전화면으로 돌아갑니다."); return; }
-			// 사고접수정보(사고일시, 사고 위치, 사고내용, 사고 차량 정보(차량 번호, 차주 이름, 차주 번호, visitedshopname)), '확인', '취소' 버튼을 보여준다
+			// 사고접수정보(사고일시, 사고 위치, 사고내용, 사고 차량 정보(차량 번호, 차주 이름, 차주 번호, 차량 수리점), 사고 관련자 정보(이름, 전화번호, 방문병원)), '확인/취소' 버튼을 보여준다
 	        System.out.println("사고 일시 >> ");
 	        System.out.print("년(year) : "); String year = getInputAndCheckInvalid();
 	        System.out.print("월(month) : "); String month = getInputAndCheckInvalid();
@@ -55,7 +57,7 @@ public class CustomerCarAccidentHandlingApplyView {
 	        	System.out.print("차량 번호 >> "); accidentCar.setCarNo(getInputAndCheckInvalid());
 	        	System.out.print("차주 이름 >> "); accidentCar.setOwnerName(getInputAndCheckInvalid());
 	        	System.out.print("차주 번호 >> "); accidentCar.setOwnerPhoneNo(getInputAndCheckInvalid());
-	        	System.out.print("visitedshopname? >> "); accidentCar.setVisitedShopName(getInputAndCheckInvalid());
+	        	System.out.print("차량 수리점 >> "); accidentCar.setVisitedShopName(getInputAndCheckInvalid());
 	        	accidentCars.add(accidentCar);
 	        	System.out.print("\n차량 정보 입력을 계속하시겠습니까? 예(1) 아니오(기타) >> "); input = scanner.nextLine().trim();
 	        	if(!input.equals("1")) break;
@@ -111,8 +113,8 @@ public class CustomerCarAccidentHandlingApplyView {
     			System.out.println("\n접수가 완료 되었습니다.");
     			customerCarAccidentHandlingListView.show(customer);
     		} else System.out.println("\n사고 처리 신청 실패. 이전 화면으로 돌아갑니다.");
+    	// A3. 사고처리신청내용에 유효하지 않은 값을 입력한 경우
         } catch (NumberFormatException e) {
-        	// A3. 상담신청내용에 유효하지 않은 값을 입력한 경우
         	System.out.println("입력값이 유효하지 않습니다.");
         } catch (DateTimeException dateTimeException) {
         	System.out.println("날짜가 올바르지 않습니다.");

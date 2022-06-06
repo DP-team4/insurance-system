@@ -9,10 +9,13 @@ import domain.contract.Contract;
 import domain.customer.Customer;
 import domain.insurance.Clause;
 import domain.insurance.Insurance;
+import domain.insurance.InsuranceCategory;
+import repository.insurance.InsuranceRepository;
 
 public class CustomerContractServiceImpl implements CustomerContractService {
 	private final static CustomerContractService myContractManagementService = new CustomerContractServiceImpl();
     private static final ContractDao contractDao = new ContractDao(); // Repository
+    private static final InsuranceRepository insuranceRepository = InsuranceRepository.getInstance();
 
 	// Singleton
 	private CustomerContractServiceImpl(){}
@@ -38,5 +41,20 @@ public class CustomerContractServiceImpl implements CustomerContractService {
 		
 		return (long) ((premiumSum * ratio) / month);
 	}
-
+	
+	@Override
+	public Contract getUnmaturedContractByCategory(String customerId, InsuranceCategory insuranceCategory) {
+		ArrayList<Contract> customerContracts = contractDao.retrieveByCustomerId(customerId);
+		for(Contract contract : customerContracts) {
+			Insurance insurance = insuranceRepository.get(contract.getInsuranceId());
+			if(insurance.getInsuranceCategory() == insuranceCategory) {
+				if(!isMatured(contract)) return contract;
+			}
+		}
+		return null;
+	}
+	
+	private boolean isMatured(Contract contract) {
+		return contract.getExpirationDateTime().isBefore(LocalDateTime.now());
+	}
 }

@@ -11,20 +11,20 @@ import service.customer.CustomerContractService;
 import service.customer.CustomerContractServiceImpl;
 import view.viewUtility.ScannerUtility;
 
-public class CancelApplicationView {
+public class CustomerCancelApplicationView {
     private final Scanner scanner = ScannerUtility.getScanner();
 	private Customer customer;
     
     // View
-	private CancelApplicationListView cancelApplicationListView;
+	private CustomerCancelApplicationListView customerCancelApplicationListView;
 
 	// Service
 	private CustomerCancelApplicationService customerCancelApplicationService = CustomerCancelApplicationServiceImpl.getInstance();
     private CustomerContractService customerContractService = CustomerContractServiceImpl.getInstance();
 	
-	public void show(ContractListView contractListView, CancelApplicationListView cancellationListView, Customer customer) {
+	public void show(CustomerContractListView customerContractListView, CustomerCancelApplicationListView cancellationListView, Customer customer) {
 		try {
-			this.cancelApplicationListView = cancellationListView;
+			this.customerCancelApplicationListView = cancellationListView;
 			
 			System.out.println("\n[ 계약 해지 신청 ]");
 			if(customerContractService.getCustomerContracts(customer.getId()).size() == 0) {
@@ -36,7 +36,7 @@ public class CancelApplicationView {
 			while(showList) {
 				System.out.print("해지할 계약 ID >> "); contractId = getInputAndCheckInvalid();
 		        if(contractId.equals("list")) {
-		        	contractListView.show(cancellationListView, customer);
+		        	customerContractListView.show(cancellationListView, customer);
 		        } else {
 		        	showList = false;
 		        }
@@ -62,7 +62,7 @@ public class CancelApplicationView {
 		cancelApplication.setContractId(contractId);
 		if(customerCancelApplicationService.applyCancellation(cancelApplication)) {
 			System.out.println("\n접수가 완료 되었습니다.");
-			cancelApplicationListView.show(customer);
+			customerCancelApplicationListView.show(customer);
 		}
         else System.out.println("\n해지신청 실패. 이전 화면으로 돌아갑니다.");
 	}

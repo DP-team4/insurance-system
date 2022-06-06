@@ -5,15 +5,15 @@ import java.util.Scanner;
 import domain.customer.Customer;
 import view.viewUtility.ScannerUtility;
 
-public class ContractManagementView {    
+public class CustomerContractManageView {    
     private final Scanner scanner = ScannerUtility.getScanner();
     private Customer customer;
     
     // View
-    private ContractListView contractListView = new ContractListView();
-	private CancelApplicationView cancelApplicationView = new CancelApplicationView();
-	private CancelApplicationListView cancelApplicationListView = new CancelApplicationListView();
-	private CancelApplicationRevocationView cancelApplicationRevocationView = new CancelApplicationRevocationView();
+    private CustomerContractListView customerContractListView = new CustomerContractListView();
+	private CustomerCancelApplicationView customerCancelApplicationView = new CustomerCancelApplicationView();
+	private CustomerCancelApplicationListView customerCancelApplicationListView = new CustomerCancelApplicationListView();
+	private CustomerCancelApplicationRevokeView customerCancelApplicationRevokeView = new CustomerCancelApplicationRevokeView();
     
 	public void show(Customer customer) {
 		this.customer = customer;
@@ -33,7 +33,7 @@ public class ContractManagementView {
 	}
 	
 	private void showContracts() {
-		boolean contractExist = contractListView.show(cancelApplicationListView, customer);
+		boolean contractExist = customerContractListView.show(customerCancelApplicationListView, customer);
 		if(contractExist) {
 			System.out.println("\n해지 신청하기(1) 메뉴 화면으로 돌아가기(기타)");
 			System.out.print(">> ");
@@ -45,14 +45,14 @@ public class ContractManagementView {
 	}
 	
 	private void applyCancellation() {
-		cancelApplicationView.show(contractListView, cancelApplicationListView, customer);
+		customerCancelApplicationView.show(customerContractListView, customerCancelApplicationListView, customer);
 	}
 	
 	private void showCancellations() {
-		cancelApplicationListView.show(customer);
+		customerCancelApplicationListView.show(customer);
 	}
 
 	private void revokeCancellation() {
-		cancelApplicationRevocationView.show(cancelApplicationListView, customer);
+		customerCancelApplicationRevokeView.show(customerCancelApplicationListView, customer);
 	}
 }

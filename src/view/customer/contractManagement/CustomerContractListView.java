@@ -10,12 +10,12 @@ import service.InsuranceManagementServiceImpl;
 import service.customer.CustomerContractService;
 import service.customer.CustomerContractServiceImpl;
 
-public class ContractListView {    
+public class CustomerContractListView {    
 	// Service
     private CustomerContractService customerContractService = CustomerContractServiceImpl.getInstance();
     private InsuranceManagementService insuranceManagementService = InsuranceManagementServiceImpl.getInstance();
 	
-	public boolean show(CancelApplicationListView cancellationListView, Customer customer) {
+	public boolean show(CustomerCancelApplicationListView cancellationListView, Customer customer) {
 		System.out.println("\n[ 나의 보험상품 목록 ]");
 		// 로그인된 회원의 보험상품 정보를 요청한다
 		ArrayList<Contract> contracts = customerContractService.getCustomerContracts(customer.getId());

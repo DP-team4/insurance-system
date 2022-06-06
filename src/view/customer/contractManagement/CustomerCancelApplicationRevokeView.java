@@ -8,20 +8,20 @@ import service.customer.CustomerCancelApplicationService;
 import service.customer.CustomerCancelApplicationServiceImpl;
 import view.viewUtility.ScannerUtility;
 
-public class CancelApplicationRevocationView {
+public class CustomerCancelApplicationRevokeView {
     private final Scanner scanner = ScannerUtility.getScanner();
     private Customer customer;
     
     // View
-    private CancelApplicationListView cancelApplicationListView;
+    private CustomerCancelApplicationListView customerCancelApplicationListView;
 
 	// Service
 	private CustomerCancelApplicationService customerCancelApplicationService = CustomerCancelApplicationServiceImpl.getInstance();
 
-	public void show(CancelApplicationListView cancellationListView, Customer customer) {
+	public void show(CustomerCancelApplicationListView cancellationListView, Customer customer) {
 		try {
 			// 계약 해지 신청 취소 화면(해지 아이디 입력창  + '확인', '취소' 버튼)을 보여준다
-			this.cancelApplicationListView = cancellationListView;
+			this.customerCancelApplicationListView = cancellationListView;
 			this.customer = customer;
 			
 			System.out.println("\n[ 계약 해지 신청 취소 ]");
@@ -57,7 +57,7 @@ public class CancelApplicationRevocationView {
 	private void revokeCancellation(String id, String customerId) {
         if(customerCancelApplicationService.deleteMyCancellation(id, customerId)) {
         	System.out.println("삭제되었습니다.");
-        	cancelApplicationListView.show(customer);
+        	customerCancelApplicationListView.show(customer);
         }
         else System.out.println("삭제 실패하였습니다.");
 	}

@@ -7,7 +7,7 @@ import domain.customer.Customer;
 import service.customer.CustomerCancelApplicationService;
 import service.customer.CustomerCancelApplicationServiceImpl;
 
-public class CancelApplicationListView {
+public class CustomerCancelApplicationListView {
 	
 	// Service
 	private CustomerCancelApplicationService customerCancelApplicationService = CustomerCancelApplicationServiceImpl.getInstance();

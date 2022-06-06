@@ -3,8 +3,11 @@ package view.customer;
 import java.util.Scanner;
 
 import domain.customer.Customer;
-import view.customer.consultApplicationManagement.ConsultApplicationManagementView;
-import view.customer.contractManagement.ContractManagementView;
+import view.customer.benefitPaymentManagement.CustomerBenefitPaymentManageView;
+import view.customer.carAccidentHandlingManagement.CustomerCarAccidentHandlingApplyView;
+import view.customer.carAccidentHandlingManagement.CustomerCarAccidentHandlingManageView;
+import view.customer.consultApplicationManagement.CustomerConsultApplicationManageView;
+import view.customer.contractManagement.CustomerContractManageView;
 import view.customer.customerInfo.LoginView;
 import view.customer.customerInfo.SignUpView;
 import view.viewUtility.ScannerUtility;
@@ -16,20 +19,20 @@ public class CustomerHomeView {
 	private Customer customer; // 로그인 된 고객정보 (로그인 안된 경우 null)
 	
 	// Views
-	private ClaimApplicationView claimApplicationView = new ClaimApplicationView();
-	private ConsultApplicationManagementView consultApplicationManagementView = new ConsultApplicationManagementView();
-	private CoverageApplicationView coverageApplicationView = new CoverageApplicationView();
-	private InsuranceListView insuranceListView = new InsuranceListView();
-	private ContractManagementView contractManagementView = new ContractManagementView();
+	private CustomerBenefitPaymentManageView customerBenefitPaymentManageView = new CustomerBenefitPaymentManageView();
+	private CustomerConsultApplicationManageView customerConsultApplicationManageView = new CustomerConsultApplicationManageView();
+	private CustomerCarAccidentHandlingManageView customerCarAccidentHandlingManageView = new CustomerCarAccidentHandlingManageView();
+	private CustomerInsuranceListView customerInsuranceListView = new CustomerInsuranceListView();
+	private CustomerContractManageView customerContractManageView = new CustomerContractManageView();
 	private LoginView loginView = new LoginView();
 	private SignUpView signUpView = new SignUpView();
 	
 	private enum EMenu {
 		insuranceList("보험상품 조회", "1"),
-		consultationManagement("가입 상담 신청 관리", "2"),
+		consultApplicationManagement("가입 상담 신청 관리", "2"),
 		contractsManagement("나의 보험상품 관리 및 계약 해지", "3"),
-		coverageApplication("사고처리 신청", "4"),
-		claimApplication("보험금 청구", "5"),
+		carAccidentHandlingManagement("사고처리 신청 관리", "4"),
+		benefitPaymentManagement("보험금 청구 관리", "5"),
 		exit("프로그램 종료", "기타");
 		
 		private String string;
@@ -52,10 +55,10 @@ public class CustomerHomeView {
 	        System.out.print("\n>> ");
 			switch(scanner.nextLine().trim()) {
 				case "1": showInsurances(); break;
-				case "2": manageConsultation(); break;
+				case "2": manageConsultApplication(); break;
 				case "3": manageContracts(); break;
-				case "4": applyCoverage(); break;
-				case "5": applyClaim(); break;
+				case "4": manageCarAccidentHandling(); break;
+				case "5": manageBenefitPayment(); break;
 				case "l":
 					if(!logined) login();
 					else logout();
@@ -68,23 +71,23 @@ public class CustomerHomeView {
 	}
 
 	private void showInsurances() {
-		insuranceListView.show();
+		customerInsuranceListView.show();
 	}
 
-	private void manageConsultation() {
-		if(checkLogin()) consultApplicationManagementView.show(customer);
+	private void manageConsultApplication() {
+		if(checkLogin()) customerConsultApplicationManageView.show(customer);
 	}
 
 	private void manageContracts() {
-		if(checkLogin()) contractManagementView.show(customer);
+		if(checkLogin()) customerContractManageView.show(customer);
 	}
 	
-	private void applyCoverage() {
-		if(checkLogin()) coverageApplicationView.show();
+	private void manageCarAccidentHandling() {
+		if(checkLogin()) customerCarAccidentHandlingManageView.show(customer);
 	}
 
-	private void applyClaim() {
-		if(checkLogin()) claimApplicationView.show();
+	private void manageBenefitPayment() {
+		if(checkLogin()) customerBenefitPaymentManageView.show(customer);
 	}
 	
 	private boolean checkLogin() {

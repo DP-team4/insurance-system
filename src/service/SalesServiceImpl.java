@@ -1,4 +1,5 @@
 package service;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import dao.ContractDao;
@@ -44,8 +45,8 @@ public class SalesServiceImpl implements SalesService{
 		 ArrayList<Contract> matureContracts = new ArrayList<>();
 		 ArrayList<Contract> contracts = contractRepository.getAll();
 		 for (Contract contract: contracts) { 
-			 long difference = ChronoUnit.DAYS.between(contract.getContractDateTime(), contract.getExpirationDateTime());
-			 if (difference < 30) {
+			 long difference = ChronoUnit.MONTHS.between(LocalDateTime.now(), contract.getExpirationDateTime());
+			 if (difference <= 1) {
 				 matureContracts.add(contract);
 			 }
 		 }

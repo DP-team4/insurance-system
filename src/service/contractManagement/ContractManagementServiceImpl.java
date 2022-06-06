@@ -1,5 +1,6 @@
 package service.contractManagement;
 
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class ContractManagementServiceImpl implements ContractManagementService{
 		 ArrayList<Contract> matureContracts = new ArrayList<>();
 		 ArrayList<Contract> contracts = contractRepository.getAll();
 		 for (Contract contract: contracts) { 
-			 long difference = ChronoUnit.MONTHS.between(contract.getContractDateTime(), contract.getExpirationDateTime());
+			 long difference = ChronoUnit.MONTHS.between(LocalDateTime.now(), contract.getExpirationDateTime());
 			 if (difference <= 1) {
 				 matureContracts.add(contract);
 			 }

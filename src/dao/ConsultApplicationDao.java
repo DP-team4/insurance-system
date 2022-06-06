@@ -21,7 +21,6 @@ public class ConsultApplicationDao extends Dao {
                 consultApplication.getCustomerId(), consultApplication.getContent(), Timestamp.valueOf(consultApplication.getApplicationDate())
                 , Timestamp.valueOf(consultApplication.getConsultationDate()), consultApplication.getState().name()
         );
-        System.out.println("Query >> " + query);
         return super.create(query);
     }
 	
@@ -31,20 +30,17 @@ public class ConsultApplicationDao extends Dao {
                 consultApplication.getCustomerId(), consultApplication.getContent(), Timestamp.valueOf(consultApplication.getApplicationDate())
                 , Timestamp.valueOf(consultApplication.getConsultationDate()), consultApplication.getState().name(), consultApplication.getId()
         );
-        System.out.println("Query >> " + query);
         return super.update(query);
     }
 
     public boolean delete(String id) {
         String query = String.format("delete from consult_application where id=%s", id);
-        System.out.println("Query >> " + query);
         return super.delete(query);
     }
 
     public ArrayList<ConsultApplication> retrieveAll() {
         try {
             String query = "select * from consult_application";
-            System.out.println("Query >> " + query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null) return null;
             ArrayList<ConsultApplication> consultApplications = new ArrayList<>();
@@ -62,7 +58,6 @@ public class ConsultApplicationDao extends Dao {
     public ConsultApplication retrieveById(String id) {
         try {
             String query = String.format("select * from consult_application where id=%s", id);
-            System.out.println("Query >> " + query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
             ConsultApplication consultApplication = getCurrentConsultApplication(resultSet);
@@ -76,7 +71,6 @@ public class ConsultApplicationDao extends Dao {
     public ArrayList<ConsultApplication> retrieveByCustomerId(String customerId) {
         try {
             String query = String.format("select * from consult_application where customer_id='%s'", customerId);
-            System.out.println("Query >> " + query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null) return null;
             ArrayList<ConsultApplication> consultApplications = new ArrayList<>();

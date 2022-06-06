@@ -21,7 +21,6 @@ public class ContractDao extends Dao {
 		String query = String.format("insert into contract values (0, '%s', '%s', '%s', '%s', '%s')",
 				Timestamp.valueOf(contract.getContractDateTime()), Timestamp.valueOf(contract.getExpirationDateTime()),
 				contract.getCustomerId(), contract.getInsuranceId(), contract.getState().name());
-		System.out.println("Query >> " + query);
 		return super.createAndGetId(query);
 	}
 
@@ -29,29 +28,26 @@ public class ContractDao extends Dao {
 		String query = String.format("insert into contract values (0, '%s', '%s', '%s', '%s', '%s')",
 				Timestamp.valueOf(contract.getContractDateTime()), Timestamp.valueOf(contract.getExpirationDateTime()),
 				contract.getCustomerId(), contract.getInsuranceId(), contract.getState().name());
-		System.out.println("Query >> " + query);
 		return super.create(query);
 	}
 
 	public boolean update(Contract contract) {
 		String query = String.format(
-				"update contract set contract_datetime=%s, expiration_datetime=%s, customer_id=%s, insurance_id=%s, contract_state=%s where id=%s",
+				"update contract set contract_datetime='%s', expiration_datetime='%s', customer_id=%s, insurance_id=%s, state='%s' where id=%s",
 				Timestamp.valueOf(contract.getContractDateTime()), Timestamp.valueOf(contract.getExpirationDateTime()),
-				contract.getCustomerId(), contract.getInsuranceId(), contract.getState().name(), contract.getId());
-		System.out.println("Query >> " + query);
+				contract.getCustomerId(), contract.getInsuranceId(), contract.getState().name(), contract.getId()
+				);
 		return super.update(query);
 	}
 
 	public boolean delete(String id) {
 		String query = String.format("delete from contract where id=%s", id);
-		System.out.println("Query >> " + query);
 		return super.delete(query);
 	}
 
 	public ArrayList<Contract> retrieveAll() {
 		try {
 			String query = "select * from contract";
-			System.out.println("Query >> " + query);
 			ResultSet resultSet = super.retrieve(query);
 			if (resultSet == null)
 				return null;
@@ -70,7 +66,6 @@ public class ContractDao extends Dao {
 	public Contract retrieveById(String id) {
 		try {
 			String query = String.format("select * from contract where id=%s", id);
-			System.out.println("Query >> " + query);
 			ResultSet resultSet = super.retrieve(query);
 			if (resultSet == null || !resultSet.next())
 				return null;
@@ -85,7 +80,6 @@ public class ContractDao extends Dao {
 	public ArrayList<Contract> retrieveByCustomerId(String customerId) {
 		try {
 			String query = String.format("select * from contract where customer_id='%s'", customerId);
-			System.out.println("Query >> " + query);
 			ResultSet resultSet = super.retrieve(query);
 			if (resultSet == null)
 				return null;

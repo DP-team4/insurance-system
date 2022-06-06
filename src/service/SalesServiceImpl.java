@@ -1,11 +1,5 @@
 package service;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import dao.ContractDao;
-import dao.CustomerDao;
-import dao.InsuranceDao;
-import dao.UWDao;
 import domain.consultApplication.ConsultApplication;
 import domain.contract.Contract;
 import domain.contract.ContractState;
@@ -14,7 +8,6 @@ import domain.insurance.Clause;
 import domain.insurance.Insurance;
 import domain.uw.UW;
 import domain.uw.UWDocument;
-import domain.uw.UWDocumentState;
 import domain.uw.UWState;
 import repository.CustomerRepository;
 import repository.consultApplication.ConsultApplicationRepository;
@@ -38,21 +31,6 @@ public class SalesServiceImpl implements SalesService{
 	 public ArrayList<Contract> getAllContract() {
 		 return contractRepository.getAll();
 	 }
-	 
-	 // 만기계약 목록 요청
-	 @Override
-	 public ArrayList<Contract> getAllMatureContract() {
-		 ArrayList<Contract> matureContracts = new ArrayList<>();
-		 ArrayList<Contract> contracts = contractRepository.getAll();
-		 for (Contract contract: contracts) { 
-			 long difference = ChronoUnit.MONTHS.between(LocalDateTime.now(), contract.getExpirationDateTime());
-			 if (difference <= 1) {
-				 matureContracts.add(contract);
-			 }
-		 }
-		 return matureContracts;
-	 }
-	 
 	 // 보험 정보 요청
 	 @Override
 	 public Insurance getInsuranceByName(String name) {

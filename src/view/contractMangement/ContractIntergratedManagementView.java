@@ -16,7 +16,7 @@ import view.viewUtility.View;
 
 public class ContractIntergratedManagementView extends View{
 	private final Scanner scanner = ScannerUtility.getScanner();
-	private final ContractManagementService salesService = ContractManagementServiceImpl.getInstance();
+	private final ContractManagementService contractService = ContractManagementServiceImpl.getInstance();
 	
 	
 	@Override
@@ -44,7 +44,7 @@ public class ContractIntergratedManagementView extends View{
 
 	private void showMatureContracts() {
 		System.out.println("[만기계약 목록]");
-		ArrayList<Contract> matureContracts = salesService.getAllMatureContracts();
+		ArrayList<Contract> matureContracts = contractService.getAllMatureContracts();
 		if(matureContracts.size() < 1) {
 			System.out.println("현재 저장된 만기계약이 없습니다.");
 		}else {

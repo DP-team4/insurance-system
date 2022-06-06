@@ -21,7 +21,6 @@ import repository.uw.UWRepository;
 
 public interface SalesService {
 	ArrayList<Contract> getAllContract();
-	ArrayList<Contract> getAllMatureContract();
 	Insurance getInsuranceByName(String name);
 	Insurance getInsurance(String id);
 	boolean requestUW(Contract contract, ArrayList<UWDocument> documents);

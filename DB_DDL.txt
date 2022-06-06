@@ -124,28 +124,28 @@ create table benefit_payment (
 );
 
 # insurance insert
-insert into insurance values(1, 'ê°œì¸ìš©ìë™ì°¨ë³´í—˜', 'CAR', 'ON_SALE');
-insert into insurance values(2, 'ì°¨ë„ë¦¬ECOìš´ì „ììƒí•´ë³´í—˜', 'DRIVER', 'ON_SALE');
-insert into insurance values(3, 'ê¸°ì—…ìš©ì„ ë°•ë³´í—˜', 'MARINE', 'ON_SALE');
-insert into insurance values(4, 'Big Plus ì¬ì‚°ì¢…í•©ë³´í—˜', 'FIRE', 'ON_SALE');
+insert into insurance values(1, '°³ÀÎ¿ëÀÚµ¿Â÷º¸Çè', 'CAR', 'ON_SALE');
+insert into insurance values(2, 'Â÷µµ¸®ECO¿îÀüÀÚ»óÇØº¸Çè', 'DRIVER', 'ON_SALE');
+insert into insurance values(3, '±â¾÷¿ë¼±¹Úº¸Çè', 'MARINE', 'ON_SALE');
+insert into insurance values(4, 'Big Plus Àç»êÁ¾ÇÕº¸Çè', 'FIRE', 'ON_SALE');
 
 # clause insert
-insert into clause values(1, 'ëŒ€ì¸ë°°ìƒ 1', 'NORMAL', 20000000, 2500000, 1);
-insert into clause values(2, 'ëŒ€ì¸ë°°ìƒ 2', 'NORMAL', 200000000, 25000000, 1);
-insert into clause values(3, 'ìê¸°ì‹ ì²´ì‚¬ê³  ë˜ëŠ” ìë™ì°¨ìƒí•´', 'NORMAL', 100000000, 125000, 1);
-insert into clause values(4, 'ë¬´ë³´í—˜ì°¨ìƒí•´', 'SPECIAL', 300000000, 30000000, 1);
+insert into clause values(1, '´ëÀÎ¹è»ó 1', 'NORMAL', 20000000, 2500000, 1);
+insert into clause values(2, '´ëÀÎ¹è»ó 2', 'NORMAL', 200000000, 25000000, 1);
+insert into clause values(3, 'ÀÚ±â½ÅÃ¼»ç°í ¶Ç´Â ÀÚµ¿Â÷»óÇØ', 'NORMAL', 100000000, 125000, 1);
+insert into clause values(4, '¹«º¸ÇèÂ÷»óÇØ', 'SPECIAL', 300000000, 30000000, 1);
 
-insert into clause values(5, 'ìš´ì „ìë³´ì¥í˜•', 'NORMAL', 100000, 11520, 2);
-insert into clause values(6, 'ìƒí•´ì‚¬ë§', 'SPECIAL', 50000000, 612000, 2);
-insert into clause values(7, 'ìƒí•´ìˆ˜ìˆ ë¹„', 'SPECIAL', 100000, 101880, 2);
+insert into clause values(5, '¿îÀüÀÚº¸ÀåÇü', 'NORMAL', 100000, 11520, 2);
+insert into clause values(6, '»óÇØ»ç¸Á', 'SPECIAL', 50000000, 612000, 2);
+insert into clause values(7, '»óÇØ¼ö¼úºñ', 'SPECIAL', 100000, 101880, 2);
 
-insert into clause values(8, 'ì„ ë°•í”¼í•´ë³´ìƒ', 'NORMAL', 2000000000, 900000000, 3);
+insert into clause values(8, '¼±¹ÚÇÇÇØº¸»ó', 'NORMAL', 2000000000, 900000000, 3);
 
-insert into clause values(9, 'í™”ì¬í”¼í•´ë³´ìƒ', 'NORMAL', 1000000000, 80000000, 4);
+insert into clause values(9, 'È­ÀçÇÇÇØº¸»ó', 'NORMAL', 1000000000, 80000000, 4);
 
 # customer insert
-insert into customer values(1, 'asdf@asdf.com', '1234', 'í™ê¸¸ë™', 37, 1, '860507-1212123', '01012341234', 'í•˜ë‚˜ 333123412123', 0);
-insert into customer values(2, 'qwer@qwer.com', '1234', 'ìœ ì§€ë¯¼', 29, 0, '920508-2212123', '01043214321', 'ì‹ í•œ 333432121321', 1);
+insert into customer values(1, 'asdf@asdf.com', '1234', 'È«±æµ¿', 37, 1, '860507-1212123', '01012341234', 'ÇÏ³ª 333123412123', 0);
+insert into customer values(2, 'qwer@qwer.com', '1234', 'À¯Áö¹Î', 29, 0, '920508-2212123', '01043214321', '½ÅÇÑ 333432121321', 1);
 
 # addtional_info insert
 insert into additional_info values(1, 1, 1000000000, 1000000000, 10, 0);
@@ -158,10 +158,10 @@ insert into contract values(3, '2021-06-05 19:25:48', '2022-06-25 19:25:48', 1, 
 insert into contract values(4, '2021-06-05 19:25:48', '2022-06-25 19:25:48', 2, 4, 'UNDER_UW');
 
 # consult_application insert
-insert into consult_application values(1, 1, 'ìë™ì°¨ë³´í—˜ê°€ì…ìƒë‹´', '2022-06-05 17:23:18.1846961', '2022-06-06 17:23:18.1846961', 'NEW');
-insert into consult_application values(2, 2, 'ìš´ì „ììƒí•´ë³´í—˜ê°€ì…ìƒë‹´', '2022-06-05 17:23:18.1846961', '2022-06-07 17:23:18.1846961', 'NEW');
-insert into consult_application values(3, 1, 'ê¸°ì—…ìš©ì„ ë°•ë³´í—˜ê°€ì…ìƒë‹´', '2022-06-05 17:23:18.1846961', '2022-06-08 17:23:18.1846961', 'NEW');
-insert into consult_application values(4, 2, 'ì¬ì‚°ì¢…í•©ë³´í—˜ê°€ì…ìƒë‹´', '2022-06-05 17:23:18.1846961', '2022-06-09 17:23:18.1846961', 'NEW');
+insert into consult_application values(1, 1, 'ÀÚµ¿Â÷º¸Çè°¡ÀÔ»ó´ã', '2022-06-05 17:23:18.1846961', '2022-06-06 17:23:18.1846961', 'NEW');
+insert into consult_application values(2, 2, '¿îÀüÀÚ»óÇØº¸Çè°¡ÀÔ»ó´ã', '2022-06-05 17:23:18.1846961', '2022-06-07 17:23:18.1846961', 'NEW');
+insert into consult_application values(3, 1, '±â¾÷¿ë¼±¹Úº¸Çè°¡ÀÔ»ó´ã', '2022-06-05 17:23:18.1846961', '2022-06-08 17:23:18.1846961', 'NEW');
+insert into consult_application values(4, 2, 'Àç»êÁ¾ÇÕº¸Çè°¡ÀÔ»ó´ã', '2022-06-05 17:23:18.1846961', '2022-06-09 17:23:18.1846961', 'NEW');
 
 # uw insert
 insert into uw values(1, '2022-06-06 13:12:31', 'ACCEPTED', 1);
@@ -170,7 +170,11 @@ insert into uw values(3, '2022-06-06 13:12:31', 'UNDER_AUDIT', 3);
 insert into uw values(4, '2022-06-06 13:12:31', 'UNDER_AUDIT', 4);
 
 # uw_document insert
-insert into uw_document values(1, 'ìë™ì°¨ë“±ë¡ì¦', '/uw/1/documents/ìë™ì°¨ë“±ë¡ì¦', 'SUBMITTED', 1);
-insert into uw_document values(2, 'ìš´ì „ê²½ë ¥ì¦ëª…ì„œ', '/uw/2/documents/ìš´ì „ê²½ë ¥ì¦ëª…ì„œ', 'REQUESTED', 2);
-insert into uw_document values(3, 'ì„ ë°•ë“±ë¡ì¦', '/uw/3/documents/ì„ ë°•ë“±ë¡ì¦', 'REQUESTED', 3);
-insert into uw_document values(4, 'ë¶€ë™ì‚°ë“±ë¡ì¦', '/uw/4/documents/ë¶€ë™ì‚°ë“±ë¡ì¦', 'REQUESTED', 4);
+insert into uw_document values(1, 'ÀÚµ¿Â÷µî·ÏÁõ', '/uw/1/documents/ÀÚµ¿Â÷µî·ÏÁõ', 'SUBMITTED', 1);
+insert into uw_document values(2, '¿îÀü°æ·ÂÁõ¸í¼­', '/uw/2/documents/¿îÀü°æ·ÂÁõ¸í¼­', 'REQUESTED', 2);
+insert into uw_document values(3, '¼±¹Úµî·ÏÁõ', '/uw/3/documents/¼±¹Úµî·ÏÁõ', 'REQUESTED', 3);
+insert into uw_document values(4, 'ºÎµ¿»êµî·ÏÁõ', '/uw/4/documents/ºÎµ¿»êµî·ÏÁõ', 'REQUESTED', 4);
+
+# cancel_application insert
+insert into cancel_application values(1, 1, '2022-06-05 19:25:48', 'NEW');
+insert into cancel_application values(2, 2, '2022-06-06 19:25:48', 'NEW');

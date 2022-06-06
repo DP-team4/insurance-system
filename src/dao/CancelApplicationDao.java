@@ -21,7 +21,6 @@ public class CancelApplicationDao extends Dao {
                 cancelApplication.getContractId(), Timestamp.valueOf(cancelApplication.getApplicationDate())
                 , cancelApplication.getState().name()
         );
-        System.out.println("Query >> " + query);
         return super.create(query);
     }
 	
@@ -31,20 +30,17 @@ public class CancelApplicationDao extends Dao {
                 cancelApplication.getContractId(), Timestamp.valueOf(cancelApplication.getApplicationDate())
                 , cancelApplication.getState().name(), cancelApplication.getId()
         );
-        System.out.println("Query >> " + query);
         return super.update(query);
     }
 
     public boolean delete(String id) {
         String query = String.format("delete from cancel_application where id=%s", id);
-        System.out.println("Query >> " + query);
         return super.delete(query);
     }
 
     public ArrayList<CancelApplication> retrieveAll() {
         try {
             String query = "select * from cancel_application";
-            System.out.println("Query >> " + query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null) return null;
             ArrayList<CancelApplication> cancelApplications = new ArrayList<>();
@@ -62,7 +58,6 @@ public class CancelApplicationDao extends Dao {
     public CancelApplication retrieveById(String id) {
         try {
             String query = String.format("select * from cancel_application where id=%s", id);
-            System.out.println("Query >> " + query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
             CancelApplication cancelApplication = getCurrentCancelApplication(resultSet);
@@ -76,7 +71,6 @@ public class CancelApplicationDao extends Dao {
     public CancelApplication retrieveByContractId(String contractId) {
         try {
             String query = String.format("select * from cancel_application where contract_id='%s'", contractId);
-            System.out.println("Query >> " + query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
             CancelApplication cancelApplication = getCurrentCancelApplication(resultSet);

@@ -16,13 +16,13 @@ public class AccidentPersonDao extends Dao{
 
     public boolean create(AccidentPerson accidentPerson){
         String query = this.makeCreationQuery(accidentPerson);
-        System.out.println(query);
+        
         return super.create(query);
     }
 
     public String createAndGetId(AccidentPerson accidentPerson){
         String query = this.makeCreationQuery(accidentPerson);
-        System.out.println(query);
+        
         return super.createAndGetId(query);
     }
 
@@ -42,14 +42,14 @@ public class AccidentPersonDao extends Dao{
             this.tableName,
             accidentPerson.getCost(), accidentPerson.getName(), accidentPerson.getPhoneNo(), accidentPerson.getVisitedHospitalName()
     );
-        System.out.println(query);
+        
         return super.create(query);
     }
 
 
     public boolean delete(String id, String carAccidentHandlingId) {
         String query = String.format("delete from %s where id=%s and car_accident_handling_id=%s ", this.tableName, id, carAccidentHandlingId);
-        System.out.println(query);
+        
         return super.delete(query);
     }
 
@@ -61,7 +61,7 @@ public class AccidentPersonDao extends Dao{
     public ArrayList<AccidentPerson> retrieveAll() {
         try{
             String query = "select * from "+this.tableName;
-            System.out.println(query); //나중에 없앨 것
+             //나중에 없앨 것
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null) return null;
             ArrayList<AccidentPerson> accidentPersons = new ArrayList<>();
@@ -79,7 +79,7 @@ public class AccidentPersonDao extends Dao{
     public AccidentPerson retrieveById(String id, String carAccidentHandlingId){
         try{
             String query = String.format("select * from "+this.tableName+" where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
-            System.out.println(query);
+            
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;
             AccidentPerson accidentPerson = this.getCurrentRecord(resultSet);

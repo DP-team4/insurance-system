@@ -31,7 +31,7 @@ public class CarAccidentHandlingListView extends View {
     }
 
     private boolean showOnReviewCarAccidentHandlingList() {
-        System.out.printf(" %s %s %s %s %s %s %s %s", "사고처리 번호", "고객명", "요청 시각","사고 발생 시각","사고 발생 위치", "사고 내용", "접수 현황");
+        System.out.printf(" %s %s %s %s %s %s %s", "사고처리 번호", "고객명", "요청 시각","사고 발생 시각","사고 발생 위치", "사고 내용", "접수 현황");
         ArrayList<CarAccidentHandling> carAccidentHandlings = this.carAccidentHandlingManagementService.getAll();
         if(carAccidentHandlings.isEmpty()) return false;
         for(CarAccidentHandling e : carAccidentHandlings){

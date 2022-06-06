@@ -162,3 +162,15 @@ insert into consult_application values(1, 1, '자동차보험가입상담', '202
 insert into consult_application values(2, 2, '운전자상해보험가입상담', '2022-06-05 17:23:18.1846961', '2022-06-07 17:23:18.1846961', 'NEW');
 insert into consult_application values(3, 1, '기업용선박보험가입상담', '2022-06-05 17:23:18.1846961', '2022-06-08 17:23:18.1846961', 'NEW');
 insert into consult_application values(4, 2, '재산종합보험가입상담', '2022-06-05 17:23:18.1846961', '2022-06-09 17:23:18.1846961', 'NEW');
+
+# uw insert
+insert into uw values(1, '2022-06-06 13:12:31', 'ACCEPTED', 1);
+insert into uw values(2, '2022-06-06 13:12:31', 'UNDER_AUDIT', 2);
+insert into uw values(3, '2022-06-06 13:12:31', 'UNDER_AUDIT', 3);
+insert into uw values(4, '2022-06-06 13:12:31', 'UNDER_AUDIT', 4);
+
+# uw_document insert
+insert into uw_document values(1, '자동차등록증', '/uw/1/documents/자동차등록증', 'SUBMITTED', 1);
+insert into uw_document values(2, '운전경력증명서', '/uw/2/documents/운전경력증명서', 'REQUESTED', 2);
+insert into uw_document values(3, '선박등록증', '/uw/3/documents/선박등록증', 'REQUESTED', 3);
+insert into uw_document values(4, '부동산등록증', '/uw/4/documents/부동산등록증', 'REQUESTED', 4);

@@ -21,11 +21,11 @@ public class BenefitPaymentDao extends Dao{
 		String query = String.format(
 				"insert into %s values (" +
 						"0, '%d', '%s', '%s', '%s', " +
-						"'%d', '%d', '%d', '%d', " +
+						"'%d', '%d', '%d', " +
 						"'%d')",
 				this.tableName,  Integer.parseInt(benefitPayment.getContractId()), Timestamp.valueOf(benefitPayment.getRequestDate()), Timestamp.valueOf(benefitPayment.getAccidentDate()), benefitPayment.getAccidentContent(),
 				benefitPayment.getTotalPropertyLoss(), benefitPayment.getTotalPersonLoss(), benefitPayment.getTotalBenefit(),
-				benefitPayment.getState()
+				benefitPayment.getState().ordinal()
 		);
 		return super.create(query);
 	}
@@ -34,11 +34,11 @@ public class BenefitPaymentDao extends Dao{
 		String query = String.format(
 				"update %s set " +
 						"request_date=%s, accident_date=%s, accident_content=%s, accident_location=%s, " +
-						"total_property_loss=%d, total_person_loss=%d, total_property_benefit=%d, total_person_benefit=%d" +
+						"total_property_loss=%d, total_person_loss=%d, total_benefit=%d" +
 						"state=%d",
 				this.tableName, Timestamp.valueOf(benefitPayment.getRequestDate()), Timestamp.valueOf(benefitPayment.getAccidentDate()),
 				benefitPayment.getTotalPropertyLoss(), benefitPayment.getTotalPersonLoss(), benefitPayment.getTotalBenefit(),
-				benefitPayment.getState()
+				benefitPayment.getState().ordinal()
 		);
 		System.out.println(query);
 		return super.create(query);
@@ -93,8 +93,7 @@ public class BenefitPaymentDao extends Dao{
 		long totalPersonLoss = Long.parseLong(resultSet.getString("total_person_loss"));
 		long totalBenefit = Long.parseLong(resultSet.getString("total_benefit"));
 
-
-		EBenefitPaymentState state = EBenefitPaymentState.valueOf(resultSet.getString("state"));
+		EBenefitPaymentState state = EBenefitPaymentState.values()[resultSet.getInt("state")];
 
 		BenefitPayment benefitPayment = new BenefitPayment();
 		benefitPayment.setId(id);

@@ -80,7 +80,7 @@ public class AccidentCarDao extends Dao{
 
     public AccidentCar retrieveById(String id, String carAccidentHandlingId){
         try{
-            String query = String.format("select * from "+this.tableName+"where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
+            String query = String.format("select * from "+this.tableName+" where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
             System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;

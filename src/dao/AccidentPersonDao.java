@@ -28,7 +28,7 @@ public class AccidentPersonDao extends Dao{
 
     private String makeCreationQuery(AccidentPerson accidentPerson){
         String query = String.format(
-                "insert into %s values (0, '%d', '%d', '%s', '%s', '%s',)",
+                "insert into %s values (0, '%d', '%d', '%s', '%s', '%s')",
                 this.tableName,  Integer.parseInt(accidentPerson.getCarAccidentHandlingId()),
                 accidentPerson.getCost(), accidentPerson.getName(), accidentPerson.getPhoneNo(), accidentPerson.getVisitedHospitalName()
     );
@@ -78,7 +78,7 @@ public class AccidentPersonDao extends Dao{
 
     public AccidentPerson retrieveById(String id, String carAccidentHandlingId){
         try{
-            String query = String.format("select * from "+this.tableName+"where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
+            String query = String.format("select * from "+this.tableName+" where id=%s and car_accident_handling_id=%s", id, carAccidentHandlingId);
             System.out.println(query);
             ResultSet resultSet = super.retrieve(query);
             if(resultSet==null || !resultSet.next()) return null;

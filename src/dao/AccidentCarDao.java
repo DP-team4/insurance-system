@@ -124,7 +124,7 @@ public class AccidentCarDao extends Dao{
         accidentCar.setCarNo(carNo);
         accidentCar.setCost(cost);
         accidentCar.setOwnerName(ownerName);
-        accidentCar.setCarNo(carNo);
+        accidentCar.setOwnerPhoneNo(ownerPhoneNo);
         accidentCar.setVisitedShopName(visitedShopName);
         return accidentCar;
     }

@@ -1,9 +1,6 @@
 package view.BenefitPaymentManagement;
 
 import domain.benefitPayment.BenefitPayment;
-import domain.benefitPayment.EBenefitPaymentState;
-import domain.carAccidentHandling.CarAccidentHandling;
-import domain.carAccidentHandling.ECarAccidentHandlingState;
 import service.BenefitPaymentServiceImpl;
 import service.BenefitPaymentService;
 import service.contractManagement.ContractManagementService;
@@ -33,7 +30,7 @@ public class BenefitPaymentListView extends View {
     }
 
     private boolean showOnReviewCarAccidentHandlingList() {        
-        System.out.printf(" %s %s %s %s %s", "보험금 청구 번호", "고객명", "요청 시각","사고 발생 시각","사고 내용","접수현황");
+        System.out.printf(" %s %s %s %s %s %s", "보험금 청구 번호", "고객명", "요청 시각","사고 발생 시각","사고 내용","접수현황");
         ArrayList<BenefitPayment> benefitPayments = this.benefitPayManagementService.getAll();
         if(benefitPayments.isEmpty()) return false;
         for(BenefitPayment e : benefitPayments){
@@ -43,7 +40,7 @@ public class BenefitPaymentListView extends View {
             LocalDateTime accidentDate = e.getAccidentDate();
             String accidentContent = e.getAccidentContent();
             String state = e.getState().getTitle();
-            System.out.printf("%s %s %t %t %s %s", id, customerName, requestDate, accidentDate, accidentContent, state);
+            System.out.printf("%s %s %s %s %s %s", id, customerName, requestDate, accidentDate, accidentContent, state);
             System.out.println();
         }
         return true;

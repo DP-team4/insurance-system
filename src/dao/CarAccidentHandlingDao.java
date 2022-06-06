@@ -4,6 +4,7 @@ import domain.carAccidentHandling.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -30,8 +31,8 @@ public class CarAccidentHandlingDao extends Dao {
 
 	private String makeCreationQuery(CarAccidentHandling carAccidentHandling){
 		String query = String.format(
-				"insert into '%s' values (0, '%d', '%t', '%t', '%s', '%s', '%d')",
-				this.tableName,  Integer.parseInt(carAccidentHandling.getContractId()), carAccidentHandling.getRequestDate(), carAccidentHandling.getAccidentDate(),
+				"insert into '%s' values (0, '%d', '%s', '%s', '%s', '%s', '%d')",
+				this.tableName,  Integer.parseInt(carAccidentHandling.getContractId()), Timestamp.valueOf(carAccidentHandling.getRequestDate()), Timestamp.valueOf(carAccidentHandling.getAccidentDate()),
 				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState()
 		);
 		return query;
@@ -39,8 +40,8 @@ public class CarAccidentHandlingDao extends Dao {
 
 	public boolean update(CarAccidentHandling carAccidentHandling) {
 		String query = String.format(
-			"update %s set request_date=%t, accident_date=%t, accident_content=%s, accident_location=%s, state=%d",
-				this.tableName, carAccidentHandling.getRequestDate(), carAccidentHandling.getAccidentDate(),
+			"update %s set request_date=%s, accident_date=%s, accident_content=%s, accident_location=%s, state=%d",
+				this.tableName, Timestamp.valueOf(carAccidentHandling.getRequestDate()), Timestamp.valueOf(carAccidentHandling.getAccidentDate()),
 				carAccidentHandling.getAccidentContent(), carAccidentHandling.getAccidentLocation(), carAccidentHandling.getState()
 		);
 		System.out.println(query);

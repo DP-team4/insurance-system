@@ -80,7 +80,7 @@ public class BenefitPaymentRequestedProcessView extends View {
             LocalDateTime accidentDate = e.getAccidentDate();
             String accidentContent = e.getAccidentContent();
 
-            System.out.printf("%s %s %t %t %s", id, customerName, requestDate, accidentDate, accidentContent);
+            System.out.printf("%s %s %s %s %s", id, customerName, requestDate, accidentDate, accidentContent);
             System.out.println();
         }
         return true;

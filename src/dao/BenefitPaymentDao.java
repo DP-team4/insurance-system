@@ -5,6 +5,7 @@ import domain.benefitPayment.EBenefitPaymentState;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -19,11 +20,11 @@ public class BenefitPaymentDao extends Dao{
 	public boolean create(BenefitPayment benefitPayment){
 		String query = String.format(
 				"insert into '%s' values (" +
-						"0, '%d', '%t', '%t', '%s', " +
+						"0, '%d', '%s', '%s', '%s', " +
 						"'%d', '%d', '%d', '%d', " +
 						"'%d')",
-				this.tableName,  Integer.parseInt(benefitPayment.getContractId()), benefitPayment.getRequestDate(), benefitPayment.getAccidentDate(), benefitPayment.getAccidentContent(),
-				benefitPayment.getTotalPropertyLoss(), benefitPayment.getTotalPersonLoss(), benefitPayment.getTotalPropertyBenefit(), benefitPayment.getTotalPersonBenefit(),
+				this.tableName,  Integer.parseInt(benefitPayment.getContractId()), Timestamp.valueOf(benefitPayment.getRequestDate()), Timestamp.valueOf(benefitPayment.getAccidentDate()), benefitPayment.getAccidentContent(),
+				benefitPayment.getTotalPropertyLoss(), benefitPayment.getTotalPersonLoss(), benefitPayment.getTotalBenefit(),
 				benefitPayment.getState()
 		);
 		return super.create(query);
@@ -32,11 +33,11 @@ public class BenefitPaymentDao extends Dao{
 	public boolean update(BenefitPayment benefitPayment) {
 		String query = String.format(
 				"update %s set " +
-						"request_date=%t, accident_date=%t, accident_content=%s, accident_location=%s, " +
+						"request_date=%s, accident_date=%s, accident_content=%s, accident_location=%s, " +
 						"total_property_loss=%d, total_person_loss=%d, total_property_benefit=%d, total_person_benefit=%d" +
 						"state=%d",
-				this.tableName, benefitPayment.getRequestDate(), benefitPayment.getAccidentDate(),
-				benefitPayment.getTotalPropertyLoss(), benefitPayment.getTotalPersonLoss(), benefitPayment.getTotalPropertyBenefit(), benefitPayment.getTotalPersonBenefit(),
+				this.tableName, Timestamp.valueOf(benefitPayment.getRequestDate()), Timestamp.valueOf(benefitPayment.getAccidentDate()),
+				benefitPayment.getTotalPropertyLoss(), benefitPayment.getTotalPersonLoss(), benefitPayment.getTotalBenefit(),
 				benefitPayment.getState()
 		);
 		System.out.println(query);
@@ -90,8 +91,7 @@ public class BenefitPaymentDao extends Dao{
 		String accidentContent = resultSet.getString("accident_content");
 		long totalPropertyLoss = Long.parseLong(resultSet.getString("total_property_loss"));
 		long totalPersonLoss = Long.parseLong(resultSet.getString("total_person_loss"));
-		long totalPropertyBenefit  = Long.parseLong(resultSet.getString("total_property_benefit"));
-		long totalPersonBenefit = Long.parseLong(resultSet.getString("total_person_benefit"));
+		long totalBenefit = Long.parseLong(resultSet.getString("total_benefit"));
 
 
 		EBenefitPaymentState state = EBenefitPaymentState.valueOf(resultSet.getString("state"));
@@ -104,8 +104,7 @@ public class BenefitPaymentDao extends Dao{
 		benefitPayment.setAccidentContent(accidentContent);
 		benefitPayment.setTotalPropertyLoss(totalPropertyLoss);
 		benefitPayment.setTotalPersonLoss(totalPersonLoss);
-		benefitPayment.setTotalPropertyBenefit(totalPropertyBenefit);
-		benefitPayment.setTotalPersonBenefit(totalPersonBenefit);
+		benefitPayment.setTotalBenefit(totalBenefit);
 		benefitPayment.setState(state);
 		return benefitPayment;
 	}

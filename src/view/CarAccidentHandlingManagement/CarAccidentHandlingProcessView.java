@@ -82,7 +82,7 @@ public class CarAccidentHandlingProcessView extends View {
             String accidentLocation = e.getAccidentLocation();
             String accidentContent = e.getAccidentContent();
 
-            System.out.printf("%s %s %t %t %s %s", id, customerName, requestDate, accidentDate, accidentLocation, accidentContent);
+            System.out.printf("%s %s %s %s %s %s", id, customerName, requestDate, accidentDate, accidentLocation, accidentContent);
             System.out.println();
         }
         return true;

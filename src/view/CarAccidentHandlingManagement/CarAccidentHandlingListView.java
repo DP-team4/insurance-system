@@ -21,17 +21,17 @@ public class CarAccidentHandlingListView extends View {
     @Override
     public void show() {
         while (true) {
-            System.out.println("\n================ì‚¬ê³ ì²˜ë¦¬ ìš”ì²­ ì ‘ìˆ˜ ì „ì²´ í˜„í™© ì¡°íšŒ í™”ë©´================");
+            System.out.println("\n================»ç°íÃ³¸® ¿äÃ» Á¢¼ö ÀüÃ¼ ÇöÈ² Á¶È¸ È­¸é================");
             if (!showOnReviewCarAccidentHandlingList())
                 break;
-            System.out.println("ë‹¤ì‹œ ì¡°íšŒí•˜ë ¤ë©´ Y í˜¹ì€ y, ëŒì•„ê°€ì‹œë ¤ë©´ ê·¸ ì™¸ ì•„ë¬´í‚¤ë‚˜ ì…ë ¥í•˜ì„¸ìš”.");
+            System.out.println("´Ù½Ã Á¶È¸ÇÏ·Á¸é Y È¤Àº y, µ¹¾Æ°¡½Ã·Á¸é ±× ¿Ü ¾Æ¹«Å°³ª ÀÔ·ÂÇÏ¼¼¿ä.");
             String input = scanner.nextLine().trim();
             if (!(input.equals("Y") && input.equals("y"))) break;
         }
     }
 
     private boolean showOnReviewCarAccidentHandlingList() {
-        System.out.printf(" %s %s %s %s %s %s %s %s", "ì‚¬ê³ ì²˜ë¦¬ ë²ˆí˜¸", "ê³ ê°ëª…", "ìš”ì²­ ì‹œê°","ì‚¬ê³  ë°œìƒ ì‹œê°","ì‚¬ê³  ë°œìƒ ìœ„ì¹˜", "ì‚¬ê³  ë‚´ìš©", "ì ‘ìˆ˜ í˜„í™©");
+        System.out.printf(" %s %s %s %s %s %s %s %s", "»ç°íÃ³¸® ¹øÈ£", "°í°´¸í", "¿äÃ» ½Ã°¢","»ç°í ¹ß»ı ½Ã°¢","»ç°í ¹ß»ı À§Ä¡", "»ç°í ³»¿ë", "Á¢¼ö ÇöÈ²");
         ArrayList<CarAccidentHandling> carAccidentHandlings = this.carAccidentHandlingManagementService.getAll();
         if(carAccidentHandlings.isEmpty()) return false;
         for(CarAccidentHandling e : carAccidentHandlings){
@@ -42,7 +42,7 @@ public class CarAccidentHandlingListView extends View {
             String accidentLocation = e.getAccidentLocation();
             String accidentContent = e.getAccidentContent();
             String state = e.getState().getTitle();
-            System.out.printf("%s %s %t %t %s %s", id, customerName, requestDate, accidentDate, accidentLocation, accidentContent);
+            System.out.printf("%s %s %t %t %s %s %s", id, customerName, requestDate, accidentDate, accidentLocation, accidentContent, state);
             System.out.println();
         }
         return true;

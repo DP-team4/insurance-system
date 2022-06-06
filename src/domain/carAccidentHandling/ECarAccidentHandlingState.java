@@ -1,7 +1,7 @@
 package domain.carAccidentHandling;
 
 public enum ECarAccidentHandlingState {
-	ONREVIEW("ì²˜ë¦¬ ì¤‘"), HANDLED("ì²˜ë¦¬ ì™„ë£Œ"), REFUSED("ê±°ì ˆë¨");
+	ONREVIEW("Ã³¸® Áß"), HANDLED("Ã³¸® ¿Ï·á"), REFUSED("°ÅÀıµÊ");
 
 	private String title;
 	private ECarAccidentHandlingState(String title){

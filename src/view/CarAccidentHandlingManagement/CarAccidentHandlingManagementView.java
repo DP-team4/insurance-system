@@ -15,8 +15,8 @@ public class CarAccidentHandlingManagementView extends View {
     public void show() {
         while(true) {
             System.out.println();
-            System.out.println("================ì‚¬ê³ ì²˜ë¦¬ ìš”ì²­ ê´€ë¦¬ í™”ë©´================");
-            System.out.println("ì‚¬ê³ ì²˜ë¦¬ ìš”ì²­ ì ‘ìˆ˜(1), ì‚¬ê³ ì²˜ë¦¬ ìš”ì²­ ì „ì²´ í˜„í™© í™•ì¸(2), ë’¤ë¡œê°€ê¸°(0)");
+            System.out.println("================»ç°íÃ³¸® ¿äÃ» °ü¸® È­¸é================");
+            System.out.println("»ç°íÃ³¸® ¿äÃ» Á¢¼ö(1), »ç°íÃ³¸® ¿äÃ» ÀüÃ¼ ÇöÈ² È®ÀÎ(2), µÚ·Î°¡±â(0)");
             System.out.print(">> ");
             String input = this.scanner.nextLine().trim();
             if(input.equals("0")) break;
@@ -24,9 +24,9 @@ public class CarAccidentHandlingManagementView extends View {
                 case "1": new CarAccidentHandlingProcessView().show();		break;
                 case "2": new CarAccidentHandlingListView().show();		break;
                 case "0": break;
-                default:  System.out.println("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");		break;
+                default:  System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");		break;
             }
-            System.out.println("ë°˜ë³µë©ë‹ˆë‹¤. ê³„ì†í•˜ì‹œê² ìŠµë‹ˆê°€? ê³„ì†(1) ë’¤ë¡œê°€ê¸°(ê·¸ ì™¸)");
+            System.out.println("¹İº¹µË´Ï´Ù. °è¼ÓÇÏ½Ã°Ú½À´Ï°¡? °è¼Ó(1) µÚ·Î°¡±â(±× ¿Ü)");
             input = scanner.nextLine().trim();
             if(!input.equals("1")) break;
         }

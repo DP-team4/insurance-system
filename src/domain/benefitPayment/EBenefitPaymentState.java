@@ -1,8 +1,8 @@
 package domain.benefitPayment;
 
 public enum EBenefitPaymentState {
-		ONREVIEW("ì²˜ë¦¬ ì¤‘"), READY("ì§€ê¸‰ ëŒ€ê¸° ì¤‘"), REFUSED("ì§€ê¸‰ ê±°ì ˆ"), PAID("ì§€ê¸‰ì™„ë£Œ");
-		//DBì—ì„œëŠ”ìˆ«ìë¡œ ì €ì¥ ì˜ˆì •
+		ONREVIEW("Ã³¸® Áß"), READY("Áö±Ş ´ë±â Áß"), REFUSED("Áö±Ş °ÅÀı"), PAID("Áö±Ş¿Ï·á");
+		//DB¿¡¼­´Â¼ıÀÚ·Î ÀúÀå ¿¹Á¤
 	
 	private String title;
 	private EBenefitPaymentState(String title){

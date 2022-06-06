@@ -27,13 +27,18 @@ public class CarAccidentHandlingRepository {
             if(accidentCarId==null) return false;
             accidentCar.setId(accidentCarId);
         }
+        for(AccidentPerson accidentPerson : carAccidentHandling.getAccidentPeople()) {
+            accidentPerson.setCarAccidentHandlingId(id);
+            String accidentCarId = accidentPersonDao.createAndGetId(accidentPerson);
+            if(accidentCarId==null) return false;
+            accidentPerson.setId(accidentCarId);
+        }
         return true;
     }
     public boolean delete(String id) {
         boolean accidentCarsDeleted = accidentCarDao.deleteByCarAccidentHandlingId(id);
         boolean accidentPeopleDeleted = accidentPersonDao.deleteByCarAccidentHandlingId(id);
         if(!(accidentCarsDeleted && accidentPeopleDeleted)) return false;
-        //rollback 하는 부분을 넣어야하나?
         return carAccidentHandlingDao.delete(id);
     }
     public CarAccidentHandling getById(String id) {

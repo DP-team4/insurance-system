@@ -1,6 +1,5 @@
 package dao;
 
-import domain.carAccidentHandling.AccidentCar;
 import domain.carAccidentHandling.AccidentPerson;
 
 import java.sql.ResultSet;
@@ -29,7 +28,7 @@ public class AccidentPersonDao extends Dao{
 
     private String makeCreationQuery(AccidentPerson accidentPerson){
         String query = String.format(
-                "insert into '%s' values (0, '%d', '%d', '%s', '%s', '%s',)",
+                "insert into %s values (0, '%d', '%d', '%s', '%s', '%s',)",
                 this.tableName,  Integer.parseInt(accidentPerson.getCarAccidentHandlingId()),
                 accidentPerson.getCost(), accidentPerson.getName(), accidentPerson.getPhoneNo(), accidentPerson.getVisitedHospitalName()
     );

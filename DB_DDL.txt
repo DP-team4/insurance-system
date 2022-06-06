@@ -115,13 +115,17 @@ create table car_accident_handling (
 
 create table benefit_payment (
 	id int primary key auto_increment,
-	contract_id int, 
-	state tinyint, 
-	accident_cause varchar(4000), 
-	accident_date timestamp, 
-	appliance_date timestamp, 
-	state_confirmed_date timestamp
+	contract_id int,
+	request_date timestamp,
+	accident_date timestamp,
+	accident_content varchar(4000),
+	total_property_loss bigint,
+	total_person_loss bigint,
+	total_benefit bigint,
+	state tinyint,
+	foreign key (contract_id) references contract (id)
 );
+
 
 # insurance insert
 insert into insurance values(1, '개인용자동차보험', 'CAR', 'ON_SALE');

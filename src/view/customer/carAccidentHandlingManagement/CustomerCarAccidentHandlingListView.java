@@ -34,7 +34,7 @@ public class CustomerCarAccidentHandlingListView {
 	        	System.out.println("차량 수리점 : " + car.getVisitedShopName());
 	        	System.out.println();
 			}
-	        System.out.println("\n< 사고 관련자 정보 >");
+	        System.out.println("< 사고 관련자 정보 >");
 			for(AccidentPerson person : c.getAccidentPeople()) {
 				System.out.print("이름: " + person.getName());
 	        	System.out.print("전화번호: " + person.getPhoneNo());

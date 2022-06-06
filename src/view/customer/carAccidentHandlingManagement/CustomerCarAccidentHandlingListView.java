@@ -36,12 +36,11 @@ public class CustomerCarAccidentHandlingListView {
 			}
 	        System.out.println("< 사고 관련자 정보 >");
 			for(AccidentPerson person : c.getAccidentPeople()) {
-				System.out.print("이름: " + person.getName());
-	        	System.out.print("전화번호: " + person.getPhoneNo());
-	        	System.out.print("방문병원: " + person.getVisitedHospitalName());
+				System.out.println("이름: " + person.getName());
+	        	System.out.println("전화번호: " + person.getPhoneNo());
+	        	System.out.println("방문병원: " + person.getVisitedHospitalName());
 	        	System.out.println();
 			}
-			System.out.println();
 		}
 	}
 

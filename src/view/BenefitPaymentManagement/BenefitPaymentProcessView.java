@@ -23,11 +23,11 @@ public class BenefitPaymentProcessView  extends View {
     public void show() {
         while(true) {
             try {
-                System.out.println("\n================ë³´í—˜ê¸ˆ ì§€ê¸‰ í™”ë©´================");
+                System.out.println("\n================º¸Çè±İ Áö±Ş È­¸é================");
                 if(!showOnReviewCarAccidentHandlingList())
                     break;
                 showProcessRequestedCarAccidentHandling();
-                System.out.println("ë³´í—˜ê¸ˆ ì²­êµ¬ ì²˜ë¦¬  í™”ë©´ì…ë‹ˆë‹¤. ê³„ì†í•˜ì‹œë ¤ë©´ Y/y, ëŒì•„ê°€ì‹œë ¤ë©´ N/nì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+                System.out.println("º¸Çè±İ Ã»±¸ Ã³¸®  È­¸éÀÔ´Ï´Ù. °è¼ÓÇÏ½Ã·Á¸é Y/y, µ¹¾Æ°¡½Ã·Á¸é N/nÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
                 String input = scanner.nextLine().trim();
                 if(!(input.equals("Y")&&input.equals("y"))) break;
             } catch (InvalidInputException e) {
@@ -39,15 +39,15 @@ public class BenefitPaymentProcessView  extends View {
     private void showProcessRequestedCarAccidentHandling() throws InvalidInputException {
         BenefitPayment benefitPayment = null;
 
-        System.out.print("ë³´í—˜ê¸ˆì„ ì§€ê¸‰í•  ëŒ€ìƒì˜ ë³´í—˜ê¸ˆ ì²­êµ¬ IDë¥¼ ì…ë ¥í•˜ì„¸ìš” >> ");
+        System.out.print("º¸Çè±İÀ» Áö±ŞÇÒ ´ë»óÀÇ º¸Çè±İ Ã»±¸ ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä >> ");
         String input = scanner.nextLine().trim();
         benefitPayment = benefitPayManagementService.getById(input);
         if(benefitPayment == null)
-            throw new InvalidInputException("í•´ë‹¹ ë³´í—˜ê¸ˆ ì²­êµ¬ IDëŠ” ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+            throw new InvalidInputException("ÇØ´ç º¸Çè±İ Ã»±¸ ID´Â À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
 
         while(true) {
-            System.out.println("////// í•´ë‹¹ ë³´í—˜ê¸ˆ ì²­êµ¬ê±´ ë§Œí¼ ë³´í—˜ê¸ˆì„ ì§€ê¸‰í•©ë‹ˆë‹¤. //////");
-            System.out.println("'ìŠ¹ì¸'ì²˜ë¦¬(1), 'ê±°ì ˆ'ì²˜ë¦¬(2), ë’¤ë¡œê°€ê¸° (0)");
+            System.out.println("////// ÇØ´ç º¸Çè±İ Ã»±¸°Ç ¸¸Å­ º¸Çè±İÀ» Áö±ŞÇÕ´Ï´Ù. //////");
+            System.out.println("'½ÂÀÎ'Ã³¸®(1), '°ÅÀı'Ã³¸®(2), µÚ·Î°¡±â (0)");
             input = scanner.nextLine().trim();
             boolean escape = false;
             if(input.equals("0")) break;
@@ -62,7 +62,7 @@ public class BenefitPaymentProcessView  extends View {
                 case "0":
                     break;
                 default:
-                    System.out.println("1, 2, 0 ì¤‘ì—ì„œ ì…ë ¥í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
+                    System.out.println("1, 2, 0 Áß¿¡¼­ ÀÔ·ÂÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
                     break;
             }
             if(escape) break;
@@ -70,7 +70,7 @@ public class BenefitPaymentProcessView  extends View {
     }
 
     private boolean showOnReviewCarAccidentHandlingList() {
-        System.out.printf(" %s %s %s %s %s %s %s", "ì‚¬ê³ ì²˜ë¦¬ ë²ˆí˜¸", "ê³ ê°ëª…", "ìš”ì²­ ì‹œê°","ì‚¬ê³  ë°œìƒ ì‹œê°","ì‚¬ê³  ë°œìƒ ìœ„ì¹˜", "ì‚¬ê³  ë‚´ìš©");
+        System.out.printf(" %s %s %s %s %s", "º¸Çè±İ Ã»±¸ ¹øÈ£", "°í°´¸í", "¿äÃ» ½Ã°¢","»ç°í ¹ß»ı ½Ã°¢","»ç°í ³»¿ë");
         ArrayList<BenefitPayment> benefitPayments = this.benefitPayManagementService.getAll();
         if(benefitPayments.isEmpty()) return false;
         for(BenefitPayment e : benefitPayments){
@@ -88,8 +88,8 @@ public class BenefitPaymentProcessView  extends View {
     }
 
     private void payBenefitToRelatedCustomer(String accountNo) {
-        System.out.println("ë‹¤ìŒì˜ ê³„ì¢Œë¡œ ì§€ê¸‰ ì²˜ë¦¬ ì¤‘: "+accountNo);
+        System.out.println("´ÙÀ½ÀÇ °èÁÂ·Î Áö±Ş Ã³¸® Áß: "+accountNo);
         System.out.println("...");
-        System.out.println("ì§€ê¸‰ ì™„ë£Œ!");
+        System.out.println("Áö±Ş ¿Ï·á!");
     }
 }

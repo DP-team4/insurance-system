@@ -23,11 +23,11 @@ public class CarAccidentHandlingProcessView extends View {
     public void show() {
         while(true) {
             try {
-                System.out.println("\n================ì‚¬ê³ ì²˜ë¦¬ ìš”ì²­ ì ‘ìˆ˜ ëª©ë¡ í™”ë©´================");
+                System.out.println("\n================»ç°íÃ³¸® ¿äÃ» Á¢¼ö ¸ñ·Ï È­¸é================");
                 if(!showOnReviewCarAccidentHandlingList())
                     break;
                 showProcessRequestedCarAccidentHandling();
-                System.out.println("ì‚¬ê³ ì²˜ë¦¬ ìš”ì²­ ì ‘ìˆ˜ ëª©ë¡ í™”ë©´ì…ë‹ˆë‹¤. ê³„ì†í•˜ì‹œë ¤ë©´ Y/y, ëŒì•„ê°€ì‹œë ¤ë©´ N/nì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+                System.out.println("»ç°íÃ³¸® ¿äÃ» Á¢¼ö ¸ñ·Ï È­¸éÀÔ´Ï´Ù. °è¼ÓÇÏ½Ã·Á¸é Y/y, µ¹¾Æ°¡½Ã·Á¸é N/nÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
                 String input = scanner.nextLine().trim();
                 if(!(input.equals("Y")&&input.equals("y"))) break;
             } catch (InvalidInputException e) {
@@ -39,15 +39,15 @@ public class CarAccidentHandlingProcessView extends View {
     private void showProcessRequestedCarAccidentHandling() throws InvalidInputException {
         CarAccidentHandling carAccidentHandling = null;
 
-        System.out.print("ì ‘ìˆ˜í•  ì‚¬ê³ ì²˜ë¦¬ì˜ IDë¥¼ ì…ë ¥í•˜ì„¸ìš” >> ");
+        System.out.print("Á¢¼öÇÒ »ç°íÃ³¸®ÀÇ ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä >> ");
         String input = scanner.nextLine().trim();
         carAccidentHandling = carAccidentHandlingManagementService.getById(input);
         if(carAccidentHandling == null)
-            throw new InvalidInputException("ìœ ìš”í•˜ì§€ ì•Šì€ ì‚¬ê³ ì²˜ë¦¬ ID ì…ë‹ˆë‹¤.");
+            throw new InvalidInputException("À¯¿äÇÏÁö ¾ÊÀº »ç°íÃ³¸® ID ÀÔ´Ï´Ù.");
 
         while(true) {
-            System.out.println("////// í•´ë‹¹ ì‚¬ê³ ì²˜ë¦¬ë¥¼ ì ‘ìˆ˜í•©ë‹ˆë‹¤. //////");
-            System.out.println("'ì ‘ìˆ˜'ì²˜ë¦¬(1), 'ê±°ì ˆ'ì²˜ë¦¬(2), ë’¤ë¡œê°€ê¸° (0)");
+            System.out.println("////// ÇØ´ç »ç°íÃ³¸®¸¦ Á¢¼öÇÕ´Ï´Ù. //////");
+            System.out.println("'Á¢¼ö'Ã³¸®(1), '°ÅÀı'Ã³¸®(2), µÚ·Î°¡±â (0)");
             input = scanner.nextLine().trim();
             boolean escape = false;
             if(input.equals("0")) break;
@@ -57,12 +57,12 @@ public class CarAccidentHandlingProcessView extends View {
                     break;
                 case "2":
                     carAccidentHandling.setState(ECarAccidentHandlingState.REFUSED);
-                    //ë³´í—˜ê¸ˆ ì²­êµ¬ ê±´ ìë™ ìƒì„±
+                    //º¸Çè±İ Ã»±¸ °Ç ÀÚµ¿ »ı¼º
                     break;
                 case "0":
                     break;
                 default:
-                    System.out.println("1, 2, 0 ì¤‘ì—ì„œ ì…ë ¥í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
+                    System.out.println("1, 2, 0 Áß¿¡¼­ ÀÔ·ÂÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
                     break;
             }
             if(escape) break;
@@ -70,7 +70,7 @@ public class CarAccidentHandlingProcessView extends View {
     }
 
     private boolean showOnReviewCarAccidentHandlingList() {
-        System.out.printf(" %s %s %s %s %s %s %s", "ì‚¬ê³ ì²˜ë¦¬ ë²ˆí˜¸", "ê³ ê°ëª…", "ìš”ì²­ ì‹œê°","ì‚¬ê³  ë°œìƒ ì‹œê°","ì‚¬ê³  ë°œìƒ ìœ„ì¹˜", "ì‚¬ê³  ë‚´ìš©");
+        System.out.printf(" %s %s %s %s %s %s %s", "»ç°íÃ³¸® ¹øÈ£", "°í°´¸í", "¿äÃ» ½Ã°¢","»ç°í ¹ß»ı ½Ã°¢","»ç°í ¹ß»ı À§Ä¡", "»ç°í ³»¿ë");
         ArrayList<CarAccidentHandling> carAccidentHandlings = this.carAccidentHandlingManagementService.getAll();
         if(carAccidentHandlings.isEmpty()) return false;
         for(CarAccidentHandling e : carAccidentHandlings){

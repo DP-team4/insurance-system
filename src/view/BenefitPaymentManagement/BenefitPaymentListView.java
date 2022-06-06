@@ -23,17 +23,17 @@ public class BenefitPaymentListView extends View {
     @Override
     public void show() {
         while (true) {
-            System.out.println("\n================ë³´í—˜ê¸ˆ ì²­êµ¬ ì „ì²´ í˜„í™© ì¡°íšŒ í™”ë©´================");
+            System.out.println("\n================º¸Çè±İ Ã»±¸ ÀüÃ¼ ÇöÈ² Á¶È¸ È­¸é================");
             if (!showOnReviewCarAccidentHandlingList())
                 break;
-            System.out.println("ë‹¤ì‹œ ì¡°íšŒí•˜ë ¤ë©´ Y í˜¹ì€ y, ëŒì•„ê°€ì‹œë ¤ë©´ ê·¸ ì™¸ ì•„ë¬´í‚¤ë‚˜ ì…ë ¥í•˜ì„¸ìš”.");
+            System.out.println("´Ù½Ã Á¶È¸ÇÏ·Á¸é Y È¤Àº y, µ¹¾Æ°¡½Ã·Á¸é ±× ¿Ü ¾Æ¹«Å°³ª ÀÔ·ÂÇÏ¼¼¿ä.");
             String input = scanner.nextLine().trim();
             if (!(input.equals("Y") && input.equals("y"))) break;
         }
     }
 
-    private boolean showOnReviewCarAccidentHandlingList() {
-        System.out.printf(" %s %s %s %s %s %s %s %s", "ë³´í—˜ê¸ˆ ì²­êµ¬ ë²ˆí˜¸", "ê³ ê°ëª…", "ìš”ì²­ ì‹œê°","ì‚¬ê³  ë°œìƒ ì‹œê°","ì‚¬ê³  ë‚´ìš©", "ì ‘ìˆ˜ í˜„í™©");
+    private boolean showOnReviewCarAccidentHandlingList() {        
+        System.out.printf(" %s %s %s %s %s", "º¸Çè±İ Ã»±¸ ¹øÈ£", "°í°´¸í", "¿äÃ» ½Ã°¢","»ç°í ¹ß»ı ½Ã°¢","»ç°í ³»¿ë","Á¢¼öÇöÈ²");
         ArrayList<BenefitPayment> benefitPayments = this.benefitPayManagementService.getAll();
         if(benefitPayments.isEmpty()) return false;
         for(BenefitPayment e : benefitPayments){

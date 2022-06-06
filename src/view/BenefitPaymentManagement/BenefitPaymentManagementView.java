@@ -13,8 +13,8 @@ public class BenefitPaymentManagementView  extends View {
     public void show() {
         while (true) {
             System.out.println();
-            System.out.println("================ì‚¬ê³ ì²˜ë¦¬ ìš”ì²­ ê´€ë¦¬ í™”ë©´================");
-            System.out.println("ë³´í—˜ê¸ˆ ì²­êµ¬ ì²˜ë¦¬(1), ë³´í—˜ê¸ˆ ì§€ê¸‰(2), ë³´í—˜ê¸ˆ ì²­êµ¬ ì „ì²´ í˜„í™© í™•ì¸(3), ë’¤ë¡œê°€ê¸°(0)");
+            System.out.println("================º¸Çè±İ Ã»±¸ °ü¸® È­¸é================");
+            System.out.println("º¸Çè±İ Ã»±¸ Ã³¸®(1), º¸Çè±İ Áö±Ş(2), º¸Çè±İ Ã»±¸ ÀüÃ¼ ÇöÈ² È®ÀÎ(3), µÚ·Î°¡±â(0)");
             System.out.print(">> ");
             String input = this.scanner.nextLine().trim();
             if (input.equals("0")) break;
@@ -31,10 +31,10 @@ public class BenefitPaymentManagementView  extends View {
                 case "0":
                     break;
                 default:
-                    System.out.println("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
+                    System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
                     break;
             }
-            System.out.println("ë°˜ë³µë©ë‹ˆë‹¤. ê³„ì†í•˜ì‹œê² ìŠµë‹ˆê°€? ê³„ì†(1) ë’¤ë¡œê°€ê¸°(ê·¸ ì™¸)");
+            System.out.println("¹İº¹µË´Ï´Ù. °è¼ÓÇÏ½Ã°Ú½À´Ï°¡? °è¼Ó(1) µÚ·Î°¡±â(±× ¿Ü)");
             input = scanner.nextLine().trim();
             if (!input.equals("1")) break;
         }

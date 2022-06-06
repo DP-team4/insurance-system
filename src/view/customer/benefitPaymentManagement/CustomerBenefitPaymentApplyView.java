@@ -34,9 +34,9 @@ public class CustomerBenefitPaymentApplyView {
 		try {
 			this.customer = customer;
 			this.customerBenefitPaymentListView = customerBenefitPaymentListView;
-			// 사고접수정보(사고유형, 접수일시, 고객정보(고객성명, 주민번호)), '신청하기', '취소하기' 버튼을 보여준다
+			// 보험금 청구 화면(보험상품 종류 선택창)을 보여준다
 			System.out.println("\n[ 보험금 청구 ]");
-			System.out.println("청구할 보험상품 종류를 선택해주세요 -");
+			System.out.println("청구할 보험상품 종류를 선택해주세요.");
 			System.out.print("해상보험(1), 운전자보험(2), 화재보험(3) >> ");
 			String input = scanner.nextLine().trim();
 	        // 입력에 맞는 계약을 가져온다.
@@ -48,10 +48,11 @@ public class CustomerBenefitPaymentApplyView {
 				// A3. 올바르지 않은 검색 조건을 입력한 경우 -> "입력값이 유효하지 않습니다" 메시지를 보여준다
 				default : System.out.println("\n입력값이 유효하지 않습니다."); return;
 			}
-			// 자격 검사
+			// 보험금 청구 가능 여부를 확인한다
 			contract = customerContractService.getUnmaturedContractByCategory(this.customer.getId(), insuranceCategory);
 			if(contract == null) { System.out.println("보험금 청구 가능한 가입 보험이 없어 서비스를 이용하실 수 없습니다. 이전화면으로 돌아갑니다."); return; }
 
+			// 보험금 청구 정보(청구 내용, 사고날짜(년, 월, 일, 시, 분), 피해금액) 입력창, '신청', '취소' 버튼을 보여준다
 	        System.out.print("청구 내용 >> "); String content = getInputAndCheckInvalid();
 	        System.out.println("사고 날짜 >> ");
 	        System.out.print("년(year) : "); String year = getInputAndCheckInvalid();
@@ -62,30 +63,30 @@ public class CustomerBenefitPaymentApplyView {
 			switch(insuranceCategory) {
 				case MARINE:
 				case FIRE:
-					System.out.print("재산피해 : ");
+					System.out.print("재산피해 >> ");
 					break;
 				case DRIVER:
-					System.out.print("대인피해 : ");
+					System.out.print("대인피해 >> ");
 					break;
 				default: System.out.println("ERROR"); break;
 			}
 			String totalLoss = getInputAndCheckInvalid();
-	        System.out.print("\n상담을 신청하시겠습니까? 예(1) 아니오(기타) >> "); input = scanner.nextLine().trim();
+	        System.out.print("\n보험금을 청구하시겠습니까? 예(1) 아니오(기타) >> "); input = scanner.nextLine().trim();
 	        if(input.equals("1")) {
 	        	applyBenefitPayment(year, month, dayOfMonth, hour, minute, content, totalLoss);
 	        } else {
-	        	// A2. 내용을 모두 입력한 후 취소 버튼을 클릭할 경우
+	        	// A3. 내용을 모두 입력한 후 취소 버튼을 클릭할 경우
 	    		System.out.println("\n작성중인 내용이 있습니다. 화면을 나가시겠습니까? 예(1) 아니오(기타) >> "); input = scanner.nextLine().trim();
 	    		if(input.equals("1")) return;
 	        	applyBenefitPayment(year, month, dayOfMonth, hour, minute, content, totalLoss);
 	        }
-	    // A1. 상담 신청 양식을 덜 입력한 경우
+	    // A2. 보험금 청구 양식을 덜 입력한 경우
 		} catch (InvalidInputException invalidInputException) {
         	System.out.println(invalidInputException.getMessage());
         }	
 	}
 
-	// 사고처리 신청 정보를 저장 요청한다
+	// 보험금 청구 정보를 저장 요청한다
 	private void applyBenefitPayment(String year, String month, String dayOfMonth, String hour, String minute, String content, String totalLossStr) {
 		BenefitPayment benefitPayment = new BenefitPayment();
 		benefitPayment.setState(EBenefitPaymentState.ONREVIEW);
@@ -120,7 +121,7 @@ public class CustomerBenefitPaymentApplyView {
     			customerBenefitPaymentListView.show(customer);
     		} else System.out.println("\n보험금 청구 실패. 이전 화면으로 돌아갑니다.");
         } catch (NumberFormatException e) {
-        	// A3. 상담신청내용에 유효하지 않은 값을 입력한 경우
+        	// A3. 보험금 청구내용에 유효하지 않은 값을 입력한 경우
         	System.out.println("입력값이 유효하지 않습니다.");
         } catch (DateTimeException dateTimeException) {
         	System.out.println("날짜가 올바르지 않습니다.");

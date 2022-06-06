@@ -21,6 +21,7 @@ public class UwIntegratedManagementView extends View {
     public void show() {
         System.out.println("///// UW 통합관리 /////");
         while(true){
+            loadUwList();
             showUwListView();
             switch (this.condition) {
                 case ALL:

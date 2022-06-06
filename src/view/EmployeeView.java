@@ -1,5 +1,7 @@
 package view;
 
+import view.BenefitPaymentManagement.BenefitPaymentManagementView;
+import view.CarAccidentHandlingManagement.CarAccidentHandlingManagementView;
 import view.contractMangement.ContractIntergratedManagementView;
 import view.insuranceManagement.InsuranceIntegratedManagementView;
 import view.salesManagement.SalesMainView;
@@ -13,7 +15,7 @@ public class EmployeeView extends View {
     public void show() {
         while (true) {
             System.out.println("///// 업무 선택 /////");
-            System.out.println("보험(1), 계약(2), 보상(3), UW(4), 영업(5) 뒤로가기(exit)");
+            System.out.println("보험(1), 계약(2), UW(3), 영업(4), 보상(5), 사고처리(6), 뒤로가기(exit)");
             String input = mScanner.getString();
             switch (input) {
                 case "1":
@@ -23,13 +25,16 @@ public class EmployeeView extends View {
                     new ContractIntergratedManagementView().show();
                     break;
                 case "3":
-                    System.out.println("추가 요망");
-                    break;
-                case "4":
                     new UwIntegratedManagementView().show();
                     break;
-                case "5":
+                case "4":
                     new SalesMainView().show();
+                    break;
+                case "5":
+                    new BenefitPaymentManagementView().show();
+                    break;
+                case "6":
+                    new CarAccidentHandlingManagementView().show();
                     break;
                 case "exit":
                     return;

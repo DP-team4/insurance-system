@@ -10,7 +10,7 @@ import java.util.StringJoiner;
  */
 public class UWDocument {
 
-	private String id = "UWDocument" + System.currentTimeMillis();
+	private String id;
 	private String name;
 	private String path;
 	private UWDocumentState uwDocumentState;
@@ -29,7 +29,7 @@ public class UWDocument {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UWDocument) {
-			return ((UW) obj).getId().equals(this.id);
+			return ((UWDocument) obj).getId().equals(this.id);
 		}
 		return false;
 	}
